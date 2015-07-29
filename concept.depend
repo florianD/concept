@@ -1,0 +1,470 @@
+# depslib dependency file v1.0
+1438207260 source:c:\users\florian\documents\prog\concept\main.cpp
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<stdio.h>
+	<string>
+	<vector>
+	<fstream>
+	"include/config.h"
+	"include/Image.h"
+	"include/Tile.h"
+	"include/Object.h"
+	"include/Player.h"
+	"include/Trainer.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\begin_code.h
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\close_code.h
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<intrin.h>
+	<libkern/OSAtomic.h>
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_pixels.h
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1376159942 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1435755896 source:c:\users\florian\documents\prog\concept\src\map.cpp
+	"../include/Map.h"
+
+1437411990 c:\users\florian\documents\prog\concept\include\map.h
+	<iostream>
+	<vector>
+	<SDL2/SDL.h>
+	"Box.h"
+	"Structure.h"
+	"Object.h"
+	"Character.h"
+	"Player.h"
+	"Trainer.h"
+
+1435676835 c:\users\florian\documents\prog\concept\include\wrapper.h
+	<SDL2/SDL.h>
+	<stdio.h>
+
+1437490818 source:c:\users\florian\documents\prog\concept\src\wrapper.cpp
+	"Wrapper.h"
+
+1388342590 c:\users\florian\documents\prog\concept\include\box.h
+	<vector>
+	"Layer.h"
+
+1383402642 c:\users\florian\documents\prog\concept\include\layer.h
+	<iostream>
+
+1388409542 c:\users\florian\documents\prog\concept\include\structure.h
+	<vector>
+	<iostream>
+
+1438172873 c:\users\florian\documents\prog\concept\include\object.h
+	<SDL2/SDL.h>
+	<iostream>
+	"config.h"
+
+1438207013 c:\users\florian\documents\prog\concept\include\config.h
+	<string>
+
+1438172888 c:\users\florian\documents\prog\concept\include\character.h
+	"Object.h"
+	"Image.h"
+
+1437412140 c:\users\florian\documents\prog\concept\include\player.h
+	<iostream>
+	<string>
+	"Character.h"
+
+1391431666 source:c:\users\florian\documents\prog\concept\src\ball.cpp
+	"../include/Ball.h"
+
+1391306666 c:\users\florian\documents\prog\concept\include\ball.h
+	"Object.h"
+	"Map.h"
+
+1389643032 source:c:\users\florian\documents\prog\concept\src\box.cpp
+	"../include/Box.h"
+
+1438206647 source:c:\users\florian\documents\prog\concept\src\character.cpp
+	"../include/Character.h"
+
+1386870354 source:c:\users\florian\documents\prog\concept\src\element.cpp
+	"../include/Element.h"
+
+1386870216 c:\users\florian\documents\prog\concept\include\element.h
+	<iostream>
+	<SDL2/SDL.h>
+	"config.h"
+
+1389900164 source:c:\users\florian\documents\prog\concept\src\item.cpp
+	"../include/Item.h"
+
+1389900178 c:\users\florian\documents\prog\concept\include\item.h
+	"Object.h"
+
+1383407698 source:c:\users\florian\documents\prog\concept\src\layer.cpp
+	"../include/Layer.h"
+
+1437659505 source:c:\users\florian\documents\prog\concept\src\object.cpp
+	"../include/Object.h"
+
+1437750891 source:c:\users\florian\documents\prog\concept\src\player.cpp
+	"../include/Player.h"
+
+1382985480 source:c:\users\florian\documents\prog\concept\src\pokemon.cpp
+	"../include/Pokemon.h"
+
+1382985458 c:\users\florian\documents\prog\concept\include\pokemon.h
+
+1391431660 source:c:\users\florian\documents\prog\concept\src\rock.cpp
+	"../include/Rock.h"
+
+1389900102 c:\users\florian\documents\prog\concept\include\rock.h
+	"Object.h"
+
+1388409086 source:c:\users\florian\documents\prog\concept\src\structure.cpp
+	"../include/Structure.h"
+
+1437495250 source:c:\users\florian\documents\prog\concept\src\trainer.cpp
+	"../include/Trainer.h"
+
+1437412144 c:\users\florian\documents\prog\concept\include\trainer.h
+	"Character.h"
+
+1388410996 source:c:\users\florian\documents\prog\concept\src\tree.cpp
+	"../include/Tree.h"
+
+1388411002 c:\users\florian\documents\prog\concept\include\tree.h
+	"Structure.h"
+
+1438207130 source:c:\users\florian\documents\prog\concept\src\config.cpp
+	"../include/config.h"
+
+1437751863 source:c:\users\florian\documents\prog\concept\src\image.cpp
+	"../include/Image.h"
+
+1435757292 c:\users\florian\documents\prog\concept\include\image.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<stdio.h>
+	<iostream>
+	"config.h"
+
+1437407312 source:c:\users\florian\documents\prog\concept\src\tile.cpp
+	"Tile.h"
+
+1435925956 c:\users\florian\documents\prog\concept\include\tile.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<vector>
+	"config.h"
+	"Image.h"
+

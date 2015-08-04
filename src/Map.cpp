@@ -87,11 +87,6 @@ namespace rpg
         }
         else
         {
-            /*SDL_Rect rect;
-            for(int i = 0; i < WILD_TILE_SPRITES; ++i)
-            {
-                d_tileClips.push_back(rect);
-            }*/
             d_tileClips.reserve(WILD_TILE_SPRITES);
 
             int k = 0;

@@ -23,9 +23,9 @@ namespace rpg
             Game();
             ~Game();
             void start();
+        private:
             void renderAll();
             void actions();
-        private:
             void handleEvents();
             bool loadBackgroundImage();
             static const int SCREEN_WIDTH = 800;

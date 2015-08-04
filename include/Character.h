@@ -19,11 +19,7 @@ namespace rpg
             virtual bool loadSpriteSheet(SDL_Renderer *renderer) = 0;
             virtual void render(SDL_Renderer *renderer, int camx, int camy);
             virtual void renderT(SDL_Renderer *renderer, int camx, int camy);
-            friend ostream& operator<<(ostream&, const Character&);
-            //virtual bool move(int x, int y);
-            //virtual bool move();
             virtual void walk();
-            virtual void walk2();
             virtual void moveTo(int x, int y);
             virtual int getVel() const;
             virtual int getVelX() const;
@@ -34,15 +30,12 @@ namespace rpg
             virtual void setVelY(int vel);
             virtual void oriFromDir();
             virtual void frameFromOri(int offset);
-            virtual void pause(int fps);
-            virtual bool isMoving() const;
         protected:
-            int tmp_velX, tmp_velY;
-            bool d_foot, d_timeLapse, d_moving;
-            int d_iterateur;
+            int d_frame;
+            bool d_foot;
             int d_x, d_y, d_id;
             int d_velX, d_velY, d_vel;
-            int d_orientation, d_old_orientation, d_frame, d_next_frame;
+            int d_orientation;
             SDL_Rect d_spriteClips[48];
             Image d_spriteSheetTexture;
             string d_name;

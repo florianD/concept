@@ -1,17 +1,6 @@
 # depslib dependency file v1.0
-1438207260 source:c:\users\florian\documents\prog\concept\main.cpp
-	<SDL2/SDL.h>
-	<SDL2/SDL_image.h>
-	<stdio.h>
-	<string>
-	<vector>
-	<fstream>
-	"include/config.h"
-	"include/Image.h"
-	"include/Tile.h"
-	"include/Object.h"
-	"include/Player.h"
-	"include/Trainer.h"
+1438719435 source:c:\users\florian\documents\prog\concept\main.cpp
+	"include/Game.h"
 
 1382591224 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -334,19 +323,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1435755896 source:c:\users\florian\documents\prog\concept\src\map.cpp
+1438719171 source:c:\users\florian\documents\prog\concept\src\map.cpp
 	"../include/Map.h"
 
-1437411990 c:\users\florian\documents\prog\concept\include\map.h
-	<iostream>
-	<vector>
-	<SDL2/SDL.h>
-	"Box.h"
-	"Structure.h"
-	"Object.h"
-	"Character.h"
-	"Player.h"
-	"Trainer.h"
+1438719260 c:\users\florian\documents\prog\concept\include\map.h
+	<fstream>
+	"Image.h"
+	"Tile.h"
 
 1435676835 c:\users\florian\documents\prog\concept\include\wrapper.h
 	<SDL2/SDL.h>
@@ -366,7 +349,7 @@
 	<vector>
 	<iostream>
 
-1438172873 c:\users\florian\documents\prog\concept\include\object.h
+1438706703 c:\users\florian\documents\prog\concept\include\object.h
 	<SDL2/SDL.h>
 	<iostream>
 	"config.h"
@@ -374,11 +357,11 @@
 1438207013 c:\users\florian\documents\prog\concept\include\config.h
 	<string>
 
-1438172888 c:\users\florian\documents\prog\concept\include\character.h
+1438707074 c:\users\florian\documents\prog\concept\include\character.h
 	"Object.h"
 	"Image.h"
 
-1437412140 c:\users\florian\documents\prog\concept\include\player.h
+1438713711 c:\users\florian\documents\prog\concept\include\player.h
 	<iostream>
 	<string>
 	"Character.h"
@@ -393,7 +376,7 @@
 1389643032 source:c:\users\florian\documents\prog\concept\src\box.cpp
 	"../include/Box.h"
 
-1438206647 source:c:\users\florian\documents\prog\concept\src\character.cpp
+1438706608 source:c:\users\florian\documents\prog\concept\src\character.cpp
 	"../include/Character.h"
 
 1386870354 source:c:\users\florian\documents\prog\concept\src\element.cpp
@@ -413,7 +396,7 @@
 1383407698 source:c:\users\florian\documents\prog\concept\src\layer.cpp
 	"../include/Layer.h"
 
-1437659505 source:c:\users\florian\documents\prog\concept\src\object.cpp
+1438707668 source:c:\users\florian\documents\prog\concept\src\object.cpp
 	"../include/Object.h"
 
 1437750891 source:c:\users\florian\documents\prog\concept\src\player.cpp
@@ -433,10 +416,10 @@
 1388409086 source:c:\users\florian\documents\prog\concept\src\structure.cpp
 	"../include/Structure.h"
 
-1437495250 source:c:\users\florian\documents\prog\concept\src\trainer.cpp
+1438635671 source:c:\users\florian\documents\prog\concept\src\trainer.cpp
 	"../include/Trainer.h"
 
-1437412144 c:\users\florian\documents\prog\concept\include\trainer.h
+1438635660 c:\users\florian\documents\prog\concept\include\trainer.h
 	"Character.h"
 
 1388410996 source:c:\users\florian\documents\prog\concept\src\tree.cpp
@@ -445,7 +428,7 @@
 1388411002 c:\users\florian\documents\prog\concept\include\tree.h
 	"Structure.h"
 
-1438207130 source:c:\users\florian\documents\prog\concept\src\config.cpp
+1438632350 source:c:\users\florian\documents\prog\concept\src\config.cpp
 	"../include/config.h"
 
 1437751863 source:c:\users\florian\documents\prog\concept\src\image.cpp
@@ -458,8 +441,8 @@
 	<iostream>
 	"config.h"
 
-1437407312 source:c:\users\florian\documents\prog\concept\src\tile.cpp
-	"Tile.h"
+1438707128 source:c:\users\florian\documents\prog\concept\src\tile.cpp
+	"../include/Tile.h"
 
 1435925956 c:\users\florian\documents\prog\concept\include\tile.h
 	<SDL2/SDL.h>
@@ -467,4 +450,28 @@
 	<vector>
 	"config.h"
 	"Image.h"
+
+1438706935 c:\users\florian\documents\prog\concept\include\npc.h
+	"Character.h"
+
+1438706958 source:c:\users\florian\documents\prog\concept\src\npc.cpp
+	"../include/NPC.h"
+
+1438719400 source:c:\users\florian\documents\prog\concept\src\game.cpp
+	"Game.h"
+
+1438719450 c:\users\florian\documents\prog\concept\include\game.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<stdio.h>
+	<string>
+	<vector>
+	<fstream>
+	"Image.h"
+	"Tile.h"
+	"Map.h"
+	"Object.h"
+	"Character.h"
+	"Player.h"
+	"NPC.h"
 

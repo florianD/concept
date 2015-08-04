@@ -1,4 +1,4 @@
-#include "../include/Trainer.h"
+#include "../include/NPC.h"
 
 namespace rpg
 {
@@ -7,12 +7,12 @@ namespace rpg
         SOUTH=0, NORTH=2, WEST=4, EAST=6
     };
 
-    Trainer::Trainer(int x, int y, int vel, int vx, int vy, int id, string name, int orientation, SDL_Renderer *renderer):Character(x, y, vel, vx, vy, id, name, orientation)
+    NPC::NPC(int x, int y, int vel, int vx, int vy, int id, string name, int orientation, SDL_Renderer *renderer):Character(x, y, vel, vx, vy, id, name, orientation)
     {
         loadSpriteSheet(renderer);
     }
 
-    bool Trainer::loadSpriteSheet(SDL_Renderer *renderer)
+    bool NPC::loadSpriteSheet(SDL_Renderer *renderer)
     {
         bool success = true;
 
@@ -43,22 +43,8 @@ namespace rpg
         return success;
     }
 
-    Trainer::~Trainer()
+    NPC::~NPC()
     {
         d_spriteSheetTexture.free();
     }
-
-    /*void Trainer::render(SDL_Renderer *renderer, int camx, int camy)
-    {
-        SDL_Rect *currentClip = &d_spriteClips[d_frame];
-        //d_spriteSheetTexture.render(renderer, d_x - camx, d_y - camy, currentClip);
-        d_spriteSheetTexture.render(renderer, d_x, d_y, currentClip);
-    }
-
-    void Trainer::renderT(SDL_Renderer *renderer, int camx, int camy)
-    {
-        SDL_Rect *currentClip = &d_spriteClips[d_frame+1];
-        //d_spriteSheetTexture.render(renderer, d_x - camx, d_y - camy - config::d_side, currentClip);
-        d_spriteSheetTexture.render(renderer, d_x, d_y - config::d_side, currentClip);
-    }*/
 }

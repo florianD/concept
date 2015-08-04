@@ -11,7 +11,7 @@ namespace rpg
         camera.y = (getY() + config::d_side / 2) - config::d_win_h / 2;
 
         //Keep the camera in bounds
-        /*if(camera.x < 0)
+        if(camera.x < 0)
         {
             camera.x = 0;
         }
@@ -26,6 +26,6 @@ namespace rpg
         if(camera.y > config::d_wrapper_h - camera.h)
         {
             camera.y = config::d_wrapper_h - camera.h;
-        }*/
+        }
     }
 }

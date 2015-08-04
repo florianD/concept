@@ -4,12 +4,12 @@
 
 namespace rpg
 {
-    class Trainer : public Character
+    class NPC : public Character
     {
         public:
-            Trainer(int x, int y, int vel, int vx, int vy, int id, string name, int orientation, SDL_Renderer *renderer);
+            NPC(int x, int y, int vel, int vx, int vy, int id, string name, int orientation, SDL_Renderer *renderer);
             virtual bool loadSpriteSheet(SDL_Renderer *renderer);
-            virtual ~Trainer();
+            virtual ~NPC();
         private:
     };
 }

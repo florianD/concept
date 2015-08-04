@@ -53,12 +53,12 @@ namespace rpg
         }
     }
 
-    Character::Character():d_x(0), d_y(0), d_id(0), d_vel(2), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_frame(0), d_next_frame(0), d_foot(0), d_timeLapse(true), d_moving(false), d_iterateur(0), tmp_velX(0), tmp_velY(0)
+    Character::Character():d_x(0), d_y(0), d_id(0), d_vel(2), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_frame(0), d_foot(0)
     {
         frameFromOri(0);
     }
 
-    Character::Character(int x, int y, int vel, int vx, int vy, int id, string name, int orientation):d_x(x), d_y(y), d_vel(vel), d_velX(vx), d_velY(vy), d_id(id), d_name(name), d_orientation(orientation), d_frame(0), d_next_frame(0), d_foot(0), d_timeLapse(true), d_moving(false), d_iterateur(0), tmp_velX(0), tmp_velY(0)
+    Character::Character(int x, int y, int vel, int vx, int vy, int id, string name, int orientation):d_x(x), d_y(y), d_vel(vel), d_velX(vx), d_velY(vy), d_id(id), d_name(name), d_orientation(orientation), d_frame(0), d_foot(0)
     {
         frameFromOri(0);
     }
@@ -90,82 +90,9 @@ namespace rpg
         d_orientation = r;
     }
 
-    void Character::pause(int fps)
-    {
-        d_iterateur++;
-        if(fps / d_iterateur == 4) // quand d_iterateur = 15
-        {
-            d_iterateur = 0;
-            d_timeLapse = true;
-        }
-    }
-
     void Character::walk()
     {
-        if(!isMotionless())
-        {
-            if(d_timeLapse)
-            {
-                d_iterateur = 0;
-                d_timeLapse = false;
-                d_moving = true;
-                d_old_orientation = d_orientation;
-                oriFromDir(); // récupération de la nouvelle orientation
-                if(d_old_orientation != d_orientation)
-                {
-                    return;
-                }
-                d_next_frame = (d_foot * 2) % 4 + 2;
-                d_foot = !d_foot;
-                frameFromOri(d_next_frame); // récupération de la frame de mvnt
-                d_x += d_velX;
-                d_y += d_velY;
-                tmp_velX = d_velX;
-                tmp_velY = d_velY;
-                if((d_x < 0) || (d_x + config::d_side > config::d_wrapper_w))
-                {
-                    d_x -= d_velX;
-                }
-                if((d_y < 0) || (d_y + config::d_side > config::d_wrapper_h))
-                {
-                    d_y -= d_velY;
-                }
-            }
-        }
-        pause(60);
-    }
 
-    void Character::walk2()
-    {
-        if(d_moving)
-        {
-            if(d_timeLapse)
-            {
-                d_iterateur = 0;
-                d_timeLapse = false;
-                d_moving = false;
-                if(d_old_orientation == d_orientation)
-                {
-                    d_x += tmp_velX;
-                    d_y += tmp_velY;
-                    if((d_x < 0) || (d_x + config::d_side > config::d_wrapper_w))
-                    {
-                        d_x -= tmp_velX;
-                    }
-                    if((d_y < 0) || (d_y + config::d_side > config::d_wrapper_h))
-                    {
-                        d_y -= tmp_velY;
-                    }
-                }
-                frameFromOri(0);
-            }
-        }
-        pause(60);
-    }
-
-    bool Character::isMoving() const
-    {
-        return d_moving;
     }
 
     void Character::moveTo(int x, int y)

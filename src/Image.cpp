@@ -6,7 +6,7 @@ namespace rpg
     {
     }
 
-    bool Image::load(string path, SDL_Renderer *gRenderer)
+    bool Image::load(std::string path, SDL_Renderer *gRenderer)
     {
         free();
 

@@ -55,7 +55,7 @@ namespace rpg
         }
         else
         {
-            //loadBackgroundImage();
+            loadBackgroundImage();
 
             m = new Map(d_renderer);
 
@@ -65,14 +65,14 @@ namespace rpg
             characters.push_back(new NPC(config::SIDE, config::SIDE, config::SIDE/2, config::SIDE/2, 0, 0, "Trainer", SOUTH, d_renderer));
             leader = player;
 
-			camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
+            camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
             leader->setCamera(camera);
         }
     }
 
     Game::~Game()
     {
-        //d_background.free();
+        d_background.free();
         for(unsigned int i = 0; i < characters.size(); ++i)
         {
             delete characters[i];
@@ -93,7 +93,7 @@ namespace rpg
         leader->setCamera(camera);
 
         // render background
-        //d_background.render(d_renderer, 0, 0, &camera);
+        d_background.render(d_renderer, 0, 0, &camera);
 
         // render ground
         for(int i = 0; i < Map::WILD_TILES; ++i)

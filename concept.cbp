@@ -43,19 +43,23 @@
 			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image" />
 		</Linker>
 		<Unit filename="include/Character.h" />
+		<Unit filename="include/Game.h" />
 		<Unit filename="include/Image.h" />
+		<Unit filename="include/Map.h" />
+		<Unit filename="include/NPC.h" />
 		<Unit filename="include/Object.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/Tile.h" />
-		<Unit filename="include/Trainer.h" />
 		<Unit filename="include/config.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Character.cpp" />
+		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/Image.cpp" />
+		<Unit filename="src/Map.cpp" />
+		<Unit filename="src/NPC.cpp" />
 		<Unit filename="src/Object.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/Tile.cpp" />
-		<Unit filename="src/Trainer.cpp" />
 		<Unit filename="src/config.cpp" />
 		<Extensions>
 			<code_completion />

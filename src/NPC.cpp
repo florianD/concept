@@ -16,7 +16,7 @@ namespace rpg
     {
         bool success = true;
 
-        if(!d_spriteSheetTexture.load(config::d_dir+"/object/char/trainer1.png", renderer))
+        if(!d_spriteSheetTexture.load("img32/object/char/trainer1.png", renderer))
         {
             printf("Failed to load walking animation texture\n");
             success = false;
@@ -28,15 +28,15 @@ namespace rpg
             {
                 for(int j = 0; j < 12; ++j)
                 {
-                    d_spriteClips[k].x = j * config::d_side;
-                    d_spriteClips[k].y = (i+1) * config::d_side;
-                    d_spriteClips[k].w = config::d_side;
-                    d_spriteClips[k++].h = config::d_side;
+                    d_spriteClips[k].x = j * config::SIDE;
+                    d_spriteClips[k].y = (i+1) * config::SIDE;
+                    d_spriteClips[k].w = config::SIDE;
+                    d_spriteClips[k++].h = config::SIDE;
 
-                    d_spriteClips[k].x = j * config::d_side;
-                    d_spriteClips[k].y = i * config::d_side;
-                    d_spriteClips[k].w = config::d_side;
-                    d_spriteClips[k++].h = config::d_side;
+                    d_spriteClips[k].x = j * config::SIDE;
+                    d_spriteClips[k].y = i * config::SIDE;
+                    d_spriteClips[k].w = config::SIDE;
+                    d_spriteClips[k++].h = config::SIDE;
                 }
             }
         }

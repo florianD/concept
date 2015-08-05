@@ -69,10 +69,11 @@ namespace rpg
 
     Map::~Map()
     {
-        for(unsigned int i = 0; i < WILD_TILES; ++i)
+        for(int i = 0; i < WILD_TILES; ++i)
         {
             delete d_tileSet[i];
         }
+        delete[] d_tileSet;
         d_tileWild.free();
     }
 

@@ -28,7 +28,6 @@ namespace rpg
             }
             else
             {
-                //SDL_QueryTexture(newTexture, NULL, NULL, &d_width, &d_height);
                 d_width = loadedSurface->w;
                 d_height = loadedSurface->h;
             }

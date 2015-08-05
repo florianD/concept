@@ -7,15 +7,16 @@ namespace rpg
     class config
     {
         public:
-            static int d_side;
-            static std::string d_dir;
-            static int d_margin;
-            static int d_l;
-            static int d_c;
-            static int d_win_w;
-            static int d_win_h;
-            static int d_wrapper_w;
-            static int d_wrapper_h;
+            static const int SIDE = 32;
+
+            static const int MAP_WIDTH = 25;
+            static const int MAP_HEIGHT = 2;
+
+            static const int WINDOW_W = 800;
+            static const int WINDOW_H = 600;
+
+            static const int LEVEL_W = 800 * config::SIDE/16;
+            static const int LEVEL_H = 800 * config::SIDE/16;
     };
 }
 

@@ -5,6 +5,7 @@
 #include <SDL2/SDL_image.h>
 #include <stdio.h>
 #include <string>
+#include <iostream>
 
 namespace rpg
 {

@@ -323,10 +323,10 @@
 	"begin_code.h"
 	"close_code.h"
 
-1438720574 source:c:\users\florian\documents\prog\concept\src\map.cpp
+1438799948 source:c:\users\florian\documents\prog\concept\src\map.cpp
 	"../include/Map.h"
 
-1438719260 c:\users\florian\documents\prog\concept\include\map.h
+1438801243 c:\users\florian\documents\prog\concept\include\map.h
 	<fstream>
 	"Image.h"
 	"Tile.h"
@@ -354,10 +354,10 @@
 	<iostream>
 	"config.h"
 
-1438207013 c:\users\florian\documents\prog\concept\include\config.h
+1438801320 c:\users\florian\documents\prog\concept\include\config.h
 	<string>
 
-1438707074 c:\users\florian\documents\prog\concept\include\character.h
+1438791605 c:\users\florian\documents\prog\concept\include\character.h
 	"Object.h"
 	"Image.h"
 
@@ -376,7 +376,7 @@
 1389643032 source:c:\users\florian\documents\prog\concept\src\box.cpp
 	"../include/Box.h"
 
-1438720502 source:c:\users\florian\documents\prog\concept\src\character.cpp
+1438800127 source:c:\users\florian\documents\prog\concept\src\character.cpp
 	"../include/Character.h"
 
 1386870354 source:c:\users\florian\documents\prog\concept\src\element.cpp
@@ -396,10 +396,10 @@
 1383407698 source:c:\users\florian\documents\prog\concept\src\layer.cpp
 	"../include/Layer.h"
 
-1438720364 source:c:\users\florian\documents\prog\concept\src\object.cpp
+1438801173 source:c:\users\florian\documents\prog\concept\src\object.cpp
 	"../include/Object.h"
 
-1437750891 source:c:\users\florian\documents\prog\concept\src\player.cpp
+1438800206 source:c:\users\florian\documents\prog\concept\src\player.cpp
 	"../include/Player.h"
 
 1382985480 source:c:\users\florian\documents\prog\concept\src\pokemon.cpp
@@ -428,19 +428,20 @@
 1388411002 c:\users\florian\documents\prog\concept\include\tree.h
 	"Structure.h"
 
-1438632350 source:c:\users\florian\documents\prog\concept\src\config.cpp
+1438801122 source:c:\users\florian\documents\prog\concept\src\config.cpp
 	"../include/config.h"
 
-1438720916 source:c:\users\florian\documents\prog\concept\src\image.cpp
+1438799509 source:c:\users\florian\documents\prog\concept\src\image.cpp
 	"../include/Image.h"
 
-1438721037 c:\users\florian\documents\prog\concept\include\image.h
+1438799486 c:\users\florian\documents\prog\concept\include\image.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<stdio.h>
 	<string>
+	<iostream>
 
-1438707128 source:c:\users\florian\documents\prog\concept\src\tile.cpp
+1438800213 source:c:\users\florian\documents\prog\concept\src\tile.cpp
 	"../include/Tile.h"
 
 1435925956 c:\users\florian\documents\prog\concept\include\tile.h
@@ -453,13 +454,13 @@
 1438706935 c:\users\florian\documents\prog\concept\include\npc.h
 	"Character.h"
 
-1438720363 source:c:\users\florian\documents\prog\concept\src\npc.cpp
+1438800174 source:c:\users\florian\documents\prog\concept\src\npc.cpp
 	"../include/NPC.h"
 
-1438720362 source:c:\users\florian\documents\prog\concept\src\game.cpp
+1438800147 source:c:\users\florian\documents\prog\concept\src\game.cpp
 	"Game.h"
 
-1438721539 c:\users\florian\documents\prog\concept\include\game.h
+1438800584 c:\users\florian\documents\prog\concept\include\game.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<stdio.h>

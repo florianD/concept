@@ -60,9 +60,9 @@ namespace rpg
             m = new Map(d_renderer);
 
             characters.clear();
-            player = new Player(0, 0, config::d_side/2, 0, 0, 0, "Player", SOUTH, d_renderer);
+            player = new Player(0, 0, config::SIDE/2, 0, 0, 0, "Player", SOUTH, d_renderer);
             characters.push_back(player);
-            characters.push_back(new NPC(config::d_side, config::d_side, config::d_side/2, config::d_side/2, 0, 0, "Trainer", SOUTH, d_renderer));
+            characters.push_back(new NPC(config::SIDE, config::SIDE, config::SIDE/2, config::SIDE/2, 0, 0, "Trainer", SOUTH, d_renderer));
             leader = player;
 
 			camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
@@ -96,7 +96,7 @@ namespace rpg
         //d_background.render(d_renderer, 0, 0, &camera);
 
         // render ground
-        for(unsigned int i = 0; i < Map::WILD_TILES; ++i)
+        for(int i = 0; i < Map::WILD_TILES; ++i)
         {
             m->d_tileSet[i]->render(m->d_tileWild, d_renderer, camera, m->d_tileClips);
         }

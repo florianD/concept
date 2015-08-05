@@ -172,7 +172,7 @@ namespace rpg
         bool success = true;
 
         //Load background texture
-        if(!d_background.load("bg.png", d_renderer))
+        if(!d_background.load("img/bg.png", d_renderer))
         {
             printf("Failed to load background texture\n");
             success = false;

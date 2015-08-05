@@ -16,7 +16,7 @@ namespace rpg
     {
         bool success = true;
 
-        if(!d_spriteSheetTexture.load("img32/object/char/trainer1.png", renderer))
+        if(!d_spriteSheetTexture.load("img/object/char/trainer1.png", renderer))
         {
             printf("Failed to load walking animation texture\n");
             success = false;

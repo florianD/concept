@@ -81,7 +81,7 @@ namespace rpg
     {
         bool success = true;
 
-        if(!d_tileWild.load("img32/wild.png", renderer))
+        if(!d_tileWild.load("img/map/wild.png", renderer))
         {
             printf("Failed to load wild texture\n");
             success = false;

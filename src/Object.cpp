@@ -7,8 +7,8 @@ namespace rpg
     void Object::setCamera(SDL_Rect &camera)
     {
         //Center the camera over the player
-        camera.x = (getX() + config::d_side / 2) - config::d_win_w / 2;
-        camera.y = (getY() + config::d_side / 2) - config::d_win_h / 2;
+        camera.x = (getX() + config::SIDE / 2) - config::WINDOW_W / 2;
+        camera.y = (getY() + config::SIDE / 2) - config::WINDOW_H / 2;
 
         //Keep the camera in bounds
         if(camera.x < 0)
@@ -19,13 +19,13 @@ namespace rpg
         {
             camera.y = 0;
         }
-        if(camera.x > config::d_wrapper_w - camera.w)
+        if(camera.x > config::LEVEL_W - camera.w)
         {
-            camera.x = config::d_wrapper_w - camera.w;
+            camera.x = config::LEVEL_W - camera.w;
         }
-        if(camera.y > config::d_wrapper_h - camera.h)
+        if(camera.y > config::LEVEL_H - camera.h)
         {
-            camera.y = config::d_wrapper_h - camera.h;
+            camera.y = config::LEVEL_H - camera.h;
         }
     }
 }

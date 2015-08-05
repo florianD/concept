@@ -111,7 +111,7 @@ namespace rpg
     void Character::renderT(SDL_Renderer *renderer, int camx, int camy)
     {
         SDL_Rect *currentClip = &d_spriteClips[d_frame+1];
-        d_spriteSheetTexture.render(renderer, d_x - camx, d_y - camy - config::d_side, currentClip);
+        d_spriteSheetTexture.render(renderer, d_x - camx, d_y - camy - config::SIDE, currentClip);
     }
 
     int Character::getVel() const

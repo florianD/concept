@@ -6,8 +6,8 @@ namespace rpg
     {
         d_box.x = x;
         d_box.y = y;
-        d_box.w = config::d_side;
-        d_box.h = config::d_side;
+        d_box.w = config::SIDE;
+        d_box.h = config::SIDE;
     }
 
     void Tile::render(Image &im, SDL_Renderer *renderer, SDL_Rect &camera, std::vector<SDL_Rect> &tileClips)

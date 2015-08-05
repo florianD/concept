@@ -28,8 +28,8 @@ namespace rpg
             void actions();
             void handleEvents();
             bool loadBackgroundImage();
-            static const int SCREEN_WIDTH = 800;
-            static const int SCREEN_HEIGHT = 600;
+            static const int SCREEN_WIDTH = config::WINDOW_W;
+            static const int SCREEN_HEIGHT = config::WINDOW_H;
             Image d_background;
             SDL_Window *d_window;
             SDL_Renderer *d_renderer;

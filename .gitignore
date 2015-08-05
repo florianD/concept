@@ -1,4 +1,5 @@
 *.exe
 *.o
 *.depend
-concept.depend
+*.layout
+*.cbp

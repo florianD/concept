@@ -9,8 +9,8 @@ namespace rpg
         public:
             static const int SIDE = 32; // MAP CLIP SIZE
 
-            static const int MAP_WIDTH = 10; //  \ MUST MATCH FILE
-            static const int MAP_HEIGHT = 10; // /
+            static const int MAP_WIDTH = 50; //  \ MUST MATCH FILE
+            static const int MAP_HEIGHT = 2; // /
 
             static const int WINDOW_W = 800;
             static const int WINDOW_H = 600;

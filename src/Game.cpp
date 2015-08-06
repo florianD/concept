@@ -60,9 +60,9 @@ namespace rpg
             m = new Map(d_renderer);
 
             characters.clear();
-            player = new Player(0, 0, config::SIDE/2, 0, 0, 0, "Player", SOUTH, d_renderer);
+            player = new Player(0, 0, 1, 1, 0, 0, "Player", SOUTH, d_renderer);
             characters.push_back(player);
-            characters.push_back(new NPC(config::SIDE, config::SIDE, config::SIDE/2, config::SIDE/2, 0, 0, "Trainer", SOUTH, d_renderer));
+            characters.push_back(new NPC(32, 32, 1, 1, 0, 0, "Trainer", SOUTH, d_renderer));
             leader = player;
 
             camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
@@ -102,14 +102,12 @@ namespace rpg
         }
 
         // render characters
-        player->render(d_renderer, camera.x, camera.y);
         for(unsigned int i = 0; i < characters.size(); ++i)
         {
             characters[i]->render(d_renderer, camera.x, camera.y);
         }
 
         // render characters top
-        player->renderT(d_renderer, camera.x, camera.y);
         for(unsigned int i = 0; i < characters.size(); ++i)
         {
             characters[i]->renderT(d_renderer, camera.x, camera.y);
@@ -119,7 +117,6 @@ namespace rpg
     void Game::actions()
     {
         // characters actions
-        player->walk();
         for(unsigned int i = 0; i < characters.size(); ++i)
         {
             characters[i]->walk();

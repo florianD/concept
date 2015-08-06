@@ -116,16 +116,16 @@ namespace rpg
         d_orientation = SOUTH;
     }
 
-    void Character::render(SDL_Renderer *renderer, int camx, int camy)
+    void Character::render(SDL_Renderer *renderer, SDL_Rect &cam)
     {
         SDL_Rect *currentClip = &d_spriteClips[d_frame];
-        d_spriteSheetTexture.render(renderer, d_x - camx, d_y - camy, currentClip);
+        d_spriteSheetTexture.render(renderer, d_x - cam.x, d_y - cam.y, currentClip);
     }
 
-    void Character::renderT(SDL_Renderer *renderer, int camx, int camy)
+    void Character::renderT(SDL_Renderer *renderer, SDL_Rect &cam)
     {
         SDL_Rect *currentClip = &d_spriteClips[d_frame+1];
-        d_spriteSheetTexture.render(renderer, d_x - camx, d_y - camy - config::SIDE, currentClip);
+        d_spriteSheetTexture.render(renderer, d_x - cam.x, d_y - cam.y - config::SIDE, currentClip);
     }
 
     int Character::getVel() const

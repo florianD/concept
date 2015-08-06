@@ -18,8 +18,8 @@ namespace rpg
             virtual int getY() const = 0;
             virtual string getName() const = 0;
             virtual void setCamera(SDL_Rect &camera);
-            virtual void render(SDL_Renderer *renderer, int camx, int camy) = 0;
-            virtual void renderT(SDL_Renderer *renderer, int camx, int camy) = 0;
+            virtual void render(SDL_Renderer *renderer, SDL_Rect &cam) = 0;
+            virtual void renderT(SDL_Renderer *renderer, SDL_Rect &cam) = 0;
     };
 }
 

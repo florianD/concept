@@ -104,13 +104,13 @@ namespace rpg
         // render characters
         for(unsigned int i = 0; i < characters.size(); ++i)
         {
-            characters[i]->render(d_renderer, camera.x, camera.y);
+            characters[i]->render(d_renderer, camera);
         }
 
         // render characters top
         for(unsigned int i = 0; i < characters.size(); ++i)
         {
-            characters[i]->renderT(d_renderer, camera.x, camera.y);
+            characters[i]->renderT(d_renderer, camera);
         }
     }
 

@@ -55,7 +55,7 @@ namespace rpg
         }
     }
 
-    Character::Character():d_x(0), d_y(0), d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_frame(0), d_foot(0)
+    Character::Character():d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_frame(0.0), d_foot(0)
     {
         d_id++;
         frameFromOri(0);
@@ -63,7 +63,7 @@ namespace rpg
         d_box.y = 0;
     }
 
-    Character::Character(int x, int y, int vel, int vx, int vy, string name, int orientation):d_x(x), d_y(y), d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_frame(0), d_foot(0)
+    Character::Character(int x, int y, int vel, int vx, int vy, string name, int orientation):d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_frame(0.0), d_foot(0)
     {
         d_id++;
         frameFromOri(0);
@@ -80,12 +80,12 @@ namespace rpg
 
     int Character::getX() const
     {
-        return d_x;
+        return d_box.x;
     }
 
     int Character::getY() const
     {
-        return d_y;
+        return d_box.y;
     }
 
     string Character::getName() const
@@ -105,21 +105,21 @@ namespace rpg
 
     void Character::walk()
     {
-        d_x += d_velX;
-        d_y += d_velY;
+        d_box.x += d_velX;
+        d_box.y += d_velY;
     }
 
     void Character::moveTo(int x, int y)
     {
-        d_x = x;
-        d_y = y;
+        d_box.x = x;
+        d_box.y = y;
         d_orientation = SOUTH;
     }
 
     void Character::render(SDL_Renderer *renderer, SDL_Rect &cam)
     {
-        SDL_Rect *currentClip = &d_spriteClips[d_frame];
-        d_spriteSheetTexture.render(renderer, d_x - cam.x, d_y - cam.y, currentClip);
+        SDL_Rect *currentClip = &d_spriteClips[(int)d_frame];
+        d_spriteSheetTexture.render(renderer, d_box.x - cam.x, d_box.y - cam.y, currentClip);
     }
 
     int Character::getVel() const

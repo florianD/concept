@@ -52,7 +52,7 @@ namespace rpg
 
     void NPC::renderT(SDL_Renderer *renderer, SDL_Rect &cam)
     {
-        SDL_Rect *currentClip = &d_spriteClips[d_frame+1];
-        d_spriteSheetTexture.render(renderer, d_x - cam.x, d_y - cam.y - d_box.h, currentClip);
+        SDL_Rect *currentClip = &d_spriteClips[(int)d_frame+1];
+        d_spriteSheetTexture.render(renderer, d_box.x - cam.x, d_box.y - cam.y - d_box.h, currentClip);
     }
 }

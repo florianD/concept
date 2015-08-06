@@ -34,9 +34,8 @@ namespace rpg
         protected:
             static int d_id;
             SDL_Rect d_box;
-            int d_frame;
+            double d_frame;
             bool d_foot;
-            int d_x, d_y;
             int d_velX, d_velY, d_vel;
             int d_orientation;
             SDL_Rect d_spriteClips[48];

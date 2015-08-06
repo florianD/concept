@@ -18,7 +18,7 @@ namespace rpg
             int getOrientation() const;
             virtual bool loadSpriteSheet(SDL_Renderer *renderer) = 0;
             virtual void render(SDL_Renderer *renderer, SDL_Rect &cam);
-            virtual void renderT(SDL_Renderer *renderer, SDL_Rect &cam);
+            virtual void renderT(SDL_Renderer *renderer, SDL_Rect &cam) = 0;
             virtual void walk();
             virtual void moveTo(int x, int y);
             virtual int getVel() const;

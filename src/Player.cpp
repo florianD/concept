@@ -50,6 +50,12 @@ namespace rpg
         d_spriteSheetTexture.free();
     }
 
+    void Player::renderT(SDL_Renderer *renderer, SDL_Rect &cam)
+    {
+        SDL_Rect *currentClip = &d_spriteClips[d_frame+1];
+        d_spriteSheetTexture.render(renderer, d_x - cam.x, d_y - cam.y - d_box.h, currentClip);
+    }
+
     void Player::handleEvent(SDL_Event &e)
     {
         if(e.type == SDL_KEYDOWN && e.key.repeat == 0)

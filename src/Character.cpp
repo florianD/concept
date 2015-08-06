@@ -92,7 +92,8 @@ namespace rpg
 
     void Character::walk()
     {
-
+        d_x += d_velX;
+        d_y += d_velY;
     }
 
     void Character::moveTo(int x, int y)

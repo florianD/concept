@@ -55,7 +55,7 @@ namespace rpg
         }
         else
         {
-            loadBackgroundImage();
+            //loadBackgroundImage();
 
             m = new Map(d_renderer);
 
@@ -72,7 +72,7 @@ namespace rpg
 
     Game::~Game()
     {
-        d_background.free();
+        //d_background.free();
         for(unsigned int i = 0; i < characters.size(); ++i)
         {
             delete characters[i];
@@ -93,7 +93,7 @@ namespace rpg
         leader->setCamera(camera);
 
         // render background
-        d_background.render(d_renderer, 0, 0, &camera);
+        //d_background.render(d_renderer, 0, 0, &camera);
 
         // render ground
         for(int i = 0; i < Map::WILD_TILES; ++i)

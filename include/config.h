@@ -9,14 +9,14 @@ namespace rpg
         public:
             static const int SIDE = 32;
 
-            static const int MAP_WIDTH = 25;
-            static const int MAP_HEIGHT = 2;
+            static const int MAP_WIDTH = 10; //  \ doit correspondre au fichier
+            static const int MAP_HEIGHT = 10; // /
 
             static const int WINDOW_W = 800;
             static const int WINDOW_H = 600;
 
-            static const int LEVEL_W = 800 * config::SIDE/16;
-            static const int LEVEL_H = 800 * config::SIDE/16;
+            static const int LEVEL_W = config::SIDE * MAP_WIDTH; // >= WINDOW_W  \ pour la cam, sinon la desactiver
+            static const int LEVEL_H = config::SIDE * MAP_HEIGHT; // >= WINDOW_H /
     };
 }
 

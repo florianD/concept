@@ -7,6 +7,9 @@ namespace rpg
         //The tile offsets
         int x = 0, y = 0;
 
+        //Determines what kind of tile will be made
+        int tileType = -1;
+
         //Open the map
         std::ifstream map("world.map");
 
@@ -20,9 +23,6 @@ namespace rpg
             //Initialize the tiles
             for(int i = 0; i < WILD_TILES; ++i)
             {
-                //Determines what kind of tile will be made
-                int tileType = -1;
-
                 //Read tile from map file
                 map >> tileType;
 

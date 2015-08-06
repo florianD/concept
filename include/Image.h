@@ -21,7 +21,7 @@ namespace rpg
             int getHeight() const;
         private:
             int d_width, d_height;
-            SDL_Texture* d_texture;
+            SDL_Texture *d_texture;
     };
 }
 

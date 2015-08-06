@@ -30,7 +30,9 @@ namespace rpg
             virtual void setVelY(int vel);
             virtual void oriFromDir();
             virtual void frameFromOri(int offset);
+            virtual SDL_Rect getRect() const;
         protected:
+            SDL_Rect d_box;
             int d_frame;
             bool d_foot;
             int d_x, d_y, d_id;

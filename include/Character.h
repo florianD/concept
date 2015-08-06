@@ -9,7 +9,7 @@ namespace rpg
     {
         public:
             Character();
-            Character(int x, int y, int vel, int vx, int vy, int id, string name, int orientation);
+            Character(int x, int y, int vel, int vx, int vy, string name, int orientation);
             virtual ~Character();
             virtual int getX() const;
             virtual int getY() const;
@@ -32,10 +32,11 @@ namespace rpg
             virtual void frameFromOri(int offset);
             virtual SDL_Rect getRect() const;
         protected:
+            static int d_id;
             SDL_Rect d_box;
             int d_frame;
             bool d_foot;
-            int d_x, d_y, d_id;
+            int d_x, d_y;
             int d_velX, d_velY, d_vel;
             int d_orientation;
             SDL_Rect d_spriteClips[48];

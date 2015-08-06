@@ -60,9 +60,9 @@ namespace rpg
             m = new Map(d_renderer);
 
             characters.clear();
-            player = new Player(0, 0, 1, 1, 0, 0, "Player", SOUTH, d_renderer);
+            player = new Player(0, 0, 4, 0, 0, "Player", SOUTH, d_renderer);
             characters.push_back(player);
-            characters.push_back(new NPC(32, 32, 1, 1, 0, 0, "Trainer", SOUTH, d_renderer));
+            characters.push_back(new NPC(32, 32, 4, 4, 0, "Trainer", SOUTH, d_renderer));
             leader = player;
 
             camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};

@@ -2,6 +2,8 @@
 
 namespace rpg
 {
+    int Character::d_id = 0;
+
     enum
     {
         SOUTH=0, NORTH=2, WEST=4, EAST=6
@@ -53,15 +55,17 @@ namespace rpg
         }
     }
 
-    Character::Character():d_x(0), d_y(0), d_id(0), d_vel(2), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_frame(0), d_foot(0)
+    Character::Character():d_x(0), d_y(0), d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_frame(0), d_foot(0)
     {
+        d_id++;
         frameFromOri(0);
         d_box.x = 0;
         d_box.y = 0;
     }
 
-    Character::Character(int x, int y, int vel, int vx, int vy, int id, string name, int orientation):d_x(x), d_y(y), d_vel(vel), d_velX(vx), d_velY(vy), d_id(id), d_name(name), d_orientation(orientation), d_frame(0), d_foot(0)
+    Character::Character(int x, int y, int vel, int vx, int vy, string name, int orientation):d_x(x), d_y(y), d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_frame(0), d_foot(0)
     {
+        d_id++;
         frameFromOri(0);
         d_box.x = x;
         d_box.y = y;

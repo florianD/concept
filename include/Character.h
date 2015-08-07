@@ -29,13 +29,13 @@ namespace rpg
             virtual void setVelX(int vel);
             virtual void setVelY(int vel);
             virtual void oriFromDir();
-            virtual void frameFromOri(int offset);
+            virtual double frameFromOri(double offset);
             virtual SDL_Rect getRect() const;
         protected:
             static int d_id;
             SDL_Rect d_box;
-            double d_frame;
-            bool d_foot;
+            double d_frame, d_offset;
+            bool d_foot, d_moving;
             int d_velX, d_velY, d_vel;
             int d_orientation;
             SDL_Rect d_spriteClips[48];

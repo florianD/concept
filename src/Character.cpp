@@ -36,26 +36,22 @@ namespace rpg
     }
 
     // range dans d_frame l'entier correspondant à l'orientation
-    void Character::frameFromOri(int offset)
+    double Character::frameFromOri(double offset)
     {
         switch(d_orientation)
         {
             case EAST:
-                d_frame = RIGHT + offset;
-                break;
+                return RIGHT + (int)offset;
             case WEST:
-                d_frame = LEFT + offset;
-                break;
+                return LEFT + (int)offset;
             case SOUTH:
-                d_frame = FRONT + offset;
-                break;
+                return FRONT + (int)offset;
             case NORTH:
-                d_frame = BACK + offset;
-                break;
+                return BACK + (int)offset;
         }
     }
 
-    Character::Character():d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_frame(0.0), d_foot(0)
+    Character::Character():d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_frame(0.0), d_offset(0.0), d_foot(0), d_moving(0)
     {
         d_id++;
         frameFromOri(0);
@@ -105,8 +101,23 @@ namespace rpg
 
     void Character::walk()
     {
-        d_box.x += d_velX;
-        d_box.y += d_velY;
+        //std::cout << d_frame << std::endl;
+
+        oriFromDir();
+        d_moving = true;
+        if(d_moving)
+        {
+            d_frame = frameFromOri((d_foot * 2) % 4 + 2) + d_offset;
+            d_offset += 0.1;
+            if(d_offset >= 1.0)
+            {
+                d_offset = 0.0;
+                d_foot = !d_foot;
+                d_frame = frameFromOri(0);
+            }
+            d_box.x += d_velX;
+            d_box.y += d_velY;
+        }
     }
 
     void Character::moveTo(int x, int y)
@@ -124,7 +135,7 @@ namespace rpg
 
     void Character::renderT(SDL_Renderer *renderer, SDL_Rect &cam)
     {
-        SDL_Rect *currentClip = &d_spriteClips[(int)d_frame+1];
+        SDL_Rect *currentClip = &d_spriteClips[(int)d_frame + 1];
         d_spriteSheetTexture.render(renderer, d_box.x - cam.x, d_box.y - cam.y - d_box.h, currentClip);
     }
 

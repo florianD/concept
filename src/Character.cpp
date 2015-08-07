@@ -14,7 +14,6 @@ namespace rpg
         FRONT=0, BACK=6, LEFT=12, RIGHT=18
     };
 
-    // range dans d_orientation l'entier correspondant au mouvement
     void Character::oriFromDir()
     {
         if(d_velX > 0)
@@ -35,7 +34,6 @@ namespace rpg
         }
     }
 
-    // range dans d_frame l'entier correspondant à l'orientation
     double Character::frameFromOri(double offset)
     {
         switch(d_orientation)
@@ -101,8 +99,6 @@ namespace rpg
 
     void Character::walk()
     {
-        //std::cout << d_frame << std::endl;
-
         oriFromDir();
         d_moving = true;
         if(d_moving)

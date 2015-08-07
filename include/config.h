@@ -15,8 +15,8 @@ namespace rpg
             static const int WINDOW_W = 800;
             static const int WINDOW_H = 600;
 
-            static const int LEVEL_W = config::SIDE * MAP_WIDTH; // >= WINDOW_W  \ DISABLE CAM IF NOT
-            static const int LEVEL_H = config::SIDE * MAP_HEIGHT; // >= WINDOW_H /
+            static const int LEVEL_W = config::SIDE * MAP_WIDTH;
+            static const int LEVEL_H = config::SIDE * MAP_HEIGHT;
     };
 }
 

@@ -75,7 +75,10 @@ namespace rpg
         //d_background.free();
         for(unsigned int i = 0; i < characters.size(); ++i)
         {
-            delete characters[i];
+            if(characters[i])
+            {
+                delete characters[i];
+            }
         }
 
         delete m;
@@ -168,7 +171,7 @@ namespace rpg
     {
         bool success = true;
 
-        //Load background texture
+        // load background image
         if(!d_background.load("img/bg.png", d_renderer))
         {
             printf("Failed to load background texture\n");

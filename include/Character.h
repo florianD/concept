@@ -35,8 +35,8 @@ namespace rpg
             static int d_id;
             SDL_Rect d_box;
             double d_frame, d_offset;
-            bool d_foot, d_moving;
-            int d_velX, d_velY, d_vel;
+            bool d_moving, d_foot;
+            int d_velX, d_velY, d_vel, d_clip;
             int d_orientation;
             SDL_Rect d_spriteClips[48];
             Image d_spriteSheetTexture;

@@ -124,8 +124,6 @@ namespace rpg
         {
             characters[i]->walk();
         }
-
-        //affichage(d_renderer, camera, tileSet, player, leader, characters);
     }
 
     void Game::start()

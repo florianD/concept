@@ -49,7 +49,7 @@ namespace rpg
         }
     }
 
-    Character::Character():d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_frame(0.0), d_offset(0.0), d_foot(0), d_moving(0)
+    Character::Character():d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_frame(0.0), d_offset(0.0), d_moving(0), d_foot(0), d_clip(0)
     {
         d_id++;
         frameFromOri(0);
@@ -57,7 +57,7 @@ namespace rpg
         d_box.y = 0;
     }
 
-    Character::Character(int x, int y, int vel, int vx, int vy, string name, int orientation):d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_frame(0.0), d_foot(0)
+    Character::Character(int x, int y, int vel, int vx, int vy, string name, int orientation):d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_frame(0.0), d_offset(0.0), d_moving(0), d_foot(0), d_clip(0)
     {
         d_id++;
         frameFromOri(0);
@@ -103,16 +103,24 @@ namespace rpg
         d_moving = true;
         if(d_moving)
         {
-            d_frame = frameFromOri((d_foot * 2) % 4 + 2) + d_offset;
+            d_frame = frameFromOri(d_clip + 2) + d_offset;
             d_offset += 0.1;
-            if(d_offset >= 1.0)
+            if(d_offset >= 0.9)
             {
                 d_offset = 0.0;
-                d_foot = !d_foot;
-                d_frame = frameFromOri(0);
+                d_clip += 2;
+                if(d_clip + 2 > 4)
+                {
+                    d_clip = 0;
+                }
             }
             d_box.x += d_velX;
             d_box.y += d_velY;
+            //std::cout << d_frame << std::endl;
+        }
+        else
+        {
+            d_frame = frameFromOri(0);
         }
     }
 

@@ -62,8 +62,8 @@ namespace rpg
             characters.clear();
             player = new Player(0, 0, 4, 0, 0, "Player", SOUTH, d_renderer);
             characters.push_back(player);
-            characters.push_back(new NPC(32, 32, 4, 4, 0, "Trainer", SOUTH, d_renderer));
-            characters.push_back(new NPC(config::LEVEL_W - config::SIDE, 32, -4, -4, 0, "Trainer", SOUTH, d_renderer));
+            characters.push_back(new NPC(32, 32, 4, 4, 0, "NPC", SOUTH, d_renderer));
+            characters.push_back(new NPC(config::LEVEL_W - config::SIDE, 32, -4, -4, 0, "NPC", SOUTH, d_renderer));
             leader = player;
 
             camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};

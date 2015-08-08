@@ -4,6 +4,8 @@ namespace rpg
 {
     Map::Map(SDL_Renderer *renderer)
     {
+        d_tileClips.clear();
+
         //The tile offsets
         int x = 0, y = 0;
 

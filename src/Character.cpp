@@ -116,7 +116,16 @@ namespace rpg
             }
             d_box.x += d_velX;
             d_box.y += d_velY;
-            //std::cout << d_frame << std::endl;
+            if((d_box.x < 0) || (d_box.x + d_box.w > config::LEVEL_W))
+            {
+                d_box.x -= d_velX;
+                d_frame = frameFromOri(0);
+            }
+            if((d_box.y < 0) || (d_box.y + d_box.h > config::LEVEL_H))
+            {
+                d_box.y -= d_velY;
+                d_frame = frameFromOri(0);
+            }
         }
         else
         {

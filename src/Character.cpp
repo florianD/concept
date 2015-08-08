@@ -49,13 +49,13 @@ namespace rpg
         }
     }
 
-    Character::Character():d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_box({0,0,0,0}), d_frame(0.0), d_offset(0.0), d_clip(0)
+    Character::Character():d_box({0,0,0,0}), d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_frame(0.0), d_offset(0.0), d_clip(0)
     {
         d_id++;
         frameFromOri(0);
     }
 
-    Character::Character(int x, int y, int vel, int vx, int vy, string name, int orientation):d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_box({x,y,0,0}), d_frame(0.0), d_offset(0.0), d_clip(0)
+    Character::Character(int x, int y, int vel, int vx, int vy, string name, int orientation):d_box({x,y,0,0}), d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_frame(0.0), d_offset(0.0), d_clip(0)
     {
         d_id++;
         frameFromOri(0);

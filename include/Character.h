@@ -32,8 +32,10 @@ namespace rpg
             virtual double frameFromOri(double offset);
             virtual SDL_Rect getRect() const;
         protected:
+            void resetAnimation();
             static int d_id;
             SDL_Rect d_box;
+            bool d_foot;
             double d_frame, d_offset;
             int d_velX, d_velY, d_vel, d_clip;
             int d_orientation;

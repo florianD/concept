@@ -49,13 +49,13 @@ namespace rpg
         }
     }
 
-    Character::Character():d_box({0,0,0,0}), d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_frame(0.0), d_offset(0.0), d_clip(0)
+    Character::Character():d_box({0,0,0,0}), d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_frame(0.0), d_offset(0.0), d_clip(0), d_foot(0)
     {
         d_id++;
         frameFromOri(0);
     }
 
-    Character::Character(int x, int y, int vel, int vx, int vy, string name, int orientation):d_box({x,y,0,0}), d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_frame(0.0), d_offset(0.0), d_clip(0)
+    Character::Character(int x, int y, int vel, int vx, int vy, string name, int orientation):d_box({x,y,0,0}), d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_frame(0.0), d_offset(0.0), d_clip(0), d_foot(0)
     {
         d_id++;
         frameFromOri(0);
@@ -93,6 +93,13 @@ namespace rpg
         return d_box;
     }
 
+    void Character::resetAnimation()
+    {
+        d_frame = frameFromOri(0);
+        d_clip = 0;
+        d_offset = 0.0;
+    }
+
     void Character::walk()
     {
         oriFromDir();
@@ -103,10 +110,20 @@ namespace rpg
             if(d_offset >= 0.9)
             {
                 d_offset = 0.0;
-                d_clip += 2;
+
+                // 2 clips animation
+                /*d_clip += 2;
                 if(d_clip + 2 > 4)
                 {
                     d_clip = 0;
+                }*/
+
+                // 3 clips animation
+                d_clip += (d_foot * 2) % 4 + 2;
+                if((int)d_frame - frameFromOri(0) != 0)
+                {
+                    d_clip = -2;
+                    d_foot = !d_foot;
                 }
             }
             d_box.x += d_velX;
@@ -114,17 +131,17 @@ namespace rpg
             if((d_box.x < 0) || (d_box.x + d_box.w > config::LEVEL_W))
             {
                 d_box.x -= d_velX;
-                d_frame = frameFromOri(0);
+                resetAnimation();
             }
             if((d_box.y < 0) || (d_box.y + d_box.h > config::LEVEL_H))
             {
                 d_box.y -= d_velY;
-                d_frame = frameFromOri(0);
+                resetAnimation();
             }
         }
         else
         {
-            d_frame = frameFromOri(0);
+            resetAnimation();
         }
     }
 

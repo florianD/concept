@@ -120,7 +120,6 @@ namespace rpg
 
     void Game::actions()
     {
-        // characters actions
         for(unsigned int i = 0; i < characters.size(); ++i)
         {
             characters[i]->walk();

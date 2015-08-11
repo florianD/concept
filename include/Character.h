@@ -9,12 +9,12 @@ namespace rpg
     {
         public:
             Character();
-            Character(int x, int y, int vel, int vx, int vy, string name, int orientation);
+            Character(int x, int y, int vel, int vx, int vy, std::string name, int orientation);
             virtual ~Character();
             virtual int getX() const;
             virtual int getY() const;
             void rotate(int r);
-            string getName() const;
+            std::string getName() const;
             int getOrientation() const;
             virtual bool loadSpriteSheet(SDL_Renderer *renderer) = 0;
             virtual void render(SDL_Renderer *renderer, SDL_Rect &cam);
@@ -32,7 +32,7 @@ namespace rpg
             virtual double frameFromOri(double offset);
             virtual SDL_Rect getRect() const;
         protected:
-            void resetAnimation();
+            virtual void resetAnimation();
             static int d_id;
             SDL_Rect d_box;
             bool d_foot;
@@ -41,7 +41,7 @@ namespace rpg
             int d_orientation;
             SDL_Rect d_spriteClips[48];
             Image d_spriteSheetTexture;
-            string d_name;
+            std::string d_name;
     };
 }
 

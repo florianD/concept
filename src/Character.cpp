@@ -55,7 +55,7 @@ namespace rpg
         d_frame = frameFromOri(0);
     }
 
-    Character::Character(int x, int y, int vel, int vx, int vy, string name, int orientation):d_box({x,y,0,0}), d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_offset(0.0), d_clip(0), d_foot(0)
+    Character::Character(int x, int y, int vel, int vx, int vy, std::string name, int orientation):d_box({x,y,0,0}), d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_offset(0.0), d_clip(0), d_foot(0)
     {
         d_id++;
         d_frame = frameFromOri(0);
@@ -78,7 +78,7 @@ namespace rpg
         return d_box.y;
     }
 
-    string Character::getName() const
+    std::string Character::getName() const
     {
         return d_name;
     }

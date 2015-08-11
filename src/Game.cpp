@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "Game.h"
 
 namespace rpg
@@ -6,6 +7,11 @@ namespace rpg
     {
         SOUTH=0, NORTH=2, WEST=4, EAST=6
     };
+
+    bool compare(const Character *c1, const Character *c2)
+    {
+        return c1->getX() < c2->getX();
+    }
 
     Game::Game():d_running(true)
     {
@@ -64,6 +70,7 @@ namespace rpg
             characters.push_back(player);
             characters.push_back(new NPC(32, 32, 4, 4, 0, "NPC", SOUTH, d_renderer));
             characters.push_back(new NPC(config::LEVEL_W - config::SIDE, 32, -4, -4, 0, "NPC", SOUTH, d_renderer));
+            //std::sort(characters.begin(), characters.end(), compare);
             leader = player;
 
             camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
@@ -142,6 +149,12 @@ namespace rpg
                 m->d_tileSet[i][j]->render(m->d_tileWild, d_renderer, camera, m->d_tileClips);
             }
         }
+
+        /*std::sort(characters.begin(), characters.end(), compare);
+        for(int k = 0; k < characters.size() && characters[k]->getX() <= endX*32; ++k)
+        {
+            characters[k]->render(d_renderer, camera);
+        }*/
 
         // render characters
         for(unsigned int i = 0; i < characters.size(); ++i)

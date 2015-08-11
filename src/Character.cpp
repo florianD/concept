@@ -107,7 +107,7 @@ namespace rpg
         {
             d_frame = frameFromOri(d_clip + 2) + d_offset;
             d_offset += 0.1;
-            if(d_offset >= 0.9)
+            if(d_offset >= 0.8)
             {
                 d_offset = 0.0;
 

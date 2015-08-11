@@ -81,6 +81,7 @@ namespace rpg
                 delete characters[i];
             }
         }
+        characters.clear();
 
         delete m;
         SDL_DestroyRenderer(d_renderer);
@@ -92,17 +93,46 @@ namespace rpg
         SDL_Quit();
     }
 
+    bool Game::collision(SDL_Rect &r1, SDL_Rect &r2) const
+    {
+        if(r1.y >= r2.y + r2.h)
+                return 0;
+        if(r1.x >= r2.x + r2.w)
+                return 0;
+        if(r1.y + r1.h <= r2.y)
+                return 0;
+        if(r1.x + r1.w <= r2.x)
+                return 0;
+        return 1;
+    }
+
     void Game::renderAll()
     {
         leader->setCamera(camera);
+
+        int startX = (camera.x - (camera.x % config::SIDE)) / config::SIDE;
+        int startY = (camera.y - (camera.y % config::SIDE)) /config::SIDE;
+        int endX = (camera.x + camera.w + (config::SIDE - (camera.x + camera.w) % config::SIDE)) / config::SIDE;
+        int endY = (camera.y + camera.h + (config::SIDE - (camera.y + camera.h) % config::SIDE)) / config::SIDE;
+        if(endX > Map::MAP_WIDTH)
+        {
+            endX = Map::MAP_WIDTH;
+        }
+        if(endY > Map::MAP_HEIGHT)
+        {
+            endY = Map::MAP_HEIGHT;
+        }
 
         // render background
         //d_background.render(d_renderer, 0, 0, &camera);
 
         // render ground
-        for(int i = 0; i < Map::WILD_TILES; ++i)
+        for(int i = startY; i < endY; ++i)
         {
-            m->d_tileSet[i]->render(m->d_tileWild, d_renderer, camera, m->d_tileClips);
+            for(int j = startX; j < endX; ++j)
+            {
+                m->d_tileSet[i][j]->render(m->d_tileWild, d_renderer, camera, m->d_tileClips);
+            }
         }
 
         // render characters

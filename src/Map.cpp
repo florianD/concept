@@ -5,6 +5,7 @@ namespace rpg
     Map::Map(SDL_Renderer *renderer)
     {
         d_tileClips.clear();
+        d_tileSet.clear();
 
         //The tile offsets
         int x = 0, y = 0;
@@ -22,44 +23,54 @@ namespace rpg
         }
         else
         {
-            //Initialize the tiles
-            for(int i = 0; i < WILD_TILES; ++i)
+            d_tileSet.resize(MAP_HEIGHT);
+            for(int i = 0; i < MAP_HEIGHT; ++i)
             {
-                //Read tile from map file
-                map >> tileType;
+                d_tileSet[i].resize(MAP_WIDTH);
+            }
 
-                //If the was a problem in reading the map
-                if(map.fail())
+            //Initialize the tiles
+            for(int i = 0; i < MAP_HEIGHT; ++i)
+            {
+                for(int j = 0; j < MAP_WIDTH; ++j)
                 {
-                    //Stop loading map
-                    printf("Error loading map: Unexpected end of file\n");
-                    break;
-                }
+                    //Read tile from map file
+                    map >> tileType;
 
-                //If the number is a valid tile number
-                if((tileType >= 0) && (tileType < WILD_TILE_SPRITES))
-                {
-                    d_tileSet[i] = new Tile(x, y, tileType);
-                }
-                //If we don't recognize the tile type
-                else
-                {
-                    //Stop loading map
-                    printf("Error loading map: Invalid tile type at %d\n", i);
-                    break;
-                }
+                    //If the was a problem in reading the map
+                    if(map.fail())
+                    {
+                        //Stop loading map
+                        printf("Error loading map: Unexpected end of file\n");
+                        break;
+                    }
 
-                //Move to next tile spot
-                x += TILE_SIDE;
+                    //If the number is a valid tile number
+                    if((tileType >= 0) && (tileType < WILD_TILE_SPRITES))
+                    {
+                        //d_tileSet[i] = new Tile(x, y, tileType);
+                        d_tileSet[i][j] = new Tile(x, y, tileType);
+                    }
+                    //If we don't recognize the tile type
+                    else
+                    {
+                        //Stop loading map
+                        printf("Error loading map: Invalid tile type at %d\n", i);
+                        break;
+                    }
 
-                //If we've gone too far
-                if(x >= LEVEL_WIDTH)
-                {
-                    //Move back
-                    x = 0;
+                    //Move to next tile spot
+                    x += TILE_SIDE;
 
-                    //Move to the next row
-                    y += TILE_SIDE;
+                    //If we've gone too far
+                    if(x >= LEVEL_WIDTH)
+                    {
+                        //Move back
+                        x = 0;
+
+                        //Move to the next row
+                        y += TILE_SIDE;
+                    }
                 }
             }
             loadSpriteSheetWild(renderer);
@@ -71,11 +82,14 @@ namespace rpg
 
     Map::~Map()
     {
-        for(int i = 0; i < WILD_TILES; ++i)
+        for(int i = 0; i < MAP_HEIGHT; ++i)
         {
-            delete d_tileSet[i];
+            for(int j = 0; j < MAP_WIDTH; ++j)
+            {
+                delete d_tileSet[i][j];
+            }
+            d_tileSet[i].clear();
         }
-        delete[] d_tileSet;
         d_tileWild.free();
     }
 
@@ -90,7 +104,7 @@ namespace rpg
         }
         else
         {
-            d_tileClips.reserve(WILD_TILE_SPRITES);
+            d_tileClips.resize(WILD_TILE_SPRITES);
 
             int k = 0;
             for(int i = 0; i < 3; ++i)

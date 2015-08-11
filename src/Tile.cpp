@@ -12,11 +12,7 @@ namespace rpg
 
     void Tile::render(Image &im, SDL_Renderer *renderer, SDL_Rect &camera, std::vector<SDL_Rect> &tileClips)
     {
-        //If the tile is on screen
-        //if(checkCollision(camera, d_box))
-        //{
-            im.render(renderer, d_box.x - camera.x, d_box.y - camera.y, &tileClips[d_type]);
-        //}
+        im.render(renderer, d_box.x - camera.x, d_box.y - camera.y, &tileClips[d_type]);
     }
 
     int Tile::getType() const

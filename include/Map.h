@@ -21,7 +21,7 @@ namespace rpg
             static const int WILD_TILE_SPRITES = 12;
             Image d_tileWild;
             std::vector<SDL_Rect> d_tileClips;
-            Tile *d_tileSet[WILD_TILES];
+            std::vector<std::vector<Tile*> > d_tileSet;
     };
 }
 

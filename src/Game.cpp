@@ -114,6 +114,14 @@ namespace rpg
         int startY = (camera.y - (camera.y % config::SIDE)) / config::SIDE;
         int endX = (camera.x + camera.w + (config::SIDE - (camera.x + camera.w) % config::SIDE)) / config::SIDE;
         int endY = (camera.y + camera.h + (config::SIDE - (camera.y + camera.h) % config::SIDE)) / config::SIDE;
+        if(startX < 0)
+        {
+            startX = 0;
+        }
+        if(startY < 0)
+        {
+            startY = 0;
+        }
         if(endX > Map::MAP_WIDTH)
         {
             endX = Map::MAP_WIDTH;

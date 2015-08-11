@@ -111,7 +111,7 @@ namespace rpg
         leader->setCamera(camera);
 
         int startX = (camera.x - (camera.x % config::SIDE)) / config::SIDE;
-        int startY = (camera.y - (camera.y % config::SIDE)) /config::SIDE;
+        int startY = (camera.y - (camera.y % config::SIDE)) / config::SIDE;
         int endX = (camera.x + camera.w + (config::SIDE - (camera.x + camera.w) % config::SIDE)) / config::SIDE;
         int endY = (camera.y + camera.h + (config::SIDE - (camera.y + camera.h) % config::SIDE)) / config::SIDE;
         if(endX > Map::MAP_WIDTH)

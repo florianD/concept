@@ -74,7 +74,7 @@ namespace rpg
             leader = player;
 
             camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
-            leader->setCamera(camera);
+            setCamera(leader->getX(), leader->getY());
         }
     }
 
@@ -100,6 +100,34 @@ namespace rpg
         SDL_Quit();
     }
 
+    void Game::setCamera(int x, int y)
+    {
+        if(config::LEVEL_W >= config::WINDOW_W)
+        {
+            camera.x = (x + config::SIDE / 2) - config::WINDOW_W / 2;
+            if(camera.x < 0)
+            {
+                camera.x = 0;
+            }
+            if(camera.x > config::LEVEL_W - camera.w)
+            {
+                camera.x = config::LEVEL_W - camera.w;
+            }
+        }
+        if(config::LEVEL_H >= config::WINDOW_H)
+        {
+            camera.y = (y + config::SIDE / 2) - config::WINDOW_H / 2;
+            if(camera.y < 0)
+            {
+                camera.y = 0;
+            }
+            if(camera.y > config::LEVEL_H - camera.h)
+            {
+                camera.y = config::LEVEL_H - camera.h;
+            }
+        }
+    }
+
     bool Game::collision(SDL_Rect &r1, SDL_Rect &r2) const
     {
         if(r1.y >= r2.y + r2.h)
@@ -115,7 +143,7 @@ namespace rpg
 
     void Game::renderAll()
     {
-        leader->setCamera(camera);
+        setCamera(leader->getX(), leader->getY());
 
         int startX = (camera.x - (camera.x % config::SIDE)) / config::SIDE;
         int startY = (camera.y - (camera.y % config::SIDE)) / config::SIDE;

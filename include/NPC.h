@@ -10,7 +10,6 @@ namespace rpg
             NPC(int x, int y, int vel, int vx, int vy, std::string name, int orientation, SDL_Renderer *renderer);
             virtual bool loadSpriteSheet(SDL_Renderer *renderer);
             virtual ~NPC();
-        private:
     };
 }
 

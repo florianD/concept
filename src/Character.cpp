@@ -128,12 +128,12 @@ namespace rpg
             }
             d_box.x += d_velX;
             d_box.y += d_velY;
-            if((d_box.x < 0) || (d_box.x + d_box.w > config::LEVEL_W))
+            if((d_box.x < 0) || (d_box.x + d_box.w > config::LEVEL_W / (config::SIDE_X / d_box.w)))
             {
                 d_box.x -= d_velX;
                 resetAnimation();
             }
-            if((d_box.y < 0) || (d_box.y + d_box.h > config::LEVEL_H))
+            if((d_box.y < 0) || (d_box.y + d_box.h > config::LEVEL_H / (config::SIDE_Y / d_box.h)))
             {
                 d_box.y -= d_velY;
                 resetAnimation();
@@ -155,13 +155,19 @@ namespace rpg
     void Character::render(SDL_Renderer *renderer, SDL_Rect &cam)
     {
         SDL_Rect *currentClip = &d_spriteClips[(int)d_frame];
-        d_spriteSheetTexture.render(renderer, d_box.x - cam.x, d_box.y - cam.y, currentClip);
+        d_spriteSheetTexture.render(renderer,
+        (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x,
+        (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y,
+        currentClip);
     }
 
     void Character::renderT(SDL_Renderer *renderer, SDL_Rect &cam)
     {
         SDL_Rect *currentClip = &d_spriteClips[(int)d_frame + 1];
-        d_spriteSheetTexture.render(renderer, d_box.x - cam.x, d_box.y - cam.y - d_box.h, currentClip);
+        d_spriteSheetTexture.render(renderer,
+        (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x,
+        (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y - d_box.h,
+        currentClip);
     }
 
     int Character::getVel() const

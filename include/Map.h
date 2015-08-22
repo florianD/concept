@@ -15,7 +15,8 @@ namespace rpg
             static const int MAP_WIDTH = config::MAP_WIDTH;
             static const int MAP_HEIGHT = config::MAP_HEIGHT;
             static const int WILD_TILES = MAP_WIDTH * MAP_HEIGHT;
-            static const int TILE_SIDE = config::SIDE;
+            static const int TILE_SIDE_X = config::SIDE_X;
+            static const int TILE_SIDE_Y = config::SIDE_Y;
             static const int LEVEL_WIDTH = config::LEVEL_W;
             static const int LEVEL_HEIGHT = config::LEVEL_H;
             static const int WILD_TILE_SPRITES = 12;

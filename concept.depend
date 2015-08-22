@@ -2,7 +2,7 @@
 1438719435 source:c:\users\florian\documents\prog\concept\main.cpp
 	"include/Game.h"
 
-1439468505 c:\users\florian\documents\prog\concept\include\game.h
+1440206171 c:\users\florian\documents\prog\concept\include\game.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<stdio.h>
@@ -31,10 +31,10 @@
 	"config.h"
 	"Image.h"
 
-1439260717 c:\users\florian\documents\prog\concept\include\config.h
+1440279426 c:\users\florian\documents\prog\concept\include\config.h
 	<string>
 
-1439257170 c:\users\florian\documents\prog\concept\include\map.h
+1440254471 c:\users\florian\documents\prog\concept\include\map.h
 	<fstream>
 	"Image.h"
 	"Tile.h"
@@ -48,18 +48,18 @@
 	"Object.h"
 	"Image.h"
 
-1439301524 c:\users\florian\documents\prog\concept\include\player.h
+1439482068 c:\users\florian\documents\prog\concept\include\player.h
 	<iostream>
 	<string>
 	"Character.h"
 
-1439301529 c:\users\florian\documents\prog\concept\include\npc.h
+1439482060 c:\users\florian\documents\prog\concept\include\npc.h
 	"Character.h"
 
-1439310167 source:c:\users\florian\documents\prog\concept\src\character.cpp
+1440280232 source:c:\users\florian\documents\prog\concept\src\character.cpp
 	"../include/Character.h"
 
-1439468791 source:c:\users\florian\documents\prog\concept\src\game.cpp
+1440280713 source:c:\users\florian\documents\prog\concept\src\game.cpp
 	<algorithm>
 	"Game.h"
 
@@ -69,10 +69,10 @@
 1439468738 source:c:\users\florian\documents\prog\concept\src\object.cpp
 	"../include/Object.h"
 
-1439258526 source:c:\users\florian\documents\prog\concept\src\tile.cpp
+1440204196 source:c:\users\florian\documents\prog\concept\src\tile.cpp
 	"../include/Tile.h"
 
-1439257160 source:c:\users\florian\documents\prog\concept\src\map.cpp
+1440254489 source:c:\users\florian\documents\prog\concept\src\map.cpp
 	"../include/Map.h"
 
 1439301572 source:c:\users\florian\documents\prog\concept\src\npc.cpp
@@ -80,4 +80,10 @@
 
 1439301577 source:c:\users\florian\documents\prog\concept\src\player.cpp
 	"../include/Player.h"
+
+1439482137 source:c:\users\florian\documents\prog\concept\src\building.cpp
+	"../include/Building.h"
+
+1439482118 c:\users\florian\documents\prog\concept\include\building.h
+	"Object.h"
 

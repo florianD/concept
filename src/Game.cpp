@@ -69,12 +69,11 @@ namespace rpg
             player = new Player(0, 0, 4, 0, 0, "Player", SOUTH, d_renderer);
             characters.push_back(player);
             characters.push_back(new NPC(32, 32, 4, 4, 0, "NPC", SOUTH, d_renderer));
-            characters.push_back(new NPC(config::LEVEL_W - config::SIDE, 32, -4, -4, 0, "NPC", SOUTH, d_renderer));
-            //std::sort(characters.begin(), characters.end(), compare);
+            characters.push_back(new NPC(config::LEVEL_W / (config::SIDE_X / player->getRect().w) - config::SIDE_X / 2, 64, -4, -4, 0, "NPC", SOUTH, d_renderer));
             leader = player;
 
             camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
-            setCamera(leader->getX(), leader->getY());
+            setCamera(leader->getRect());
         }
     }
 
@@ -100,31 +99,15 @@ namespace rpg
         SDL_Quit();
     }
 
-    void Game::setCamera(int x, int y)
+    void Game::setCamera(SDL_Rect box)
     {
         if(config::LEVEL_W >= config::WINDOW_W)
         {
-            camera.x = (x + config::SIDE / 2) - config::WINDOW_W / 2;
-            if(camera.x < 0)
-            {
-                camera.x = 0;
-            }
-            if(camera.x > config::LEVEL_W - camera.w)
-            {
-                camera.x = config::LEVEL_W - camera.w;
-            }
+            camera.x = ((box.x - box.y) * (config::SIDE_X / 2) / box.w + config::SIDE_X / 2) - config::WINDOW_W / 2;
         }
         if(config::LEVEL_H >= config::WINDOW_H)
         {
-            camera.y = (y + config::SIDE / 2) - config::WINDOW_H / 2;
-            if(camera.y < 0)
-            {
-                camera.y = 0;
-            }
-            if(camera.y > config::LEVEL_H - camera.h)
-            {
-                camera.y = config::LEVEL_H - camera.h;
-            }
+            camera.y = ((box.x + box.y) * (config::SIDE_Y / 2) / box.h + config::SIDE_Y / 2) - config::WINDOW_H / 2;
         }
     }
 
@@ -143,45 +126,35 @@ namespace rpg
 
     void Game::renderAll()
     {
-        setCamera(leader->getX(), leader->getY());
+        setCamera(leader->getRect());
 
-        int startX = (camera.x - (camera.x % config::SIDE)) / config::SIDE;
-        int startY = (camera.y - (camera.y % config::SIDE)) / config::SIDE;
-        int endX = (camera.x + camera.w + (config::SIDE - (camera.x + camera.w) % config::SIDE)) / config::SIDE;
-        int endY = (camera.y + camera.h + (config::SIDE - (camera.y + camera.h) % config::SIDE)) / config::SIDE;
-        if(startX < 0)
-        {
-            startX = 0;
-        }
-        if(startY < 0)
-        {
-            startY = 0;
-        }
-        if(endX > Map::MAP_WIDTH)
-        {
-            endX = Map::MAP_WIDTH;
-        }
-        if(endY > Map::MAP_HEIGHT)
-        {
-            endY = Map::MAP_HEIGHT;
-        }
+        int startX = (int)(leader->getX() / leader->getRect().w - round((SCREEN_WIDTH / 2) / (config::SIDE_X / 4)));
+        int endX = (int)(leader->getX() / leader->getRect().w + round((SCREEN_WIDTH / 2) / (config::SIDE_X / 4)));
+        int startY = (int)(leader->getY() / leader->getRect().h - round((SCREEN_HEIGHT / 2) / (config::SIDE_Y / 2)));
+        int endY = (int)(leader->getY() / leader->getRect().h + round((SCREEN_HEIGHT / 2) / (config::SIDE_Y / 2)));
+        startX = startX >= 0 ? startX : 0;
+        endX = endX <= Map::MAP_WIDTH ? endX : Map::MAP_WIDTH;
+        startY = startY >= 0 ? startY : 0;
+        endY = endY <= Map::MAP_HEIGHT ? endY : Map::MAP_HEIGHT;
 
         // render background
         //d_background.render(d_renderer, 0, 0, &camera);
 
-        // render ground
+        // render ground (isometric view)
         for(int i = startY; i < endY; ++i)
         {
-            for(int j = startX; j < endX; ++j)
+            for(int j = endX-1; j >= startX; --j)
             {
                 m->d_tileSet[i][j]->render(m->d_tileWild, d_renderer, camera, m->d_tileClips);
             }
         }
 
-        /*std::sort(characters.begin(), characters.end(), compare);
-        for(int k = 0; k < characters.size() && characters[k]->getX() <= endX*32; ++k)
+        /*for(int i = 0; i < config::MAP_WIDTH; ++i) // row
         {
-            characters[k]->render(d_renderer, camera);
+            for(int j = config::MAP_HEIGHT-1; j >= 0; --j) // column
+            {
+                m->d_tileSet[i][j]->render(m->d_tileWild, d_renderer, camera, m->d_tileClips);
+            }
         }*/
 
         // render characters
@@ -195,6 +168,8 @@ namespace rpg
         {
             characters[i]->renderT(d_renderer, camera);
         }
+
+        //SDL_Delay(1000);
     }
 
     void Game::actions()

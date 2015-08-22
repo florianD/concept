@@ -48,7 +48,6 @@ namespace rpg
                     //If the number is a valid tile number
                     if((tileType >= 0) && (tileType < WILD_TILE_SPRITES))
                     {
-                        //d_tileSet[i] = new Tile(x, y, tileType);
                         d_tileSet[i][j] = new Tile(x, y, tileType);
                     }
                     //If we don't recognize the tile type
@@ -60,7 +59,7 @@ namespace rpg
                     }
 
                     //Move to next tile spot
-                    x += TILE_SIDE;
+                    x += TILE_SIDE_X;
 
                     //If we've gone too far
                     if(x >= LEVEL_WIDTH)
@@ -69,7 +68,7 @@ namespace rpg
                         x = 0;
 
                         //Move to the next row
-                        y += TILE_SIDE;
+                        y += TILE_SIDE_Y;
                     }
                 }
             }
@@ -111,10 +110,10 @@ namespace rpg
             {
                 for(int j = 0; j < 4; ++j)
                 {
-                    d_tileClips[k].x = j * TILE_SIDE;
-                    d_tileClips[k].y = i * TILE_SIDE;
-                    d_tileClips[k].w = TILE_SIDE;
-                    d_tileClips[k++].h = TILE_SIDE;
+                    d_tileClips[k].x = j * TILE_SIDE_X;
+                    d_tileClips[k].y = i * TILE_SIDE_Y;
+                    d_tileClips[k].w = TILE_SIDE_X;
+                    d_tileClips[k++].h = TILE_SIDE_Y;
                 }
             }
         }

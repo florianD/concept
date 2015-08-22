@@ -6,13 +6,17 @@ namespace rpg
     {
         d_box.x = x;
         d_box.y = y;
-        d_box.w = config::SIDE;
-        d_box.h = config::SIDE;
+        d_box.w = config::SIDE_X;
+        d_box.h = config::SIDE_Y;
     }
 
+    // isometric view
     void Tile::render(Image &im, SDL_Renderer *renderer, SDL_Rect &camera, std::vector<SDL_Rect> &tileClips)
     {
-        im.render(renderer, d_box.x - camera.x, d_box.y - camera.y, &tileClips[d_type]);
+        im.render(renderer,
+        (d_box.x / d_box.w - d_box.y / d_box.h) * (d_box.w / 2) - camera.x,
+        (d_box.x / d_box.w + d_box.y / d_box.h) * (d_box.h / 2) - camera.y,
+        &tileClips[d_type]);
     }
 
     int Tile::getType() const

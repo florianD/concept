@@ -24,7 +24,7 @@ namespace rpg
             ~Game();
             void start();
         private:
-            void setCamera(int x, int y);
+            void setCamera(SDL_Rect box);
             bool collision(SDL_Rect &r1, SDL_Rect &r2) const;
             void renderAll();
             void actions();

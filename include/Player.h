@@ -13,7 +13,6 @@ namespace rpg
             virtual bool loadSpriteSheet(SDL_Renderer *renderer);
             virtual void handleEvent(SDL_Event &e);
             virtual ~Player();
-        private:
     };
 }
 

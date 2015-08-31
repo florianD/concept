@@ -34,12 +34,12 @@ namespace rpg
         protected:
             virtual void resetAnimation();
             static int d_id;
+            int d_size_w, d_size_h;
             SDL_Rect d_box;
-            bool d_foot;
             double d_frame, d_offset;
             int d_velX, d_velY, d_vel, d_clip;
             int d_orientation;
-            SDL_Rect d_spriteClips[48];
+            SDL_Rect d_spriteClips[64];
             Image d_spriteSheetTexture;
             std::string d_name;
     };

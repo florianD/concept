@@ -7,8 +7,8 @@ namespace rpg
     class config
     {
         public:
-            static const int SIDE_X = 64; // MAP CLIP SIZE X
-            static const int SIDE_Y = 32; // MAP CLIP SIZE Y
+            static const int SIDE_X = 128; // MAP CLIP SIZE X
+            static const int SIDE_Y = 64; // MAP CLIP SIZE Y
 
             static const int MAP_WIDTH = 50; //  \ MUST MATCH FILE
             static const int MAP_HEIGHT = 50; //  /

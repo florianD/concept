@@ -11,7 +11,7 @@ namespace rpg
 
     enum
     {
-        FRONT=0, BACK=6, LEFT=12, RIGHT=18
+        FRONT=32, BACK=40, LEFT=48, RIGHT=56
     };
 
     void Character::oriFromDir()
@@ -49,16 +49,16 @@ namespace rpg
         }
     }
 
-    Character::Character():d_box({0,0,0,0}), d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_offset(0.0), d_clip(0), d_foot(0)
+    Character::Character():d_box({0,0,0,0}), d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_offset(0.0), d_clip(0), d_size_w(0), d_size_h(0)
     {
         d_id++;
-        d_frame = frameFromOri(0);
+        d_frame = frameFromOri(-32);
     }
 
-    Character::Character(int x, int y, int vel, int vx, int vy, std::string name, int orientation):d_box({x,y,0,0}), d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_offset(0.0), d_clip(0), d_foot(0)
+    Character::Character(int x, int y, int vel, int vx, int vy, std::string name, int orientation):d_box({x,y,0,0}), d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_offset(0.0), d_clip(0), d_size_w(0), d_size_h(0)
     {
         d_id++;
-        d_frame = frameFromOri(0);
+        d_frame = frameFromOri(-32);
     }
 
     Character::~Character(){}
@@ -95,7 +95,7 @@ namespace rpg
 
     void Character::resetAnimation()
     {
-        d_frame = frameFromOri(0);
+        d_frame = frameFromOri(-32);
         d_clip = 0;
         d_offset = 0.0;
     }
@@ -103,37 +103,27 @@ namespace rpg
     void Character::walk()
     {
         oriFromDir();
+        d_offset += 0.1;
         if(!isMotionless())
         {
-            d_frame = frameFromOri(d_clip + 2) + d_offset;
-            d_offset += 0.1;
-            if(d_offset >= 0.8)
+            d_frame = frameFromOri(d_clip % 8) + d_offset;
+            if(d_offset >= 0.2)
             {
                 d_offset = 0.0;
-
-                // 2 clips animation
-                /*d_clip += 2;
-                if(d_clip + 2 > 4)
+                d_clip++;
+                if((int)d_frame >= frameFromOri(7))
                 {
-                    d_clip = 0;
-                }*/
-
-                // 3 clips animation
-                d_clip += (d_foot * 2) % 4 + 2;
-                if((int)d_frame - frameFromOri(0) != 0)
-                {
-                    d_clip = -2;
-                    d_foot = !d_foot;
+                    d_clip = frameFromOri(0);
                 }
             }
             d_box.x += d_velX;
             d_box.y += d_velY;
-            if((d_box.x < 0) || (d_box.x + d_box.w > config::LEVEL_W / (config::SIDE_X / d_box.w)))
+            if((d_box.x < 0) || (d_box.x + d_box.w > (config::LEVEL_W / (config::SIDE_X / d_box.w) + (config::SIDE_Y - d_box.w) / 2)))
             {
                 d_box.x -= d_velX;
                 resetAnimation();
             }
-            if((d_box.y < 0) || (d_box.y + d_box.h > config::LEVEL_H / (config::SIDE_Y / d_box.h)))
+            if((d_box.y < 0) || (d_box.y + d_box.h > (config::LEVEL_H / (config::SIDE_Y / d_box.h) + (config::SIDE_Y - d_box.w) / 2)))
             {
                 d_box.y -= d_velY;
                 resetAnimation();
@@ -141,7 +131,16 @@ namespace rpg
         }
         else
         {
-            resetAnimation();
+            d_frame = frameFromOri(d_clip % 8 - 32) + d_offset;
+            if(d_offset >= 0.2)
+            {
+                d_offset = 0.0;
+                d_clip++;
+                if((int)d_frame >= frameFromOri(7))
+                {
+                    d_clip = frameFromOri(-32);
+                }
+            }
         }
     }
 
@@ -154,20 +153,23 @@ namespace rpg
 
     void Character::render(SDL_Renderer *renderer, SDL_Rect &cam)
     {
+        /*SDL_Rect r;
+        r.x = (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x + 32;
+        r.y = (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y;
+        r.w = d_box.w;
+        r.h = d_box.h;
+        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+        SDL_RenderFillRect(renderer, &r);*/
+
         SDL_Rect *currentClip = &d_spriteClips[(int)d_frame];
         d_spriteSheetTexture.render(renderer,
         (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x,
-        (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y,
+        (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y - 64,
         currentClip);
     }
 
     void Character::renderT(SDL_Renderer *renderer, SDL_Rect &cam)
     {
-        SDL_Rect *currentClip = &d_spriteClips[(int)d_frame + 1];
-        d_spriteSheetTexture.render(renderer,
-        (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x,
-        (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y - d_box.h,
-        currentClip);
     }
 
     int Character::getVel() const

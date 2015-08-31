@@ -66,10 +66,14 @@ namespace rpg
             m = new Map(d_renderer);
 
             characters.clear();
-            player = new Player(0, 0, 4, 0, 0, "Player", SOUTH, d_renderer);
+            player = new Player(0, 0, 2, 0, 0, "Player", SOUTH, d_renderer);
             characters.push_back(player);
-            characters.push_back(new NPC(32, 32, 4, 4, 0, "NPC", SOUTH, d_renderer));
-            characters.push_back(new NPC(config::LEVEL_W / (config::SIDE_X / player->getRect().w) - config::SIDE_X / 2, 64, -4, -4, 0, "NPC", SOUTH, d_renderer));
+            characters.push_back(new NPC(32, 96, 0, 0, 0, "NPC", SOUTH, d_renderer));
+            characters.push_back(new NPC(64, 96, 0, 0, 0, "NPC", NORTH, d_renderer));
+            characters.push_back(new NPC(96, 96, 0, 0, 0, "NPC", EAST, d_renderer));
+            characters.push_back(new NPC(128, 96, 0, 0, 0, "NPC", WEST, d_renderer));
+            characters.push_back(new NPC(32, 32, 2, 2, 0, "NPC", SOUTH, d_renderer));
+            characters.push_back(new NPC(config::LEVEL_W / (config::SIDE_X / player->getRect().w) - config::SIDE_X / 2, 64, -2, -2, 0, "NPC", SOUTH, d_renderer));
             leader = player;
 
             camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
@@ -133,17 +137,17 @@ namespace rpg
         int startY = (int)(leader->getY() / leader->getRect().h - round((SCREEN_HEIGHT / 2) / (config::SIDE_Y / 2)));
         int endY = (int)(leader->getY() / leader->getRect().h + round((SCREEN_HEIGHT / 2) / (config::SIDE_Y / 2)));
         startX = startX >= 0 ? startX : 0;
-        endX = endX <= Map::MAP_WIDTH ? endX : Map::MAP_WIDTH;
+        endX = endX <= Map::MAP_WIDTH - 1 ? endX : Map::MAP_WIDTH - 1;
         startY = startY >= 0 ? startY : 0;
-        endY = endY <= Map::MAP_HEIGHT ? endY : Map::MAP_HEIGHT;
+        endY = endY <= Map::MAP_HEIGHT - 1 ? endY : Map::MAP_HEIGHT - 1;
 
         // render background
         //d_background.render(d_renderer, 0, 0, &camera);
 
         // render ground (isometric view)
-        for(int i = startY; i < endY; ++i)
+        for(int i = startY; i <= endY; ++i)
         {
-            for(int j = endX-1; j >= startX; --j)
+            for(int j = endX; j >= startX; --j)
             {
                 m->d_tileSet[i][j]->render(m->d_tileWild, d_renderer, camera, m->d_tileClips);
             }

@@ -23,22 +23,21 @@ namespace rpg
         }
         else
         {
-            d_box.w = d_spriteSheetTexture.getWidth() / 12;
-            d_box.h = d_spriteSheetTexture.getHeight() / 4;
-            int k = 0;
-            for(int i = 0; i <= 2; i+=2)
-            {
-                for(int j = 0; j < 12; ++j)
-                {
-                    d_spriteClips[k].x = j * d_box.w;
-                    d_spriteClips[k].y = (i+1) * d_box.h;
-                    d_spriteClips[k].w = d_box.w;
-                    d_spriteClips[k++].h = d_box.h;
+            d_size_w = (d_spriteSheetTexture.getWidth() / 8);
+            d_size_h = (d_spriteSheetTexture.getHeight() / 8);
 
-                    d_spriteClips[k].x = j * d_box.w;
-                    d_spriteClips[k].y = i * d_box.h;
-                    d_spriteClips[k].w = d_box.w;
-                    d_spriteClips[k++].h = d_box.h;
+            d_box.w = 32;
+            d_box.h = 32;
+
+            int k = 0;
+            for(int i = 0; i < 8; ++i)
+            {
+                for(int j = 0; j < 8; ++j)
+                {
+                    d_spriteClips[k].x = j * d_size_w;
+                    d_spriteClips[k].y = i * d_size_h;
+                    d_spriteClips[k].w = d_size_w;
+                    d_spriteClips[k++].h = d_size_h;
                 }
             }
         }

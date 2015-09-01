@@ -63,23 +63,6 @@ namespace rpg
 
     Character::~Character(){}
 
-    /*void Character::render(SDL_Renderer *renderer, SDL_Rect &cam)
-    {*/
-        /*SDL_Rect r;
-        r.x = (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x + 32;
-        r.y = (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y;
-        r.w = d_box.w;
-        r.h = d_box.h;
-        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-        SDL_RenderFillRect(renderer, &r);*/
-
-        /*SDL_Rect *currentClip = &d_spriteClips[(int)d_frame];
-        d_spriteSheetTexture.render(renderer,
-        (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x,
-        (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y - 64,
-        currentClip);
-    }*/
-
     int Character::getOrientation() const
     {
         return d_orientation;

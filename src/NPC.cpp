@@ -2,6 +2,11 @@
 
 namespace rpg
 {
+    int NPC::d_size_w = 0;
+    int NPC::d_size_h = 0;
+    SDL_Rect NPC::d_spriteClips[64];
+    Image NPC::d_spriteSheetTexture;
+
     enum
     {
         SOUTH=0, NORTH=2, WEST=4, EAST=6
@@ -9,25 +14,23 @@ namespace rpg
 
     NPC::NPC(int x, int y, int vel, int vx, int vy, std::string name, int orientation, SDL_Renderer *renderer):Character(x, y, vel, vx, vy, name, orientation)
     {
-        loadSpriteSheet(renderer);
+        d_box.w = 32;
+        d_box.h = 32;
     }
 
     bool NPC::loadSpriteSheet(SDL_Renderer *renderer)
     {
         bool success = true;
 
-        if(!d_spriteSheetTexture.load("img/object/char/player.png", renderer))
+        if(!d_spriteSheetTexture.load("img/object/char/npc.png", renderer))
         {
-            printf("Failed to load walking animation texture\n");
+            printf("Failed to load npc texture\n");
             success = false;
         }
         else
         {
             d_size_w = (d_spriteSheetTexture.getWidth() / 8);
             d_size_h = (d_spriteSheetTexture.getHeight() / 8);
-
-            d_box.w = 32;
-            d_box.h = 32;
 
             int k = 0;
             for(int i = 0; i < 8; ++i)
@@ -42,6 +45,23 @@ namespace rpg
             }
         }
         return success;
+    }
+
+    void NPC::render(SDL_Renderer *renderer, SDL_Rect &cam)
+    {
+        /*SDL_Rect r;
+        r.x = (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x + 32;
+        r.y = (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y;
+        r.w = d_box.w;
+        r.h = d_box.h;
+        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+        SDL_RenderFillRect(renderer, &r);*/
+
+        SDL_Rect *currentClip = &d_spriteClips[(int)d_frame];
+        d_spriteSheetTexture.render(renderer,
+        (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x,
+        (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y - 64,
+        currentClip);
     }
 
     NPC::~NPC()

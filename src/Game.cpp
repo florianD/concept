@@ -66,6 +66,9 @@ namespace rpg
             m = new Map(d_renderer);
 
             characters.clear();
+            Player::loadSpriteSheet(d_renderer);
+            NPC::loadSpriteSheet(d_renderer);
+
             player = new Player(0, 0, 2, 0, 0, "Player", SOUTH, d_renderer);
             characters.push_back(player);
             characters.push_back(new NPC(32, 96, 0, 0, 0, "NPC", SOUTH, d_renderer));
@@ -165,12 +168,6 @@ namespace rpg
         for(unsigned int i = 0; i < characters.size(); ++i)
         {
             characters[i]->render(d_renderer, camera);
-        }
-
-        // render characters top
-        for(unsigned int i = 0; i < characters.size(); ++i)
-        {
-            characters[i]->renderT(d_renderer, camera);
         }
 
         //SDL_Delay(1000);

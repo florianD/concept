@@ -16,9 +16,7 @@ namespace rpg
             void rotate(int r);
             std::string getName() const;
             int getOrientation() const;
-            virtual bool loadSpriteSheet(SDL_Renderer *renderer) = 0;
-            virtual void render(SDL_Renderer *renderer, SDL_Rect &cam);
-            virtual void renderT(SDL_Renderer *renderer, SDL_Rect &cam);
+            //virtual void render(SDL_Renderer *renderer, SDL_Rect &cam);
             virtual void walk();
             virtual void moveTo(int x, int y);
             virtual int getVel() const;
@@ -34,13 +32,10 @@ namespace rpg
         protected:
             virtual void resetAnimation();
             static int d_id;
-            int d_size_w, d_size_h;
             SDL_Rect d_box;
             double d_frame, d_offset;
             int d_velX, d_velY, d_vel, d_clip;
             int d_orientation;
-            SDL_Rect d_spriteClips[64];
-            Image d_spriteSheetTexture;
             std::string d_name;
     };
 }

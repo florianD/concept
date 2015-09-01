@@ -49,19 +49,36 @@ namespace rpg
         }
     }
 
-    Character::Character():d_box({0,0,0,0}), d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_offset(0.0), d_clip(0), d_size_w(0), d_size_h(0)
+    Character::Character():d_box({0,0,0,0}), d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_offset(0.0), d_clip(0)
     {
         d_id++;
         d_frame = frameFromOri(-32);
     }
 
-    Character::Character(int x, int y, int vel, int vx, int vy, std::string name, int orientation):d_box({x,y,0,0}), d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_offset(0.0), d_clip(0), d_size_w(0), d_size_h(0)
+    Character::Character(int x, int y, int vel, int vx, int vy, std::string name, int orientation):d_box({x,y,0,0}), d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_offset(0.0), d_clip(0)
     {
         d_id++;
         d_frame = frameFromOri(-32);
     }
 
     Character::~Character(){}
+
+    /*void Character::render(SDL_Renderer *renderer, SDL_Rect &cam)
+    {*/
+        /*SDL_Rect r;
+        r.x = (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x + 32;
+        r.y = (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y;
+        r.w = d_box.w;
+        r.h = d_box.h;
+        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+        SDL_RenderFillRect(renderer, &r);*/
+
+        /*SDL_Rect *currentClip = &d_spriteClips[(int)d_frame];
+        d_spriteSheetTexture.render(renderer,
+        (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x,
+        (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y - 64,
+        currentClip);
+    }*/
 
     int Character::getOrientation() const
     {
@@ -132,7 +149,7 @@ namespace rpg
         else
         {
             d_frame = frameFromOri(d_clip % 8 - 32) + d_offset;
-            if(d_offset >= 0.2)
+            if(d_offset >= 0.4)
             {
                 d_offset = 0.0;
                 d_clip++;
@@ -149,27 +166,6 @@ namespace rpg
         d_box.x = x;
         d_box.y = y;
         d_orientation = SOUTH;
-    }
-
-    void Character::render(SDL_Renderer *renderer, SDL_Rect &cam)
-    {
-        /*SDL_Rect r;
-        r.x = (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x + 32;
-        r.y = (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y;
-        r.w = d_box.w;
-        r.h = d_box.h;
-        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-        SDL_RenderFillRect(renderer, &r);*/
-
-        SDL_Rect *currentClip = &d_spriteClips[(int)d_frame];
-        d_spriteSheetTexture.render(renderer,
-        (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x,
-        (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y - 64,
-        currentClip);
-    }
-
-    void Character::renderT(SDL_Renderer *renderer, SDL_Rect &cam)
-    {
     }
 
     int Character::getVel() const

@@ -8,8 +8,13 @@ namespace rpg
     {
         public:
             NPC(int x, int y, int vel, int vx, int vy, std::string name, int orientation, SDL_Renderer *renderer);
-            virtual bool loadSpriteSheet(SDL_Renderer *renderer);
+            static bool loadSpriteSheet(SDL_Renderer *renderer);
+            virtual void render(SDL_Renderer *renderer, SDL_Rect &cam);
             virtual ~NPC();
+        private:
+            static int d_size_w, d_size_h;
+            static SDL_Rect d_spriteClips[64];
+            static Image d_spriteSheetTexture;
     };
 }
 

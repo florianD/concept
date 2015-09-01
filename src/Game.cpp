@@ -5,7 +5,7 @@ namespace rpg
 {
     enum
     {
-        SOUTH=0, NORTH=2, WEST=4, EAST=6
+        SOUTH=0, NORTH=1, WEST=2, EAST=3
     };
 
     bool compare(const Character *c1, const Character *c2)
@@ -156,21 +156,11 @@ namespace rpg
             }
         }
 
-        /*for(int i = 0; i < config::MAP_WIDTH; ++i) // row
-        {
-            for(int j = config::MAP_HEIGHT-1; j >= 0; --j) // column
-            {
-                m->d_tileSet[i][j]->render(m->d_tileWild, d_renderer, camera, m->d_tileClips);
-            }
-        }*/
-
         // render characters
         for(unsigned int i = 0; i < characters.size(); ++i)
         {
             characters[i]->render(d_renderer, camera);
         }
-
-        //SDL_Delay(1000);
     }
 
     void Game::actions()

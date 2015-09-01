@@ -6,12 +6,12 @@ namespace rpg
 
     enum
     {
-        SOUTH=0, NORTH=2, WEST=4, EAST=6
+        SOUTH=0, NORTH=1, WEST=2, EAST=3, DSOUTH=4, DNORTH=5, DWEST=6, DEAST=7
     };
 
     enum
     {
-        FRONT=32, BACK=40, LEFT=48, RIGHT=56
+        FRONT=64, BACK=72, LEFT=80, RIGHT=88, DFRONT=96, DBACK=104, DLEFT=112, DRIGHT=120
     };
 
     void Character::oriFromDir()
@@ -19,10 +19,26 @@ namespace rpg
         if(d_velX > 0)
         {
             d_orientation = EAST;
+            if(d_velY > 0)
+            {
+                d_orientation = DSOUTH;
+            }
+            else if(d_velY < 0)
+            {
+                d_orientation = DEAST;
+            }
         }
         else if(d_velX < 0)
         {
             d_orientation = WEST;
+            if(d_velY < 0)
+            {
+                d_orientation = DNORTH;
+            }
+            else if(d_velY > 0)
+            {
+                d_orientation = DWEST;
+            }
         }
         else if(d_velY > 0)
         {
@@ -46,19 +62,27 @@ namespace rpg
                 return FRONT + (int)offset;
             case NORTH:
                 return BACK + (int)offset;
+            case DEAST:
+                return DRIGHT + (int)offset;
+            case DWEST:
+                return DLEFT + (int)offset;
+            case DSOUTH:
+                return DFRONT + (int)offset;
+            case DNORTH:
+                return DBACK + (int)offset;
         }
     }
 
     Character::Character():d_box({0,0,0,0}), d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_offset(0.0), d_clip(0)
     {
         d_id++;
-        d_frame = frameFromOri(-32);
+        d_frame = frameFromOri(-64);
     }
 
     Character::Character(int x, int y, int vel, int vx, int vy, std::string name, int orientation):d_box({x,y,0,0}), d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_offset(0.0), d_clip(0)
     {
         d_id++;
-        d_frame = frameFromOri(-32);
+        d_frame = frameFromOri(-64);
     }
 
     Character::~Character(){}
@@ -95,7 +119,7 @@ namespace rpg
 
     void Character::resetAnimation()
     {
-        d_frame = frameFromOri(-32);
+        d_frame = frameFromOri(-64);
         d_clip = 0;
         d_offset = 0.0;
     }
@@ -131,14 +155,14 @@ namespace rpg
         }
         else
         {
-            d_frame = frameFromOri(d_clip % 8 - 32) + d_offset;
+            d_frame = frameFromOri(d_clip % 8 - 64) + d_offset;
             if(d_offset >= 0.4)
             {
                 d_offset = 0.0;
                 d_clip++;
                 if((int)d_frame >= frameFromOri(7))
                 {
-                    d_clip = frameFromOri(-32);
+                    d_clip = frameFromOri(-64);
                 }
             }
         }

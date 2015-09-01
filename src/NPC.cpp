@@ -4,13 +4,8 @@ namespace rpg
 {
     int NPC::d_size_w = 0;
     int NPC::d_size_h = 0;
-    SDL_Rect NPC::d_spriteClips[64];
+    SDL_Rect NPC::d_spriteClips[128];
     Image NPC::d_spriteSheetTexture;
-
-    enum
-    {
-        SOUTH=0, NORTH=2, WEST=4, EAST=6
-    };
 
     NPC::NPC(int x, int y, int vel, int vx, int vy, std::string name, int orientation, SDL_Renderer *renderer):Character(x, y, vel, vx, vy, name, orientation)
     {
@@ -30,10 +25,10 @@ namespace rpg
         else
         {
             d_size_w = (d_spriteSheetTexture.getWidth() / 8);
-            d_size_h = (d_spriteSheetTexture.getHeight() / 8);
+            d_size_h = (d_spriteSheetTexture.getHeight() / 16);
 
             int k = 0;
-            for(int i = 0; i < 8; ++i)
+            for(int i = 0; i < 16; ++i)
             {
                 for(int j = 0; j < 8; ++j)
                 {

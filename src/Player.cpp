@@ -2,8 +2,6 @@
 
 namespace rpg
 {
-    int Player::d_size_w = 0;
-    int Player::d_size_h = 0;
     SDL_Rect Player::d_spriteClips[128];
     Image Player::d_spriteSheetTexture;
 
@@ -24,19 +22,26 @@ namespace rpg
         }
         else
         {
-            d_size_w = (d_spriteSheetTexture.getWidth() / 8);
-            d_size_h = (d_spriteSheetTexture.getHeight() / 16);
+            int frames = 8;
+            int groups_w = 1;
+            int groups_h = 2;
+
+            int size_w = d_spriteSheetTexture.getWidth() / (groups_w * frames);
+            int size_h = (d_spriteSheetTexture.getHeight() - (frames * groups_h - 1)) / (groups_h * frames);
+
+            int offset_h = 0;
 
             int k = 0;
-            for(int i = 0; i < 16; ++i)
+            for(int i = 0; i < groups_h * frames; ++i)
             {
-                for(int j = 0; j < 8; ++j)
+                for(int j = 0; j < groups_w * frames; ++j)
                 {
-                    d_spriteClips[k].x = j * d_size_w;
-                    d_spriteClips[k].y = i * d_size_h;
-                    d_spriteClips[k].w = d_size_w;
-                    d_spriteClips[k++].h = d_size_h;
+                    d_spriteClips[k].x = j * size_w;
+                    d_spriteClips[k].y = i * size_h + offset_h;
+                    d_spriteClips[k].w = size_w;
+                    d_spriteClips[k++].h = size_h;
                 }
+                offset_h++;
             }
         }
         return success;

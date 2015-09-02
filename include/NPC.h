@@ -12,7 +12,6 @@ namespace rpg
             virtual void render(SDL_Renderer *renderer, SDL_Rect &cam);
             virtual ~NPC();
         private:
-            static int d_size_w, d_size_h;
             static SDL_Rect d_spriteClips[128];
             static Image d_spriteSheetTexture;
     };

@@ -11,7 +11,7 @@ namespace rpg
 
     enum
     {
-        FRONT=64, BACK=72, LEFT=80, RIGHT=88, DFRONT=96, DBACK=104, DLEFT=112, DRIGHT=120
+        DFRONT=64, FRONT=72, DLEFT=80, LEFT=88, DBACK=96, BACK=104, DRIGHT=112, RIGHT=120
     };
 
     void Character::oriFromDir()

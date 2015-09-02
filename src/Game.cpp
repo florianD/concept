@@ -5,12 +5,12 @@ namespace rpg
 {
     enum
     {
-        SOUTH=0, NORTH=1, WEST=2, EAST=3
+        SOUTH=0, NORTH=1, WEST=2, EAST=3, DSOUTH=4, DNORTH=5, DWEST=6, DEAST=7
     };
 
     bool compare(const Character *c1, const Character *c2)
     {
-        return c1->getX() < c2->getX();
+        return c1->getY() < c2->getY() || (!(c2->getY() < c1->getY()) && c1->getX() < c2->getX());
     }
 
     Game::Game():d_running(true)
@@ -66,6 +66,7 @@ namespace rpg
             m = new Map(d_renderer);
 
             characters.clear();
+
             Player::loadSpriteSheet(d_renderer);
             NPC::loadSpriteSheet(d_renderer);
 
@@ -75,8 +76,15 @@ namespace rpg
             characters.push_back(new NPC(64, 96, 0, 0, 0, "NPC", NORTH, d_renderer));
             characters.push_back(new NPC(96, 96, 0, 0, 0, "NPC", EAST, d_renderer));
             characters.push_back(new NPC(128, 96, 0, 0, 0, "NPC", WEST, d_renderer));
+            characters.push_back(new NPC(32, 128, 0, 0, 0, "NPC", DSOUTH, d_renderer));
+            characters.push_back(new NPC(64, 128, 0, 0, 0, "NPC", DNORTH, d_renderer));
+            characters.push_back(new NPC(96, 128, 0, 0, 0, "NPC", DEAST, d_renderer));
+            characters.push_back(new NPC(128, 128, 0, 0, 0, "NPC", DWEST, d_renderer));
             characters.push_back(new NPC(32, 32, 2, 2, 0, "NPC", SOUTH, d_renderer));
             characters.push_back(new NPC(config::LEVEL_W / (config::SIDE_X / player->getRect().w) - config::SIDE_X / 2, 64, -2, -2, 0, "NPC", SOUTH, d_renderer));
+
+            std::sort(characters.begin(), characters.end(), compare);
+
             leader = player;
 
             camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
@@ -169,6 +177,7 @@ namespace rpg
         {
             characters[i]->walk();
         }
+        std::sort(characters.begin(), characters.end(), compare);
     }
 
     void Game::start()

@@ -15,7 +15,6 @@ namespace rpg
             virtual void handleEvent(SDL_Event &e);
             virtual ~Player();
         private:
-            static int d_size_w, d_size_h;
             static SDL_Rect d_spriteClips[128];
             static Image d_spriteSheetTexture;
     };

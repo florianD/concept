@@ -16,7 +16,7 @@ namespace rpg
             void rotate(int r);
             std::string getName() const;
             int getOrientation() const;
-            virtual void render(SDL_Renderer *renderer, SDL_Rect &cam) = 0;
+            //virtual void render(SDL_Renderer *renderer, SDL_Rect &cam) = 0;
             virtual void walk();
             virtual void moveTo(int x, int y);
             virtual int getVel() const;
@@ -27,16 +27,18 @@ namespace rpg
             virtual void setVelX(int vel);
             virtual void setVelY(int vel);
             virtual void oriFromDir();
-            virtual double frameFromOri(double offset);
+            virtual double frameFromOri(double offset) = 0;
             virtual SDL_Rect getRect() const;
         protected:
-            virtual void resetAnimation();
+            virtual void resetAnimation() = 0;
             static int d_id;
             SDL_Rect d_box;
             double d_frame, d_offset;
             int d_velX, d_velY, d_vel, d_clip;
             int d_orientation;
             std::string d_name;
+            //enum {SOUTH, NORTH, WEST, EAST, DSOUTH, DNORTH, DWEST, DEAST};
+            enum {DSOUTH, SOUTH, DWEST, WEST, DNORTH, NORTH, DEAST, EAST};
     };
 }
 

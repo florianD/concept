@@ -4,16 +4,6 @@ namespace rpg
 {
     int Character::d_id = 0;
 
-    enum
-    {
-        SOUTH=0, NORTH=1, WEST=2, EAST=3, DSOUTH=4, DNORTH=5, DWEST=6, DEAST=7
-    };
-
-    enum
-    {
-        DFRONT=64, FRONT=72, DLEFT=80, LEFT=88, DBACK=96, BACK=104, DRIGHT=112, RIGHT=120
-    };
-
     void Character::oriFromDir()
     {
         if(d_velX > 0)
@@ -50,39 +40,14 @@ namespace rpg
         }
     }
 
-    double Character::frameFromOri(double offset)
-    {
-        switch(d_orientation)
-        {
-            case EAST:
-                return RIGHT + (int)offset;
-            case WEST:
-                return LEFT + (int)offset;
-            case SOUTH:
-                return FRONT + (int)offset;
-            case NORTH:
-                return BACK + (int)offset;
-            case DEAST:
-                return DRIGHT + (int)offset;
-            case DWEST:
-                return DLEFT + (int)offset;
-            case DSOUTH:
-                return DFRONT + (int)offset;
-            case DNORTH:
-                return DBACK + (int)offset;
-        }
-    }
-
     Character::Character():d_box({0,0,0,0}), d_vel(0), d_velX(0), d_velY(0), d_name(""), d_orientation(SOUTH), d_offset(0.0), d_clip(0)
     {
         d_id++;
-        d_frame = frameFromOri(-64);
     }
 
     Character::Character(int x, int y, int vel, int vx, int vy, std::string name, int orientation):d_box({x,y,0,0}), d_vel(vel), d_velX(vx), d_velY(vy), d_name(name), d_orientation(orientation), d_offset(0.0), d_clip(0)
     {
         d_id++;
-        d_frame = frameFromOri(-64);
     }
 
     Character::~Character(){}
@@ -117,13 +82,6 @@ namespace rpg
         return d_box;
     }
 
-    void Character::resetAnimation()
-    {
-        d_frame = frameFromOri(-64);
-        d_clip = 0;
-        d_offset = 0.0;
-    }
-
     void Character::walk()
     {
         oriFromDir();
@@ -135,10 +93,10 @@ namespace rpg
             {
                 d_offset = 0.0;
                 d_clip++;
-                if((int)d_frame >= frameFromOri(7))
+                /*if((int)d_frame > frameFromOri(8))
                 {
                     d_clip = frameFromOri(0);
-                }
+                }*/
             }
             d_box.x += d_velX;
             d_box.y += d_velY;
@@ -160,10 +118,10 @@ namespace rpg
             {
                 d_offset = 0.0;
                 d_clip++;
-                if((int)d_frame >= frameFromOri(7))
+                /*if((int)d_frame > frameFromOri(8))
                 {
                     d_clip = frameFromOri(-64);
-                }
+                }*/
             }
         }
     }

@@ -3,10 +3,7 @@
 
 namespace rpg
 {
-    enum
-    {
-        SOUTH=0, NORTH=1, WEST=2, EAST=3, DSOUTH=4, DNORTH=5, DWEST=6, DEAST=7
-    };
+    enum {DSOUTH, SOUTH, DWEST, WEST, DNORTH, NORTH, DEAST, EAST};
 
     bool compare(const Character *c1, const Character *c2)
     {
@@ -81,7 +78,9 @@ namespace rpg
             characters.push_back(new NPC(96, 128, 0, 0, 0, "NPC", DEAST, d_renderer));
             characters.push_back(new NPC(128, 128, 0, 0, 0, "NPC", DWEST, d_renderer));
             characters.push_back(new NPC(32, 32, 2, 2, 0, "NPC", SOUTH, d_renderer));
-            characters.push_back(new NPC(config::LEVEL_W / (config::SIDE_X / player->getRect().w) - config::SIDE_X / 2, 64, -2, -2, 0, "NPC", SOUTH, d_renderer));
+            characters.push_back(new NPC(config::LEVEL_W / (config::SIDE_X / player->getRect().w) - config::SIDE_X / 8, 64, -2, -2, 0, "NPC", SOUTH, d_renderer));
+            characters.push_back(new NPC(160, 0, 2, 0, 2, "NPC", SOUTH, d_renderer));
+            characters.push_back(new NPC(192, config::LEVEL_H / (config::SIDE_Y / player->getRect().h) - config::SIDE_Y / 4, 2, 0, -2, "NPC", NORTH, d_renderer));
 
             std::sort(characters.begin(), characters.end(), compare);
 

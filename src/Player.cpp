@@ -5,10 +5,46 @@ namespace rpg
     SDL_Rect Player::d_spriteClips[128];
     Image Player::d_spriteSheetTexture;
 
+    enum
+    {
+        DFRONT=64, FRONT=72, DLEFT=80, LEFT=88, DBACK=96, BACK=104, DRIGHT=112, RIGHT=120
+    };
+
     Player::Player(int x, int y, int vel, int vx, int vy, std::string name, int orientation, SDL_Renderer *renderer):Character(x, y, vel, vx, vy, name, orientation)
     {
         d_box.w = 32;
         d_box.h = 32;
+        d_frame = frameFromOri(-64);
+    }
+
+    double Player::frameFromOri(double offset)
+    {
+        switch(d_orientation)
+        {
+            case EAST:
+                return RIGHT + (int)offset;
+            case WEST:
+                return LEFT + (int)offset;
+            case SOUTH:
+                return FRONT + (int)offset;
+            case NORTH:
+                return BACK + (int)offset;
+            case DEAST:
+                return DRIGHT + (int)offset;
+            case DWEST:
+                return DLEFT + (int)offset;
+            case DSOUTH:
+                return DFRONT + (int)offset;
+            case DNORTH:
+                return DBACK + (int)offset;
+        }
+    }
+
+    void Player::resetAnimation()
+    {
+        d_frame = frameFromOri(-64);
+        d_clip = 0;
+        d_offset = 0.0;
     }
 
     bool Player::loadSpriteSheet(SDL_Renderer *renderer)
@@ -22,19 +58,20 @@ namespace rpg
         }
         else
         {
-            int frames = 8;
+            int frames_w = 8;
+            int frames_h = 8;
             int groups_w = 1;
             int groups_h = 2;
 
-            int size_w = d_spriteSheetTexture.getWidth() / (groups_w * frames);
-            int size_h = (d_spriteSheetTexture.getHeight() - (frames * groups_h - 1)) / (groups_h * frames);
+            int size_w = d_spriteSheetTexture.getWidth() / (groups_w * frames_w);
+            int size_h = (d_spriteSheetTexture.getHeight() - (frames_h * groups_h - 1)) / (groups_h * frames_h);
 
             int offset_h = 0;
 
             int k = 0;
-            for(int i = 0; i < groups_h * frames; ++i)
+            for(int i = 0; i < groups_h * frames_h; ++i)
             {
-                for(int j = 0; j < groups_w * frames; ++j)
+                for(int j = 0; j < groups_w * frames_w; ++j)
                 {
                     d_spriteClips[k].x = j * size_w;
                     d_spriteClips[k].y = i * size_h + offset_h;

@@ -93,10 +93,6 @@ namespace rpg
             {
                 d_offset = 0.0;
                 d_clip++;
-                /*if((int)d_frame > frameFromOri(8))
-                {
-                    d_clip = frameFromOri(0);
-                }*/
             }
             d_box.x += d_velX;
             d_box.y += d_velY;
@@ -118,10 +114,6 @@ namespace rpg
             {
                 d_offset = 0.0;
                 d_clip++;
-                /*if((int)d_frame > frameFromOri(8))
-                {
-                    d_clip = frameFromOri(-64);
-                }*/
             }
         }
     }

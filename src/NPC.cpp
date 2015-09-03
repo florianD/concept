@@ -14,7 +14,7 @@ namespace rpg
     {
         d_box.w = 32;
         d_box.h = 32;
-        d_frame = frameFromOri(-64);
+        d_frame = frameFromOri((d_orientation * 2) - 80);
     }
 
     double NPC::frameFromOri(double offset)
@@ -108,8 +108,7 @@ namespace rpg
 
     void NPC::resetAnimation()
     {
-        int offset = d_orientation * 2;
-        d_frame = frameFromOri(-80 + offset);
+        d_frame = frameFromOri((d_orientation * 2) - 80);
         d_clip = 0;
         d_offset = 0.0;
     }
@@ -125,10 +124,6 @@ namespace rpg
             {
                 d_offset = 0.0;
                 d_clip++;
-                /*if((int)d_frame > frameFromOri(8))
-                {
-                    d_clip = frameFromOri(0);
-                }*/
             }
             d_box.x += d_velX;
             d_box.y += d_velY;
@@ -145,16 +140,11 @@ namespace rpg
         }
         else
         {
-            int offset = d_orientation * 2;
-            d_frame = frameFromOri(d_clip % 10 - 80 + offset) + d_offset;
+            d_frame = frameFromOri(d_clip % 10 - 80 + d_orientation * 2) + d_offset;
             if(d_offset >= 0.4)
             {
                 d_offset = 0.0;
                 d_clip++;
-                /*if((int)d_frame > frameFromOri(10))
-                {
-                    d_clip = frameFromOri(-80 + offset);
-                }*/
             }
         }
     }

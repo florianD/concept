@@ -19,7 +19,7 @@ namespace rpg
             static const int TILE_SIDE_Y = config::SIDE_Y;
             static const int LEVEL_WIDTH = config::LEVEL_W;
             static const int LEVEL_HEIGHT = config::LEVEL_H;
-            static const int WILD_TILE_SPRITES = 12;
+            static const int WILD_TILE_SPRITES = 207;
             Image d_tileWild;
             std::vector<SDL_Rect> d_tileClips;
             std::vector<std::vector<Tile*> > d_tileSet;

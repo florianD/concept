@@ -16,7 +16,6 @@ namespace rpg
             void rotate(int r);
             std::string getName() const;
             int getOrientation() const;
-            //virtual void render(SDL_Renderer *renderer, SDL_Rect &cam) = 0;
             virtual void walk();
             virtual void moveTo(int x, int y);
             virtual int getVel() const;

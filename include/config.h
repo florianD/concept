@@ -10,6 +10,9 @@ namespace rpg
             static const int SIDE_X = 128; // MAP CLIP SIZE X
             static const int SIDE_Y = 64; // MAP CLIP SIZE Y
 
+            static const int OFFSET_X = 24;
+            static const int OFFSET_Y = 72;
+
             static const int MAP_WIDTH = 50; //  \ MUST MATCH FILE
             static const int MAP_HEIGHT = 50; //  /
 

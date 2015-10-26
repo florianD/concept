@@ -121,7 +121,7 @@ namespace rpg
         }
         if(config::LEVEL_H >= config::WINDOW_H)
         {
-            camera.y = ((box.x + box.y) * (config::SIDE_Y / 2) / box.h + config::SIDE_Y / 2) - config::WINDOW_H / 2;
+            camera.y = ((box.x + box.y) * (config::SIDE_Y / 2) / box.h + config::SIDE_Y / 2) - config::WINDOW_H / 2 + 128; // +0
         }
     }
 
@@ -157,7 +157,7 @@ namespace rpg
         // render ground (isometric view)
         for(int i = startY; i <= endY; ++i)
         {
-            for(int j = endX; j >= startX; --j)
+            for(int j = startX; j <= endX; ++j)
             {
                 m->d_tileSet[i][j]->render(m->d_tileWild, d_renderer, camera, m->d_tileClips);
             }

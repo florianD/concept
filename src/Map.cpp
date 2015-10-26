@@ -96,7 +96,7 @@ namespace rpg
     {
         bool success = true;
 
-        if(!d_tileWild.load("img/map/wild.png", renderer))
+        if(!d_tileWild.load("img/map/cathedral.png", renderer))
         {
             printf("Failed to load wild texture\n");
             success = false;
@@ -106,14 +106,42 @@ namespace rpg
             d_tileClips.resize(WILD_TILE_SPRITES);
 
             int k = 0;
-            for(int i = 0; i < 3; ++i)
+            /*for(int i = 0; i < 1; ++i)
             {
-                for(int j = 0; j < 4; ++j)
+                for(int j = 0; j < 6; ++j)
                 {
                     d_tileClips[k].x = j * TILE_SIDE_X;
-                    d_tileClips[k].y = i * TILE_SIDE_Y;
+                    d_tileClips[k].y = i * TILE_SIDE_Y*3;
                     d_tileClips[k].w = TILE_SIDE_X;
-                    d_tileClips[k++].h = TILE_SIDE_Y;
+                    d_tileClips[k++].h = TILE_SIDE_Y*3;
+                }
+            }*/
+
+            int offset_h = 0;
+            int offset_w = 0;
+
+            for(int i = 0; i < 10; ++i)
+            {
+                for(int j = 0; j < 20; ++j)
+                {
+                    d_tileClips[k].x = j * TILE_SIDE_X + offset_w;
+                    d_tileClips[k].y = i * TILE_SIDE_Y*3 + offset_h;
+                    d_tileClips[k].w = TILE_SIDE_X;
+                    d_tileClips[k++].h = TILE_SIDE_Y*3;
+                    offset_w++;
+                }
+                offset_w = 0;
+                offset_h++;
+            }
+            for(int i = 10; i < 11; ++i)
+            {
+                for(int j = 0; j < 7; ++j)
+                {
+                    d_tileClips[k].x = j * TILE_SIDE_X + offset_w;
+                    d_tileClips[k].y = i * TILE_SIDE_Y*3 + offset_h;
+                    d_tileClips[k].w = TILE_SIDE_X;
+                    d_tileClips[k++].h = TILE_SIDE_Y*3;
+                    offset_w++;
                 }
             }
         }

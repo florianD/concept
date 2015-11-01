@@ -3,6 +3,8 @@
 
 namespace rpg
 {
+    int Game::nextLeader = 0;
+
     enum {DSOUTH, SOUTH, DWEST, WEST, DNORTH, NORTH, DEAST, EAST};
 
     bool compare(const Character *c1, const Character *c2)
@@ -69,14 +71,14 @@ namespace rpg
 
             player = new Player(0, 0, 2, 0, 0, "Player", SOUTH, d_renderer);
             characters.push_back(player);
-            characters.push_back(new NPC(32, 96, 0, 0, 0, "NPC", SOUTH, d_renderer));
+            /*characters.push_back(new NPC(32, 96, 0, 0, 0, "NPC", SOUTH, d_renderer));
             characters.push_back(new NPC(64, 96, 0, 0, 0, "NPC", NORTH, d_renderer));
             characters.push_back(new NPC(96, 96, 0, 0, 0, "NPC", EAST, d_renderer));
             characters.push_back(new NPC(128, 96, 0, 0, 0, "NPC", WEST, d_renderer));
             characters.push_back(new NPC(32, 128, 0, 0, 0, "NPC", DSOUTH, d_renderer));
             characters.push_back(new NPC(64, 128, 0, 0, 0, "NPC", DNORTH, d_renderer));
             characters.push_back(new NPC(96, 128, 0, 0, 0, "NPC", DEAST, d_renderer));
-            characters.push_back(new NPC(128, 128, 0, 0, 0, "NPC", DWEST, d_renderer));
+            characters.push_back(new NPC(128, 128, 0, 0, 0, "NPC", DWEST, d_renderer));*/
             characters.push_back(new NPC(32, 32, 2, 2, 0, "NPC", SOUTH, d_renderer));
             characters.push_back(new NPC(config::LEVEL_W / (config::SIDE_X / player->getRect().w) - config::SIDE_X / 8, 64, -2, -2, 0, "NPC", SOUTH, d_renderer));
             characters.push_back(new NPC(160, 0, 2, 0, 2, "NPC", SOUTH, d_renderer));
@@ -111,6 +113,17 @@ namespace rpg
 
         IMG_Quit();
         SDL_Quit();
+    }
+
+    Character *Game::getId(int id) const
+    {
+        for(unsigned int i = 0; i < characters.size(); ++i)
+        {
+            if(characters[i]->getId() == id)
+            {
+                return characters[i];
+            }
+        }
     }
 
     void Game::setCamera(SDL_Rect box)
@@ -213,6 +226,22 @@ namespace rpg
                 case SDL_QUIT:
                     d_running = false;
                     return;
+                case SDL_KEYUP:
+                    switch(e.key.keysym.sym)
+                    {
+                        case SDLK_PAGEUP:
+                            nextLeader = (nextLeader + 1) % characters.size();
+                            leader = getId(nextLeader);
+                            return;
+                        case SDLK_PAGEDOWN:
+                            nextLeader = (nextLeader == 0) ? characters.size()-1 : (nextLeader - 1) % characters.size();
+                            leader = getId(nextLeader);
+                            return;
+                        case SDLK_RETURN:
+                            nextLeader = player->getId();
+                            leader = getId(nextLeader);
+                            return;
+                    }
             }
             player->handleEvent(e);
         }

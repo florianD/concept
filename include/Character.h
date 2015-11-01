@@ -18,6 +18,7 @@ namespace rpg
             int getOrientation() const;
             virtual void walk();
             virtual void moveTo(int x, int y);
+            virtual int getId() const;
             virtual int getVel() const;
             virtual int getVelX() const;
             virtual int getVelY() const;
@@ -30,7 +31,8 @@ namespace rpg
             virtual SDL_Rect getRect() const;
         protected:
             virtual void resetAnimation() = 0;
-            static int d_id;
+            static int d_num;
+            int d_id;
             SDL_Rect d_box;
             double d_frame, d_offset;
             int d_velX, d_velY, d_vel, d_clip;

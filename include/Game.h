@@ -16,6 +16,7 @@
 #include "Character.h"
 #include "Player.h"
 #include "NPC.h"
+#include "Timer.h"
 
 namespace rpg
 {

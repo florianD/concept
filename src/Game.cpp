@@ -72,7 +72,7 @@ namespace rpg
             d_font = TTF_OpenFont("Tahoma.ttf", 12);
             if(d_font == NULL)
             {
-                printf( "Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError() );
+                printf( "Failed to load Tahoma font! SDL_ttf Error: %s\n", TTF_GetError() );
                 exit(-1);
             }
 
@@ -225,6 +225,12 @@ namespace rpg
     {
         std::stringstream fpsText;
         Uint32 start;
+
+        Timer update;
+        update.start();
+        Timer fps;
+        fps.start();
+
         int frames = 0;
         float avgFps = 0;
         while(d_running)
@@ -243,18 +249,23 @@ namespace rpg
                 SDL_Delay(1000 / 30 - (SDL_GetTicks() - start));
             }
 
-            avgFps = frames / (start / 1000.f); // max : ~800 fps
-
-            fpsText.str("");
-            fpsText << "FPS : " << avgFps;
-
-            if(!d_textureFPS.loadFont(fpsText.str().c_str(), {255, 255, 255, 255}, d_renderer, d_font))
-            {
-                printf( "Unable to render FPS texture\n" );
-            }
             d_textureFPS.render(d_renderer, SCREEN_WIDTH - 90, 10);
+            if(update.getTicks() > 1000)
+            {
+                //avgFps = frames / (fps.getTicks() / 1000.f); // average
+                avgFps = 1000 / (SDL_GetTicks() - start); // real time
 
-            //std::cout << "FPS : " << avgFps << std::endl;
+                fpsText.str("");
+                fpsText << "FPS : " << avgFps;
+
+                d_textureFPS.free();
+                if(!d_textureFPS.loadFont(fpsText.str().c_str(), {255, 255, 255, 255}, d_renderer, d_font))
+                {
+                    printf( "Unable to render FPS texture\n" );
+                }
+
+                update.start();
+            }
             SDL_RenderPresent(d_renderer);
             frames++;
         }

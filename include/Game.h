@@ -1,8 +1,10 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <sstream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <string>
 #include <vector>
@@ -25,6 +27,8 @@ namespace rpg
             void start();
         private:
             static int nextLeader;
+            void clearChars();
+            void initChars();
             void setCamera(SDL_Rect box);
             bool collision(SDL_Rect &r1, SDL_Rect &r2) const;
             Character *getId(int id) const;
@@ -37,12 +41,14 @@ namespace rpg
             Image d_background;
             SDL_Window *d_window;
             SDL_Renderer *d_renderer;
+            TTF_Font *d_font;
             bool d_running;
             Map *m;
             Player *player;
             Character *leader;
             SDL_Rect camera;
             std::vector<Character*> characters;
+            static Image d_textureFPS;
     };
 }
 

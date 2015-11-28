@@ -24,7 +24,7 @@ namespace rpg
             newTexture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
             if(newTexture == NULL)
             {
-                printf( "Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
+                printf( "Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
             }
             else
             {
@@ -33,8 +33,33 @@ namespace rpg
             }
             SDL_FreeSurface(loadedSurface);
         }
-
         d_texture = newTexture;
+        return d_texture != NULL;
+    }
+
+    bool Image::loadFont(std::string font, SDL_Color color, SDL_Renderer *gRenderer, TTF_Font *gFont)
+    {
+        free();
+
+        SDL_Surface* textSurface = TTF_RenderText_Solid(gFont, font.c_str(), color);
+        if(textSurface != NULL)
+        {
+            d_texture = SDL_CreateTextureFromSurface(gRenderer, textSurface);
+            if(d_texture == NULL)
+            {
+                printf("Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError());
+            }
+            else
+            {
+                d_width = textSurface->w;
+                d_height = textSurface->h;
+            }
+            SDL_FreeSurface(textSurface);
+        }
+        else
+        {
+            printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
+        }
         return d_texture != NULL;
     }
 

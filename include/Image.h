@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <string>
 #include <iostream>
@@ -15,6 +16,7 @@ namespace rpg
             Image();
             ~Image();
             bool load(std::string path, SDL_Renderer *gRenderer);
+            bool loadFont(std::string font, SDL_Color color, SDL_Renderer *gRenderer, TTF_Font *gFont);
             void free();
             void render(SDL_Renderer *gRenderer, int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
             int getWidth() const;

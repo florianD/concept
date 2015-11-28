@@ -16,6 +16,9 @@
 					<Add option="-g" />
 					<Add directory="include" />
 				</Compiler>
+				<Linker>
+					<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf -lSDL2_image" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/concept" prefix_auto="1" extension_auto="1" />

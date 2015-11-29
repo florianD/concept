@@ -50,6 +50,7 @@ namespace rpg
             SDL_Rect camera;
             std::vector<Character*> characters;
             static Image d_textureFPS;
+            bool d_fullscreen;
     };
 }
 

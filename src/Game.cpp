@@ -13,7 +13,7 @@ namespace rpg
         return c1->getY() < c2->getY() || (!(c2->getY() < c1->getY()) && c1->getX() < c2->getX());
     }
 
-    Game::Game():d_running(true)
+    Game::Game():d_running(true), d_fullscreen(false)
     {
         bool success = true;
         if(SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -68,6 +68,7 @@ namespace rpg
         else
         {
             //loadBackgroundImage();
+            SDL_SetWindowFullscreen(d_window, d_fullscreen ? SDL_WINDOW_FULLSCREEN : 0);
 
             d_font = TTF_OpenFont("Tahoma.ttf", 12);
             if(d_font == NULL)
@@ -309,7 +310,11 @@ namespace rpg
                             }
                             return;
                         case SDLK_KP_1:
-                            std::cout << "test" << " ";
+                            /*SDL_DisplayMode target;
+                            target = {1600, 900, 0, 0, 0};
+                            SDL_SetWindowDisplayMode(d_window, &target);*/
+                            d_fullscreen = !d_fullscreen;
+                            SDL_SetWindowFullscreen(d_window, d_fullscreen ? SDL_WINDOW_FULLSCREEN : 0);
                             return;
                     }
             }

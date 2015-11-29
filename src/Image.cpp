@@ -37,11 +37,11 @@ namespace rpg
         return d_texture != NULL;
     }
 
-    bool Image::loadFont(std::string font, SDL_Color color, SDL_Renderer *gRenderer, TTF_Font *gFont)
+    bool Image::loadText(std::string text, SDL_Color color, SDL_Renderer *gRenderer, TTF_Font *gFont)
     {
         free();
 
-        SDL_Surface* textSurface = TTF_RenderText_Solid(gFont, font.c_str(), color);
+        SDL_Surface* textSurface = TTF_RenderText_Solid(gFont, text.c_str(), color);
         if(textSurface != NULL)
         {
             d_texture = SDL_CreateTextureFromSurface(gRenderer, textSurface);

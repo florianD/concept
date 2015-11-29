@@ -232,6 +232,7 @@ namespace rpg
         fps.start();
 
         int frames = 0;
+        int curFps = 0;
         float avgFps = 0;
         while(d_running)
         {
@@ -249,17 +250,17 @@ namespace rpg
                 SDL_Delay(1000 / 30 - (SDL_GetTicks() - start));
             }
 
-            d_textureFPS.render(d_renderer, SCREEN_WIDTH - 90, 10);
+            d_textureFPS.render(d_renderer, SCREEN_WIDTH - 110, 2);
             if(update.getTicks() > 1000)
             {
-                //avgFps = frames / (fps.getTicks() / 1000.f); // average
-                avgFps = 1000 / (SDL_GetTicks() - start); // real time
+                //std::cout << "SDL_GetTicks() : " << SDL_GetTicks() << " - start : " << start << std::endl << " = " << SDL_GetTicks()-start << std::endl;
+                curFps = 1000 / (SDL_GetTicks() - start); // real time
+                avgFps = frames / (fps.getTicks() / 1000.f); // average
 
                 fpsText.str("");
-                fpsText << "FPS : " << avgFps;
+                fpsText << "FPS : " << curFps << " (" << avgFps << ")";
 
-                d_textureFPS.free();
-                if(!d_textureFPS.loadFont(fpsText.str().c_str(), {255, 255, 255, 255}, d_renderer, d_font))
+                if(!d_textureFPS.loadText(fpsText.str().c_str(), {255, 255, 255, 255}, d_renderer, d_font))
                 {
                     printf( "Unable to render FPS texture\n" );
                 }

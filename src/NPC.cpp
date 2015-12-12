@@ -130,12 +130,14 @@ namespace rpg
             if((d_box.x < 0) || (d_box.x + d_box.w > (config::LEVEL_W / (config::SIDE_X / d_box.w) + (config::SIDE_Y - d_box.w) / 2)))
             {
                 d_box.x -= d_velX;
-                resetAnimation();
+                //resetAnimation();
+                d_velX = 0;
             }
             if((d_box.y < 0) || (d_box.y + d_box.h > (config::LEVEL_H / (config::SIDE_Y / d_box.h) + (config::SIDE_Y - d_box.w) / 2)))
             {
                 d_box.y -= d_velY;
-                resetAnimation();
+                //resetAnimation();
+                d_velY = 0;
             }
         }
         else

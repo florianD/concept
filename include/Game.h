@@ -11,6 +11,7 @@
 #include <fstream>
 #include "Image.h"
 #include "Tile.h"
+#include "Menu.h"
 #include "Map.h"
 #include "Object.h"
 #include "Character.h"
@@ -45,6 +46,7 @@ namespace rpg
             TTF_Font *d_font;
             bool d_running;
             Map *m;
+            Menu *menu;
             Player *player;
             Character *leader;
             SDL_Rect camera;

@@ -50,6 +50,7 @@
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/Image.h" />
 		<Unit filename="include/Map.h" />
+		<Unit filename="include/Menu.h" />
 		<Unit filename="include/NPC.h" />
 		<Unit filename="include/Object.h" />
 		<Unit filename="include/Player.h" />
@@ -62,6 +63,7 @@
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/Image.cpp" />
 		<Unit filename="src/Map.cpp" />
+		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/NPC.cpp" />
 		<Unit filename="src/Object.cpp" />
 		<Unit filename="src/Player.cpp" />

@@ -80,8 +80,11 @@ namespace rpg
             m = new Map(d_renderer);
             camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
 
-            Menu::loadSpriteSheet(d_renderer);
-            menu = new Menu(d_renderer);
+            Logo::loadSpriteSheet(d_renderer);
+            //logo = new Logo();
+
+            titlescreen = new Titlescreen(d_renderer);
+
             initChars();
         }
     }
@@ -109,7 +112,8 @@ namespace rpg
         clearChars();
 
         delete m;
-        delete menu;
+        delete logo;
+        delete titlescreen;
         SDL_DestroyRenderer(d_renderer);
         SDL_DestroyWindow(d_window);
         d_window = NULL;
@@ -247,11 +251,18 @@ namespace rpg
             SDL_SetRenderDrawColor(d_renderer, 0x00, 0x00, 0x00, 0x00);
             SDL_RenderClear(d_renderer);
 
-            menu->animate();
+            //logo->animate();
 
-            actions();
-            renderAll();
-            menu->render(d_renderer);
+            if(titlescreen->getActive())
+            {
+                titlescreen->render(d_renderer, d_font);
+            }
+            else
+            {
+                actions();
+                renderAll();
+            }
+            //logo->render(d_renderer);
 
             if(1000 / 30 > (SDL_GetTicks() - start))
             {
@@ -286,6 +297,7 @@ namespace rpg
         // handle events on queue
         while(SDL_PollEvent(&e) != 0)
         {
+            titlescreen->handleEvent(e);
             switch(e.type)
             {
                 case SDL_QUIT:

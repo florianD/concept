@@ -2,7 +2,7 @@
 1438715835 source:c:\users\florian\documents\prog\concept\main.cpp
 	"include/Game.h"
 
-1449945324 c:\users\florian\documents\prog\concept\include\game.h
+1450027593 c:\users\florian\documents\prog\concept\include\game.h
 	<sstream>
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
@@ -13,7 +13,8 @@
 	<fstream>
 	"Image.h"
 	"Tile.h"
-	"Menu.h"
+	"Logo.h"
+	"Titlescreen.h"
 	"Map.h"
 	"Object.h"
 	"Character.h"
@@ -36,7 +37,7 @@
 	"config.h"
 	"Image.h"
 
-1448809499 c:\users\florian\documents\prog\concept\include\config.h
+1450029113 c:\users\florian\documents\prog\concept\include\config.h
 	<string>
 
 1442074427 c:\users\florian\documents\prog\concept\include\map.h
@@ -64,7 +65,7 @@
 1448994867 source:c:\users\florian\documents\prog\concept\src\character.cpp
 	"../include/Character.h"
 
-1449945458 source:c:\users\florian\documents\prog\concept\src\game.cpp
+1450030544 source:c:\users\florian\documents\prog\concept\src\game.cpp
 	<algorithm>
 	"Game.h"
 
@@ -418,10 +419,26 @@
 1448736356 c:\users\florian\documents\prog\concept\include\timer.h
 	<SDL2/SDL.h>
 
-1449958252 source:c:\users\florian\documents\prog\concept\src\menu.cpp
+1450010728 source:c:\users\florian\documents\prog\concept\src\menu.cpp
 	"../include/Menu.h"
 
-1449950684 c:\users\florian\documents\prog\concept\include\menu.h
+1450025996 c:\users\florian\documents\prog\concept\include\menu.h
 	<SDL2/SDL.h>
 	"Image.h"
+
+1450028355 c:\users\florian\documents\prog\concept\include\logo.h
+	<SDL2/SDL.h>
+	"Image.h"
+
+1450028367 source:c:\users\florian\documents\prog\concept\src\logo.cpp
+	"../include/Logo.h"
+
+1450031487 source:c:\users\florian\documents\prog\concept\src\titlescreen.cpp
+	"../include/Titlescreen.h"
+
+1450030492 c:\users\florian\documents\prog\concept\include\titlescreen.h
+	<sstream>
+	<SDL2/SDL_ttf.h>
+	"config.h"
+	"Logo.h"
 

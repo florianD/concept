@@ -1,13 +1,13 @@
-#include "../include/Menu.h"
+#include "../include/Logo.h"
 
 namespace rpg
 {
-    SDL_Rect Menu::d_spriteClips[15];
-    Image Menu::d_spriteSheetTexture;
+    SDL_Rect Logo::d_spriteClips[15];
+    Image Logo::d_spriteSheetTexture;
 
-    Menu::Menu(SDL_Renderer *renderer):d_frame(0), d_offset(0), d_clip(0){}
+    Logo::Logo():d_frame(0), d_offset(0), d_clip(0){}
 
-    bool Menu::loadSpriteSheet(SDL_Renderer *renderer)
+    bool Logo::loadSpriteSheet(SDL_Renderer *renderer)
     {
         bool success = true;
 
@@ -41,7 +41,7 @@ namespace rpg
         return success;
     }
 
-    void Menu::animate()
+    void Logo::animate()
     {
         d_offset += 0.1;
         d_frame = d_clip % 15 + d_offset;
@@ -52,16 +52,16 @@ namespace rpg
         }
     }
 
-    void Menu::render(SDL_Renderer *renderer)
+    void Logo::render(SDL_Renderer *renderer, int x, int y)
     {
         SDL_Rect *currentClip = &d_spriteClips[(int)d_frame];
         d_spriteSheetTexture.render(renderer,
-        80,
-        0,
+        x,
+        y,
         currentClip);
     }
 
-    Menu::~Menu()
+    Logo::~Logo()
     {
         d_spriteSheetTexture.free();
     }

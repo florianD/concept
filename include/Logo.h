@@ -1,18 +1,18 @@
-#ifndef MENU_H
-#define MENU_H
+#ifndef Logo_H
+#define Logo_H
 #include <SDL2/SDL.h>
 #include "Image.h"
 
 namespace rpg
 {
-    class Menu
+    class Logo
     {
         public:
-            Menu(SDL_Renderer *renderer);
+            Logo();
             static bool loadSpriteSheet(SDL_Renderer *renderer);
             void animate();
-            void render(SDL_Renderer *renderer);
-            ~Menu();
+            void render(SDL_Renderer *renderer, int x, int y);
+            ~Logo();
         private:
             static SDL_Rect d_spriteClips[15];
             static Image d_spriteSheetTexture;
@@ -22,3 +22,4 @@ namespace rpg
 }
 
 #endif // MENU_H
+

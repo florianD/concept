@@ -11,15 +11,15 @@ namespace rpg
     {
         bool success = true;
 
-        if(!d_spriteSheetTexture.load("img/menu/menu.png", renderer))
+        if(!d_spriteSheetTexture.load("img/menu/logo.png", renderer))
         {
             printf("Failed to load menu texture\n");
             success = false;
         }
         else
         {
-            int frames_w = 5;
-            int frames_h = 3;
+            int frames_w = 1;
+            int frames_h = 15;
             int groups_w = 1;
             int groups_h = 1;
 
@@ -50,6 +50,16 @@ namespace rpg
             d_offset = 0.0;
             d_clip++;
         }
+    }
+
+    int Logo::getHeight() const
+    {
+        return d_spriteSheetTexture.getHeight();
+    }
+
+    int Logo::getWidth() const
+    {
+        return d_spriteSheetTexture.getWidth();
     }
 
     void Logo::render(SDL_Renderer *renderer, int x, int y)

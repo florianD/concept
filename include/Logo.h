@@ -12,6 +12,8 @@ namespace rpg
             static bool loadSpriteSheet(SDL_Renderer *renderer);
             void animate();
             void render(SDL_Renderer *renderer, int x, int y);
+            int getHeight() const;
+            int getWidth() const;
             ~Logo();
         private:
             static SDL_Rect d_spriteClips[15];

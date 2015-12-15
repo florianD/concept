@@ -30,9 +30,9 @@ namespace rpg
     {
         d_image.render(renderer, (config::WINDOW_W - d_image.getWidth()) / 2, (config::WINDOW_H - d_image.getHeight()) / 3);
         d_logo.animate();
-        d_logo.render(renderer, (config::WINDOW_W - d_image.getWidth()) / 2, (config::WINDOW_H - d_image.getHeight()) / 3 + 180);
+        d_logo.render(renderer, (config::WINDOW_W - d_logo.getWidth()) / 2, (config::WINDOW_H - d_logo.getHeight() / 10));
         std::stringstream text;
-        d_textureText.render(renderer, (config::WINDOW_W - d_textureText.getWidth()) / 2, (config::WINDOW_H - d_textureText.getHeight()) / 6);
+        d_textureText.render(renderer, (config::WINDOW_W - d_textureText.getWidth()) / 2, (config::WINDOW_H - d_textureText.getHeight())-50);
         text.str("");
         text << "Press Enter to Continue ...";
         if(!d_textureText.loadText(text.str().c_str(), {255, 255, 255, 255}, renderer, font))

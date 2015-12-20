@@ -44,7 +44,7 @@ namespace rpg
     void Logo::animate()
     {
         d_offset += 0.1;
-        d_frame = d_clip % 15 + d_offset;
+        d_frame = (d_clip % 15) + d_offset;
         if(d_offset >= 0.2)
         {
             d_offset = 0.0;

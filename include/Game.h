@@ -17,6 +17,8 @@
 #include "Object.h"
 #include "Character.h"
 #include "Player.h"
+#include "Sorcerer.h"
+#include "Warrior.h"
 #include "NPC.h"
 #include "Timer.h"
 

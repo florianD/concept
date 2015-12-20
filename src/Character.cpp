@@ -83,42 +83,6 @@ namespace rpg
         return d_box;
     }
 
-    void Character::walk()
-    {
-        oriFromDir();
-        d_offset += 0.1;
-        if(!isMotionless())
-        {
-            d_frame = frameFromOri(d_clip % 8) + d_offset;
-            if(d_offset >= 0.2)
-            {
-                d_offset = 0.0;
-                d_clip++;
-            }
-            d_box.x += d_velX;
-            d_box.y += d_velY;
-            if((d_box.x < 0) || (d_box.x + d_box.w > (config::LEVEL_W / (config::SIDE_X / d_box.w) + (config::SIDE_Y - d_box.w) / 2)))
-            {
-                d_box.x -= d_velX;
-                //resetAnimation();
-            }
-            if((d_box.y < 0) || (d_box.y + d_box.h > (config::LEVEL_H / (config::SIDE_Y / d_box.h) + (config::SIDE_Y - d_box.w) / 2)))
-            {
-                d_box.y -= d_velY;
-                //resetAnimation();
-            }
-        }
-        else
-        {
-            d_frame = frameFromOri(d_clip % 8 - 64) + d_offset;
-            if(d_offset >= 0.4)
-            {
-                d_offset = 0.0;
-                d_clip++;
-            }
-        }
-    }
-
     void Character::moveTo(int x, int y)
     {
         d_box.x = x;

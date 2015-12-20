@@ -16,7 +16,7 @@ namespace rpg
             void rotate(int r);
             std::string getName() const;
             int getOrientation() const;
-            virtual void walk();
+            virtual void walk() = 0;
             virtual void moveTo(int x, int y);
             virtual int getId() const;
             virtual int getVel() const;

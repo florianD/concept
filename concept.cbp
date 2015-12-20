@@ -54,9 +54,11 @@
 		<Unit filename="include/NPC.h" />
 		<Unit filename="include/Object.h" />
 		<Unit filename="include/Player.h" />
+		<Unit filename="include/Sorcerer.h" />
 		<Unit filename="include/Tile.h" />
 		<Unit filename="include/Timer.h" />
 		<Unit filename="include/Titlescreen.h" />
+		<Unit filename="include/Warrior.h" />
 		<Unit filename="include/config.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Building.cpp" />
@@ -68,9 +70,11 @@
 		<Unit filename="src/NPC.cpp" />
 		<Unit filename="src/Object.cpp" />
 		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/Sorcerer.cpp" />
 		<Unit filename="src/Tile.cpp" />
 		<Unit filename="src/Timer.cpp" />
 		<Unit filename="src/Titlescreen.cpp" />
+		<Unit filename="src/Warrior.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

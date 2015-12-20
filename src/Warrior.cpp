@@ -1,23 +1,27 @@
-#include "../include/NPC.h"
+#include "../include/Warrior.h"
 
 namespace rpg
 {
-    SDL_Rect NPC::d_spriteClips[144];
-    Image NPC::d_spriteSheetTexture;
+    SDL_Rect Warrior::d_spriteClips[144];
+    Image Warrior::d_spriteSheetTexture;
 
     enum
     {
         DFRONT=80, FRONT=88, DLEFT=96, LEFT=104, DBACK=112, BACK=120, DRIGHT=128, RIGHT=136
     };
 
-    NPC::NPC(int x, int y, int vel, int vx, int vy, std::string name, int orientation, SDL_Renderer *renderer):Character(x, y, vel, vx, vy, name, orientation)
+    Warrior::Warrior(int x, int y, int vel, int vx, int vy, std::string name, int orientation)
+    :Player(x, y, vel, vx, vy, name, orientation)
     {
-        d_box.w = 32;
-        d_box.h = 32;
         d_frame = frameFromOri((d_orientation * 2) - 80);
     }
 
-    double NPC::frameFromOri(double offset)
+    Warrior::~Warrior()
+    {
+        d_spriteSheetTexture.free();
+    }
+
+    double Warrior::frameFromOri(double offset)
     {
         switch(d_orientation)
         {
@@ -40,7 +44,7 @@ namespace rpg
         }
     }
 
-    bool NPC::loadSpriteSheet(SDL_Renderer *renderer)
+    bool Warrior::loadSpriteSheet(SDL_Renderer *renderer)
     {
         bool success = true;
 
@@ -89,31 +93,14 @@ namespace rpg
         return success;
     }
 
-    void NPC::render(SDL_Renderer *renderer, SDL_Rect &cam)
-    {
-        /*SDL_Rect r;
-        r.x = (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x + config::OFFSET_X * 2;
-        r.y = (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y + config::OFFSET_Y + config::SIDE_Y;
-        r.w = d_box.w;
-        r.h = d_box.h;
-        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-        SDL_RenderFillRect(renderer, &r);*/
-
-        SDL_Rect *currentClip = &d_spriteClips[(int)d_frame];
-        d_spriteSheetTexture.render(renderer,
-        (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x + config::OFFSET_X,
-        (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y + config::OFFSET_Y,
-        currentClip);
-    }
-
-    void NPC::resetAnimation()
+    void Warrior::resetAnimation()
     {
         d_frame = frameFromOri((d_orientation * 2) - 80);
         d_clip = 0;
         d_offset = 0.0;
     }
 
-    void NPC::walk()
+    void Warrior::walk()
     {
         oriFromDir();
         d_offset += 0.1;
@@ -151,8 +138,20 @@ namespace rpg
         }
     }
 
-    NPC::~NPC()
+    void Warrior::render(SDL_Renderer *renderer, SDL_Rect &cam)
     {
-        d_spriteSheetTexture.free();
+        /*SDL_Rect r;
+        r.x = (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x + config::OFFSET_X * 2;
+        r.y = (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y + config::OFFSET_Y + config::SIDE_Y;
+        r.w = d_box.w;
+        r.h = d_box.h;
+        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+        SDL_RenderFillRect(renderer, &r);*/
+
+        SDL_Rect *currentClip = &d_spriteClips[(int)d_frame];
+        d_spriteSheetTexture.render(renderer,
+        (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x + config::OFFSET_X,
+        (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y + config::OFFSET_Y,
+        currentClip);
     }
 }

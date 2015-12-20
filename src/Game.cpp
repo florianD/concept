@@ -127,10 +127,10 @@ namespace rpg
     void Game::initChars()
     {
         clearChars();
-        Player::loadSpriteSheet(d_renderer);
+        Sorcerer::loadSpriteSheet(d_renderer);
         NPC::loadSpriteSheet(d_renderer);
 
-        player = new Player(0, 0, 2, 0, 0, "Player", SOUTH, d_renderer);
+        player = new Sorcerer(0, 0, 2, 0, 0, "Player", SOUTH);
         characters.push_back(player);
         /*characters.push_back(new NPC(32, 96, 0, 0, 0, "NPC", SOUTH, d_renderer));
         characters.push_back(new NPC(64, 96, 0, 0, 0, "NPC", NORTH, d_renderer));

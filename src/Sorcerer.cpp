@@ -1,23 +1,27 @@
-#include "../include/NPC.h"
+#include "../include/Sorcerer.h"
 
 namespace rpg
 {
-    SDL_Rect NPC::d_spriteClips[144];
-    Image NPC::d_spriteSheetTexture;
+    SDL_Rect Sorcerer::d_spriteClips[128];
+    Image Sorcerer::d_spriteSheetTexture;
 
     enum
     {
-        DFRONT=80, FRONT=88, DLEFT=96, LEFT=104, DBACK=112, BACK=120, DRIGHT=128, RIGHT=136
+        DFRONT=64, FRONT=72, DLEFT=80, LEFT=88, DBACK=96, BACK=104, DRIGHT=112, RIGHT=120
     };
 
-    NPC::NPC(int x, int y, int vel, int vx, int vy, std::string name, int orientation, SDL_Renderer *renderer):Character(x, y, vel, vx, vy, name, orientation)
+    Sorcerer::Sorcerer(int x, int y, int vel, int vx, int vy, std::string name, int orientation)
+    :Player(x, y, vel, vx, vy, name, orientation)
     {
-        d_box.w = 32;
-        d_box.h = 32;
-        d_frame = frameFromOri((d_orientation * 2) - 80);
+        d_frame = frameFromOri(-64);
     }
 
-    double NPC::frameFromOri(double offset)
+    Sorcerer::~Sorcerer()
+    {
+        d_spriteSheetTexture.free();
+    }
+
+    double Sorcerer::frameFromOri(double offset)
     {
         switch(d_orientation)
         {
@@ -40,18 +44,25 @@ namespace rpg
         }
     }
 
-    bool NPC::loadSpriteSheet(SDL_Renderer *renderer)
+    void Sorcerer::resetAnimation()
+    {
+        d_frame = frameFromOri(-64);
+        d_clip = 0;
+        d_offset = 0.0;
+    }
+
+    bool Sorcerer::loadSpriteSheet(SDL_Renderer *renderer)
     {
         bool success = true;
 
-        if(!d_spriteSheetTexture.load("img/object/char/warrior.png", renderer))
+        if(!d_spriteSheetTexture.load("img/object/char/sorcerer.png", renderer))
         {
-            printf("Failed to load npc texture\n");
+            printf("Failed to load player texture\n");
             success = false;
         }
         else
         {
-            int frames_w = 10;
+            int frames_w = 8;
             int frames_h = 8;
             int groups_w = 1;
             int groups_h = 2;
@@ -62,21 +73,9 @@ namespace rpg
             int offset_h = 0;
 
             int k = 0;
-            for(int i = 0; i < 8; ++i)
+            for(int i = 0; i < groups_h * frames_h; ++i)
             {
-                for(int j = 0; j < frames_w; ++j)
-                {
-                    d_spriteClips[k].x = j * size_w;
-                    d_spriteClips[k].y = i * size_h + offset_h;
-                    d_spriteClips[k].w = size_w;
-                    d_spriteClips[k++].h = size_h;
-                }
-                offset_h++;
-            }
-
-            for(int i = 8; i < 16; ++i)
-            {
-                for(int j = 0; j < 8; ++j)
+                for(int j = 0; j < groups_w * frames_w; ++j)
                 {
                     d_spriteClips[k].x = j * size_w;
                     d_spriteClips[k].y = i * size_h + offset_h;
@@ -89,31 +88,7 @@ namespace rpg
         return success;
     }
 
-    void NPC::render(SDL_Renderer *renderer, SDL_Rect &cam)
-    {
-        /*SDL_Rect r;
-        r.x = (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x + config::OFFSET_X * 2;
-        r.y = (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y + config::OFFSET_Y + config::SIDE_Y;
-        r.w = d_box.w;
-        r.h = d_box.h;
-        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-        SDL_RenderFillRect(renderer, &r);*/
-
-        SDL_Rect *currentClip = &d_spriteClips[(int)d_frame];
-        d_spriteSheetTexture.render(renderer,
-        (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x + config::OFFSET_X,
-        (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y + config::OFFSET_Y,
-        currentClip);
-    }
-
-    void NPC::resetAnimation()
-    {
-        d_frame = frameFromOri((d_orientation * 2) - 80);
-        d_clip = 0;
-        d_offset = 0.0;
-    }
-
-    void NPC::walk()
+    void Sorcerer::walk()
     {
         oriFromDir();
         d_offset += 0.1;
@@ -131,18 +106,16 @@ namespace rpg
             {
                 d_box.x -= d_velX;
                 //resetAnimation();
-                d_velX = 0;
             }
             if((d_box.y < 0) || (d_box.y + d_box.h > (config::LEVEL_H / (config::SIDE_Y / d_box.h) + (config::SIDE_Y - d_box.w) / 2)))
             {
                 d_box.y -= d_velY;
                 //resetAnimation();
-                d_velY = 0;
             }
         }
         else
         {
-            d_frame = frameFromOri(d_clip % 10 - 80 + d_orientation * 2) + d_offset;
+            d_frame = frameFromOri(d_clip % 8 - 64) + d_offset;
             if(d_offset >= 0.4)
             {
                 d_offset = 0.0;
@@ -151,8 +124,20 @@ namespace rpg
         }
     }
 
-    NPC::~NPC()
+    void Sorcerer::render(SDL_Renderer *renderer, SDL_Rect &cam)
     {
-        d_spriteSheetTexture.free();
+        /*SDL_Rect r;
+        r.x = (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x + config::OFFSET_X * 2;
+        r.y = (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y + config::OFFSET_Y + config::SIDE_Y;
+        r.w = d_box.w;
+        r.h = d_box.h;
+        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+        SDL_RenderFillRect(renderer, &r);*/
+
+        SDL_Rect *currentClip = &d_spriteClips[(int)d_frame];
+        d_spriteSheetTexture.render(renderer,
+        (d_box.x - d_box.y) * (config::SIDE_X / 2) / d_box.w - cam.x + config::OFFSET_X,
+        (d_box.x + d_box.y) * (config::SIDE_Y / 2) / d_box.h - cam.y + config::OFFSET_Y,
+        currentClip);
     }
 }

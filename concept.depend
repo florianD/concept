@@ -56,7 +56,7 @@
 	"Object.h"
 	"Image.h"
 
-1450635094 c:\users\florian\documents\prog\concept\include\player.h
+1450639927 c:\users\florian\documents\prog\concept\include\player.h
 	<iostream>
 	<string>
 	"Character.h"
@@ -67,7 +67,7 @@
 1450634666 source:c:\users\florian\documents\prog\concept\src\character.cpp
 	"../include/Character.h"
 
-1450635419 source:c:\users\florian\documents\prog\concept\src\game.cpp
+1450639819 source:c:\users\florian\documents\prog\concept\src\game.cpp
 	<algorithm>
 	"Game.h"
 
@@ -83,10 +83,10 @@
 1442074651 source:c:\users\florian\documents\prog\concept\src\map.cpp
 	"../include/Map.h"
 
-1450521437 source:c:\users\florian\documents\prog\concept\src\npc.cpp
+1450637569 source:c:\users\florian\documents\prog\concept\src\npc.cpp
 	"../include/NPC.h"
 
-1450635232 source:c:\users\florian\documents\prog\concept\src\player.cpp
+1450639919 source:c:\users\florian\documents\prog\concept\src\player.cpp
 	"../include/Player.h"
 
 1439478537 source:c:\users\florian\documents\prog\concept\src\building.cpp
@@ -435,22 +435,22 @@
 1450631972 source:c:\users\florian\documents\prog\concept\src\logo.cpp
 	"../include/Logo.h"
 
-1450212769 source:c:\users\florian\documents\prog\concept\src\titlescreen.cpp
+1450657288 source:c:\users\florian\documents\prog\concept\src\titlescreen.cpp
 	"../include/Titlescreen.h"
 
-1450030492 c:\users\florian\documents\prog\concept\include\titlescreen.h
+1450657294 c:\users\florian\documents\prog\concept\include\titlescreen.h
 	<sstream>
 	<SDL2/SDL_ttf.h>
 	"config.h"
 	"Logo.h"
 
-1450635242 source:c:\users\florian\documents\prog\concept\src\sorcerer.cpp
+1450637542 source:c:\users\florian\documents\prog\concept\src\sorcerer.cpp
 	"../include/Sorcerer.h"
 
 1450635122 c:\users\florian\documents\prog\concept\include\sorcerer.h
 	"Player.h"
 
-1450635271 source:c:\users\florian\documents\prog\concept\src\warrior.cpp
+1450639815 source:c:\users\florian\documents\prog\concept\src\warrior.cpp
 	"../include/Warrior.h"
 
 1450635113 c:\users\florian\documents\prog\concept\include\warrior.h

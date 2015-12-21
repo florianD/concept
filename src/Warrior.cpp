@@ -118,13 +118,11 @@ namespace rpg
             {
                 d_box.x -= d_velX;
                 //resetAnimation();
-                d_velX = 0;
             }
             if((d_box.y < 0) || (d_box.y + d_box.h > (config::LEVEL_H / (config::SIDE_Y / d_box.h) + (config::SIDE_Y - d_box.w) / 2)))
             {
                 d_box.y -= d_velY;
                 //resetAnimation();
-                d_velY = 0;
             }
         }
         else

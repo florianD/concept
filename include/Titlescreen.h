@@ -10,9 +10,9 @@ namespace rpg
     class Titlescreen
     {
         public:
-            Titlescreen(SDL_Renderer *renderer);
+            Titlescreen(SDL_Renderer *renderer, TTF_Font *font);
             static bool loadImage(SDL_Renderer *renderer);
-            void render(SDL_Renderer *renderer, TTF_Font *font);
+            void render(SDL_Renderer *renderer);
             void handleEvent(SDL_Event &e);
             bool getActive() const;
             ~Titlescreen();

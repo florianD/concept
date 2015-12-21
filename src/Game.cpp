@@ -83,7 +83,7 @@ namespace rpg
             Logo::loadSpriteSheet(d_renderer);
             //logo = new Logo();
 
-            titlescreen = new Titlescreen(d_renderer);
+            titlescreen = new Titlescreen(d_renderer, d_font);
 
             initChars();
         }
@@ -127,10 +127,10 @@ namespace rpg
     void Game::initChars()
     {
         clearChars();
-        Sorcerer::loadSpriteSheet(d_renderer);
+        Warrior::loadSpriteSheet(d_renderer);
         NPC::loadSpriteSheet(d_renderer);
 
-        player = new Sorcerer(0, 0, 2, 0, 0, "Player", SOUTH);
+        player = new Warrior(0, 0, 2, 0, 0, "Player", SOUTH);
         characters.push_back(player);
         /*characters.push_back(new NPC(32, 96, 0, 0, 0, "NPC", SOUTH, d_renderer));
         characters.push_back(new NPC(64, 96, 0, 0, 0, "NPC", NORTH, d_renderer));
@@ -251,18 +251,15 @@ namespace rpg
             SDL_SetRenderDrawColor(d_renderer, 0x00, 0x00, 0x00, 0x00);
             SDL_RenderClear(d_renderer);
 
-            //logo->animate();
-
             if(titlescreen->getActive())
             {
-                titlescreen->render(d_renderer, d_font);
+                titlescreen->render(d_renderer);
             }
             else
             {
                 actions();
                 renderAll();
             }
-            //logo->render(d_renderer);
 
             if(1000 / 30 > (SDL_GetTicks() - start))
             {

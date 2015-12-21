@@ -10,7 +10,6 @@ namespace rpg
     {
         public:
             Player(int x, int y, int vel, int vx, int vy, std::string name, int orientation);
-            //virtual double frameFromOri(double offset) = 0;
             virtual void render(SDL_Renderer *renderer, SDL_Rect &cam) = 0;
             virtual void handleEvent(SDL_Event &e);
             virtual ~Player();

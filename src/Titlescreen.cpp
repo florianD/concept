@@ -6,9 +6,15 @@ namespace rpg
     Logo Titlescreen::d_logo;
     Image Titlescreen::d_textureText;
 
-    Titlescreen::Titlescreen(SDL_Renderer *renderer):d_isActive(true)
+    Titlescreen::Titlescreen(SDL_Renderer *renderer, TTF_Font *font):d_isActive(true)
     {
         Titlescreen::loadImage(renderer);
+        std::stringstream text;
+        text << "Press Enter to Continue ...";
+        if(!d_textureText.loadText(text.str().c_str(), {255, 255, 255, 255}, renderer, font))
+        {
+            printf( "Unable to render titlescreen text texture\n" );
+        }
     }
 
     Titlescreen::~Titlescreen(){}
@@ -26,19 +32,12 @@ namespace rpg
         return success;
     }
 
-    void Titlescreen::render(SDL_Renderer *renderer, TTF_Font *font)
+    void Titlescreen::render(SDL_Renderer *renderer)
     {
         d_image.render(renderer, (config::WINDOW_W - d_image.getWidth()) / 2, (config::WINDOW_H - d_image.getHeight()) / 3);
         d_logo.animate();
         d_logo.render(renderer, (config::WINDOW_W - d_logo.getWidth()) / 2, (config::WINDOW_H - d_logo.getHeight() / 10));
-        std::stringstream text;
         d_textureText.render(renderer, (config::WINDOW_W - d_textureText.getWidth()) / 2, (config::WINDOW_H - d_textureText.getHeight())-50);
-        text.str("");
-        text << "Press Enter to Continue ...";
-        if(!d_textureText.loadText(text.str().c_str(), {255, 255, 255, 255}, renderer, font))
-        {
-            printf( "Unable to render titlescreen text texture\n" );
-        }
     }
 
     bool Titlescreen::getActive() const

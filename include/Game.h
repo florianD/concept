@@ -13,6 +13,7 @@
 #include "Tile.h"
 #include "Logo.h"
 #include "Titlescreen.h"
+#include "Menu.h"
 #include "Map.h"
 #include "Object.h"
 #include "Character.h"
@@ -39,7 +40,7 @@ namespace rpg
             Character *getId(int id) const;
             void renderAll();
             void actions();
-            void handleEvents();
+            void handleEvents(SDL_Event &e);
             bool loadBackgroundImage();
             static const int SCREEN_WIDTH = config::WINDOW_W;
             static const int SCREEN_HEIGHT = config::WINDOW_H;
@@ -50,7 +51,9 @@ namespace rpg
             bool d_running;
             Map *m;
             Logo *logo;
+            Pentagram *pentagram;
             Titlescreen *titlescreen;
+            Menu *menu;
             Player *player;
             Character *leader;
             SDL_Rect camera;

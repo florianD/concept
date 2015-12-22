@@ -81,9 +81,13 @@ namespace rpg
             camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
 
             Logo::loadSpriteSheet(d_renderer);
-            //logo = new Logo();
+            Pentagram::loadSpriteSheet(d_renderer);
+            logo = new Logo;
 
             titlescreen = new Titlescreen(d_renderer, d_font);
+
+            pentagram = new Pentagram;
+            menu = new Menu(d_renderer);
 
             initChars();
         }
@@ -113,7 +117,9 @@ namespace rpg
 
         delete m;
         delete logo;
+        delete pentagram;
         delete titlescreen;
+        delete menu;
         SDL_DestroyRenderer(d_renderer);
         SDL_DestroyWindow(d_window);
         d_window = NULL;
@@ -243,17 +249,25 @@ namespace rpg
         int frames = 0;
         int curFps = 0;
         float avgFps = 0;
+        SDL_Event e;
         while(d_running)
         {
             start = SDL_GetTicks();
-            handleEvents();
+            handleEvents(e);
 
             SDL_SetRenderDrawColor(d_renderer, 0x00, 0x00, 0x00, 0x00);
             SDL_RenderClear(d_renderer);
 
             if(titlescreen->getActive())
             {
-                titlescreen->render(d_renderer);
+                titlescreen->handleEvent(e);
+                titlescreen->render(d_renderer, logo);
+                menu->setActive();
+            }
+            else if(menu->getActive())
+            {
+                menu->handleEvent(e);
+                menu->render(d_renderer, logo, pentagram);
             }
             else
             {
@@ -288,13 +302,12 @@ namespace rpg
         }
     }
 
-    void Game::handleEvents()
+    void Game::handleEvents(SDL_Event &e)
     {
-        SDL_Event e;
+        //SDL_Event e;
         // handle events on queue
         while(SDL_PollEvent(&e) != 0)
         {
-            titlescreen->handleEvent(e);
             switch(e.type)
             {
                 case SDL_QUIT:

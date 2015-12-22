@@ -12,13 +12,13 @@ namespace rpg
         public:
             Titlescreen(SDL_Renderer *renderer, TTF_Font *font);
             static bool loadImage(SDL_Renderer *renderer);
-            void render(SDL_Renderer *renderer);
+            void render(SDL_Renderer *renderer, Logo *logo);
             void handleEvent(SDL_Event &e);
+            void setActive();
             bool getActive() const;
             ~Titlescreen();
         private:
             static Image d_image;
-            static Logo d_logo;
             bool d_isActive;
             static Image d_textureText;
     };

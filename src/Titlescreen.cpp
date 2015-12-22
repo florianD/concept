@@ -3,7 +3,6 @@
 namespace rpg
 {
     Image Titlescreen::d_image;
-    Logo Titlescreen::d_logo;
     Image Titlescreen::d_textureText;
 
     Titlescreen::Titlescreen(SDL_Renderer *renderer, TTF_Font *font):d_isActive(true)
@@ -32,17 +31,22 @@ namespace rpg
         return success;
     }
 
-    void Titlescreen::render(SDL_Renderer *renderer)
+    void Titlescreen::render(SDL_Renderer *renderer, Logo *logo)
     {
         d_image.render(renderer, (config::WINDOW_W - d_image.getWidth()) / 2, (config::WINDOW_H - d_image.getHeight()) / 3);
-        d_logo.animate();
-        d_logo.render(renderer, (config::WINDOW_W - d_logo.getWidth()) / 2, (config::WINDOW_H - d_logo.getHeight() / 10));
+        logo->animate();
+        logo->render(renderer, (config::WINDOW_W - logo->getWidth()) / 2, (config::WINDOW_H - logo->getHeight() / 10));
         d_textureText.render(renderer, (config::WINDOW_W - d_textureText.getWidth()) / 2, (config::WINDOW_H - d_textureText.getHeight())-50);
     }
 
     bool Titlescreen::getActive() const
     {
         return d_isActive;
+    }
+
+    void Titlescreen::setActive()
+    {
+        d_isActive = true;
     }
 
     void Titlescreen::handleEvent(SDL_Event &e)

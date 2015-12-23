@@ -13,7 +13,7 @@ namespace rpg
         return c1->getY() < c2->getY() || (!(c2->getY() < c1->getY()) && c1->getX() < c2->getX());
     }
 
-    Game::Game():d_running(true), d_fullscreen(false)
+    Game::Game():d_running(true), d_fullscreen(false), d_inGame(false)
     {
         bool success = true;
         if(SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -249,30 +249,26 @@ namespace rpg
         int frames = 0;
         int curFps = 0;
         float avgFps = 0;
-        SDL_Event e;
         while(d_running)
         {
             start = SDL_GetTicks();
-            handleEvents(e);
+            handleEvents();
 
             SDL_SetRenderDrawColor(d_renderer, 0x00, 0x00, 0x00, 0x00);
             SDL_RenderClear(d_renderer);
 
-            if(titlescreen->getActive())
-            {
-                titlescreen->handleEvent(e);
-                titlescreen->render(d_renderer, logo);
-                menu->setActive();
-            }
-            else if(menu->getActive())
-            {
-                menu->handleEvent(e);
-                menu->render(d_renderer, logo, pentagram);
-            }
-            else
+            if(d_inGame)
             {
                 actions();
                 renderAll();
+            }
+            else if(titlescreen->getActive())
+            {
+                titlescreen->render(d_renderer, logo);
+            }
+            else
+            {
+                menu->render(d_renderer, logo, pentagram);
             }
 
             if(1000 / 30 > (SDL_GetTicks() - start))
@@ -302,12 +298,16 @@ namespace rpg
         }
     }
 
-    void Game::handleEvents(SDL_Event &e)
+    void Game::handleEvents()
     {
-        //SDL_Event e;
+        SDL_Event e;
         // handle events on queue
         while(SDL_PollEvent(&e) != 0)
         {
+            if(d_inGame)
+            {
+                player->handleEvent(e);
+            }
             switch(e.type)
             {
                 case SDL_QUIT:
@@ -325,8 +325,31 @@ namespace rpg
                             leader = getId(nextLeader);
                             return;
                         case SDLK_RETURN:
-                            nextLeader = player->getId();
-                            leader = getId(nextLeader);
+                            if(d_inGame)
+                            {
+                                nextLeader = player->getId();
+                                leader = getId(nextLeader);
+                            }
+                            else if(titlescreen->getActive())
+                            {
+                                titlescreen->setActive();
+                                menu->setActive();
+                                menu->setSelection(0);
+                            }
+                            else
+                            {
+                                if(menu->getSelection() == 1)
+                                {
+                                    menu->setActive();
+                                    d_inGame = true;
+                                }
+                                else if(menu->getSelection() == 2)
+                                {
+                                    menu->setActive();
+                                    d_inGame = false;
+                                    d_running = false;
+                                }
+                            }
                             return;
                         case SDLK_BACKSPACE:
                             initChars();
@@ -345,9 +368,32 @@ namespace rpg
                             d_fullscreen = !d_fullscreen;
                             SDL_SetWindowFullscreen(d_window, d_fullscreen ? SDL_WINDOW_FULLSCREEN : 0);
                             return;
+                        case SDLK_UP:
+                            if(menu->getActive())
+                            {
+                                menu->setSelection((menu->getSelection() == 0) ? menu->getNbOptions() - 1 : (menu->getSelection() - 1) % menu->getNbOptions());
+                            }
+                            return;
+                        case SDLK_DOWN:
+                            if(menu->getActive())
+                            {
+                                menu->setSelection((menu->getSelection() + 1) % menu->getNbOptions());
+                            }
+                            return;
+                        case SDLK_ESCAPE:
+                            if(d_inGame)
+                            {
+                                d_inGame = false;
+                                menu->setActive();
+                            }
+                            else if(menu->getActive())
+                            {
+                                menu->setActive();
+                                titlescreen->setActive();
+                            }
+                            return;
                     }
             }
-            player->handleEvent(e);
         }
     }
 

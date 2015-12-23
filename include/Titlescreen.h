@@ -13,7 +13,6 @@ namespace rpg
             Titlescreen(SDL_Renderer *renderer, TTF_Font *font);
             static bool loadImage(SDL_Renderer *renderer);
             void render(SDL_Renderer *renderer, Logo *logo);
-            void handleEvent(SDL_Event &e);
             void setActive();
             bool getActive() const;
             ~Titlescreen();

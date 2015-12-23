@@ -46,19 +46,6 @@ namespace rpg
 
     void Titlescreen::setActive()
     {
-        d_isActive = true;
-    }
-
-    void Titlescreen::handleEvent(SDL_Event &e)
-    {
-        if(e.type == SDL_KEYDOWN && e.key.repeat == 0)
-        {
-            switch(e.key.keysym.sym)
-            {
-                case SDLK_RETURN:
-                    d_isActive = false;
-                    break;
-            }
-        }
+        d_isActive = !d_isActive;
     }
 }

@@ -40,7 +40,7 @@ namespace rpg
             Character *getId(int id) const;
             void renderAll();
             void actions();
-            void handleEvents(SDL_Event &e);
+            void handleEvents();
             bool loadBackgroundImage();
             static const int SCREEN_WIDTH = config::WINDOW_W;
             static const int SCREEN_HEIGHT = config::WINDOW_H;
@@ -49,6 +49,7 @@ namespace rpg
             SDL_Renderer *d_renderer;
             TTF_Font *d_font;
             bool d_running;
+            bool d_inGame;
             Map *m;
             Logo *logo;
             Pentagram *pentagram;

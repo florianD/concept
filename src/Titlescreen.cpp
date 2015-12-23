@@ -35,8 +35,8 @@ namespace rpg
     {
         d_image.render(renderer, (config::WINDOW_W - d_image.getWidth()) / 2, (config::WINDOW_H - d_image.getHeight()) / 3);
         logo->animate();
-        logo->render(renderer, (config::WINDOW_W - logo->getWidth()) / 2, (config::WINDOW_H - logo->getHeight() / 10));
-        d_textureText.render(renderer, (config::WINDOW_W - d_textureText.getWidth()) / 2, (config::WINDOW_H - d_textureText.getHeight())-50);
+        logo->render(renderer, (config::WINDOW_W - logo->getWidth()) / 2, ((config::WINDOW_H - d_image.getHeight()) / 3) + d_image.getHeight() / 2);
+        d_textureText.render(renderer, (config::WINDOW_W - d_textureText.getWidth()) / 2, (config::WINDOW_H - d_textureText.getHeight())-30);
     }
 
     bool Titlescreen::getActive() const

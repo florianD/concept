@@ -3,7 +3,7 @@
 namespace rpg
 {
     const int Menu::OPTIONS = 3;
-    int Menu::d_pos[3] = {270, 320, 370};
+    float Menu::d_pos[3] = {250*((float)config::WINDOW_H/600), 300*((float)config::WINDOW_H/600), 350*((float)config::WINDOW_H/600)};
     Image Menu::d_image;
     Image Menu::d_textureText[3];
 

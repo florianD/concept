@@ -9,7 +9,7 @@ namespace rpg
     {
         public:
             Logo();
-            static bool loadSpriteSheet(SDL_Renderer *renderer);
+            static bool loadSpriteSheet(SDL_Renderer *renderer, std::string path);
             void animate();
             void render(SDL_Renderer *renderer, int x, int y);
             int getHeight() const;

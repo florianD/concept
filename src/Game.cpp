@@ -80,7 +80,7 @@ namespace rpg
             m = new Map(d_renderer);
             camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
 
-            Logo::loadSpriteSheet(d_renderer);
+            Logo::loadSpriteSheet(d_renderer, "img/menu/logo.png");
             Pentagram::loadSpriteSheet(d_renderer);
             logo = new Logo;
 
@@ -333,6 +333,7 @@ namespace rpg
                             else if(titlescreen->getActive())
                             {
                                 titlescreen->setActive();
+                                Logo::loadSpriteSheet(d_renderer, "img/menu/smlogo.png");
                                 menu->setActive();
                                 menu->setSelection(0);
                             }
@@ -388,6 +389,7 @@ namespace rpg
                             }
                             else if(menu->getActive())
                             {
+                                Logo::loadSpriteSheet(d_renderer, "img/menu/logo.png");
                                 menu->setActive();
                                 titlescreen->setActive();
                             }

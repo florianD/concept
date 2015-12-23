@@ -7,11 +7,11 @@ namespace rpg
 
     Logo::Logo():d_frame(0), d_offset(0), d_clip(0){}
 
-    bool Logo::loadSpriteSheet(SDL_Renderer *renderer)
+    bool Logo::loadSpriteSheet(SDL_Renderer *renderer, std::string path)
     {
         bool success = true;
 
-        if(!d_spriteSheetTexture.load("img/menu/logo.png", renderer))
+        if(!d_spriteSheetTexture.load(path, renderer))
         {
             printf("Failed to load menu texture\n");
             success = false;

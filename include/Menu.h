@@ -23,7 +23,7 @@ namespace rpg
         private:
             int i;
             static const int OPTIONS;
-            static int d_pos[3];
+            static float d_pos[3];
             static Image d_image;
             bool d_isActive;
             static Image d_textureText[3];

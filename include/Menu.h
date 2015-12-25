@@ -18,16 +18,22 @@ namespace rpg
             bool getActive() const;
             void setSelection(int sel);
             int getSelection() const;
-            int getNbOptions() const;
+            int getNbOptions(int i) const;
+            int getLocation() const;
+            void setLocation(int l);
             ~Menu();
         private:
             int i;
-            static const int OPTIONS;
-            static float d_pos[3];
+            static const int OPTIONS[3];
+            static int d_pos[3];
+            static int d_posSP[3];
             static Image d_image;
             bool d_isActive;
             static Image d_textureText[3];
+            static Image d_textureSP;
+            static Image d_textureTextSP[3];
             int d_x, d_y;
+            int location; //0 : menu, 1 : SP
     };
 }
 

@@ -81,7 +81,7 @@ namespace rpg
             camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
 
             Logo::loadSpriteSheet(d_renderer, "img/menu/logo.png");
-            Pentagram::loadSpriteSheet(d_renderer);
+            Pentagram::loadSpriteSheet(d_renderer, "img/menu/pentagram.png");
             logo = new Logo;
 
             titlescreen = new Titlescreen(d_renderer, d_font);
@@ -337,18 +337,37 @@ namespace rpg
                                 menu->setActive();
                                 menu->setSelection(0);
                             }
-                            else
+                            else if(menu->getActive())
                             {
-                                if(menu->getSelection() == 1)
+                                if(menu->getLocation() == 0)
                                 {
-                                    menu->setActive();
-                                    d_inGame = true;
+                                    if(menu->getSelection() == 0)
+                                    {
+                                        Pentagram::loadSpriteSheet(d_renderer, "img/menu/pentagram2.png");
+                                        menu->setLocation(1);
+                                    }
+                                    else if(menu->getSelection() == 1)
+                                    {
+                                        menu->setActive();
+                                        d_inGame = true;
+                                    }
+                                    else if(menu->getSelection() == 2)
+                                    {
+                                        menu->setActive();
+                                        d_inGame = false;
+                                        d_running = false;
+                                    }
                                 }
-                                else if(menu->getSelection() == 2)
+                                else if(menu->getLocation() == 1)
                                 {
-                                    menu->setActive();
-                                    d_inGame = false;
-                                    d_running = false;
+                                    if(menu->getSelection() == 0)
+                                    {
+                                        // Warrior
+                                    }
+                                    else if(menu->getSelection() == 1)
+                                    {
+                                        // Sorcerer
+                                    }
                                 }
                             }
                             return;
@@ -363,22 +382,23 @@ namespace rpg
                             }
                             return;
                         case SDLK_KP_1:
+                            d_fullscreen = !d_fullscreen;
+                            SDL_SetWindowFullscreen(d_window, d_fullscreen ? SDL_WINDOW_FULLSCREEN : 0);
+
                             /*SDL_DisplayMode target;
                             target = {1600, 900, 0, 0, 0};
                             SDL_SetWindowDisplayMode(d_window, &target);*/
-                            d_fullscreen = !d_fullscreen;
-                            SDL_SetWindowFullscreen(d_window, d_fullscreen ? SDL_WINDOW_FULLSCREEN : 0);
                             return;
                         case SDLK_UP:
                             if(menu->getActive())
                             {
-                                menu->setSelection((menu->getSelection() == 0) ? menu->getNbOptions() - 1 : (menu->getSelection() - 1) % menu->getNbOptions());
+                                menu->setSelection((menu->getSelection() == 0) ? menu->getNbOptions(menu->getLocation()) - 1 : (menu->getSelection() - 1) % menu->getNbOptions(menu->getLocation()));
                             }
                             return;
                         case SDLK_DOWN:
                             if(menu->getActive())
                             {
-                                menu->setSelection((menu->getSelection() + 1) % menu->getNbOptions());
+                                menu->setSelection((menu->getSelection() + 1) % menu->getNbOptions(menu->getLocation()));
                             }
                             return;
                         case SDLK_ESCAPE:
@@ -387,11 +407,24 @@ namespace rpg
                                 d_inGame = false;
                                 menu->setActive();
                             }
+                            else if(titlescreen->getActive())
+                            {
+                                d_running = false;
+                            }
                             else if(menu->getActive())
                             {
-                                Logo::loadSpriteSheet(d_renderer, "img/menu/logo.png");
-                                menu->setActive();
-                                titlescreen->setActive();
+                                if(menu->getLocation() == 0)
+                                {
+                                    Logo::loadSpriteSheet(d_renderer, "img/menu/logo.png");
+                                    menu->setActive();
+                                    titlescreen->setActive();
+                                }
+                                else if(menu->getLocation() == 1)
+                                {
+                                    Pentagram::loadSpriteSheet(d_renderer, "img/menu/pentagram.png");
+                                    menu->setSelection(0);
+                                    menu->setLocation(0);
+                                }
                             }
                             return;
                     }

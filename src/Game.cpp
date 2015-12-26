@@ -130,13 +130,11 @@ namespace rpg
         SDL_Quit();
     }
 
-    void Game::initChars()
+    void Game::initChars(Player *player)
     {
         clearChars();
-        Warrior::loadSpriteSheet(d_renderer);
         NPC::loadSpriteSheet(d_renderer);
 
-        player = new Warrior(0, 0, 2, 0, 0, "Player", SOUTH);
         characters.push_back(player);
         /*characters.push_back(new NPC(32, 96, 0, 0, 0, "NPC", SOUTH, d_renderer));
         characters.push_back(new NPC(64, 96, 0, 0, 0, "NPC", NORTH, d_renderer));
@@ -263,6 +261,7 @@ namespace rpg
                 {
                     actions();
                     renderAll();
+                    //Font::render(d_renderer, "Single Player", 50, 50);
                 }
                 else
                 {
@@ -372,7 +371,7 @@ namespace rpg
                             }
                             else if(menu->getActive())
                             {
-                                if(menu->getLocation() == 0)
+                                if(menu->getLocation() == 0) // main
                                 {
                                     if(menu->getSelection() == 0)
                                     {
@@ -383,7 +382,9 @@ namespace rpg
                                     {
                                         menu->setActive();
                                         d_inGame = true;
-                                        initChars();
+                                        Warrior::loadSpriteSheet(d_renderer);
+                                        player = new Warrior(0, 0, 2, 0, 0, "Player", SOUTH);
+                                        initChars(player);
                                     }
                                     else if(menu->getSelection() == 2)
                                     {
@@ -392,21 +393,39 @@ namespace rpg
                                         d_running = false;
                                     }
                                 }
-                                else if(menu->getLocation() == 1)
+                                else if(menu->getLocation() == 1) // characters
                                 {
                                     if(menu->getSelection() == 0)
                                     {
                                         // Warrior
+                                        Warrior::loadSpriteSheet(d_renderer);
+                                        player = new Warrior(0, 0, 2, 0, 0, "Player", SOUTH);
+                                        menu->setActive();
+                                        d_inGame = true;
+                                        initChars(player);
                                     }
                                     else if(menu->getSelection() == 1)
                                     {
+                                        // Rogue
+                                        // todo
+                                        menu->setActive();
+                                        d_inGame = true;
+                                        initChars(player);
+                                    }
+                                    else if(menu->getSelection() == 2)
+                                    {
                                         // Sorcerer
+                                        Sorcerer::loadSpriteSheet(d_renderer);
+                                        player = new Sorcerer(0, 0, 2, 0, 0, "Player", SOUTH);
+                                        menu->setActive();
+                                        d_inGame = true;
+                                        initChars(player);
                                     }
                                 }
                             }
                             return;
                         case SDLK_BACKSPACE:
-                            initChars();
+                            //initChars();
                             return;
                         case SDLK_KP_0:
                             for(unsigned int i = 0; i < characters.size(); ++i)

@@ -34,7 +34,7 @@ namespace rpg
         private:
             static int nextLeader;
             void clearChars();
-            void initChars();
+            void initChars(Player *player);
             void setCamera(SDL_Rect box);
             bool collision(SDL_Rect &r1, SDL_Rect &r2) const;
             Character *getId(int id) const;

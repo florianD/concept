@@ -122,7 +122,7 @@ namespace rpg
         // load background image
         if(!d_image.load("img/menu/evil.png", renderer))
         {
-            printf("Failed to load evil (menu) texture\n");
+            printf("Failed to load evil texture (menu)\n");
             success = false;
         }
         return success;

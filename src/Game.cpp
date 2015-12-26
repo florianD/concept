@@ -89,7 +89,7 @@ namespace rpg
             pentagram = new Pentagram;
             menu = new Menu(d_renderer);
 
-            initChars();
+            //initChars();
         }
     }
 
@@ -146,10 +146,10 @@ namespace rpg
         characters.push_back(new NPC(64, 128, 0, 0, 0, "NPC", DNORTH, d_renderer));
         characters.push_back(new NPC(96, 128, 0, 0, 0, "NPC", DEAST, d_renderer));
         characters.push_back(new NPC(128, 128, 0, 0, 0, "NPC", DWEST, d_renderer));*/
-        characters.push_back(new NPC(0, 32, 2, 2, 0, "NPC", SOUTH, d_renderer));
+        characters.push_back(new NPC(0, 32, 2, 2, 0, "NPC", EAST, d_renderer));
         characters.push_back(new NPC(config::LEVEL_W / (config::SIDE_X / player->getRect().w) - config::SIDE_X / 8, 64, -2, -2, 0, "NPC", SOUTH, d_renderer));
         characters.push_back(new NPC(160, 0, 2, 0, 2, "NPC", SOUTH, d_renderer));
-        characters.push_back(new NPC(192, config::LEVEL_H / (config::SIDE_Y / player->getRect().h) - config::SIDE_Y / 4, 2, 0, -2, "NPC", NORTH, d_renderer));
+        characters.push_back(new NPC(192, config::LEVEL_H / (config::SIDE_Y / player->getRect().h) - config::SIDE_Y / 4, 2, 0, -2, "NPC", WEST, d_renderer));
 
         std::sort(characters.begin(), characters.end(), compare);
 
@@ -259,8 +259,16 @@ namespace rpg
 
             if(d_inGame)
             {
-                actions();
-                renderAll();
+                if(!menu->getActive())
+                {
+                    actions();
+                    renderAll();
+                }
+                else
+                {
+                    renderAll();
+                    menu->render(d_renderer, logo, pentagram);
+                }
             }
             else if(titlescreen->getActive())
             {
@@ -327,8 +335,33 @@ namespace rpg
                         case SDLK_RETURN:
                             if(d_inGame)
                             {
-                                nextLeader = player->getId();
-                                leader = getId(nextLeader);
+                                if(!menu->getActive())
+                                {
+                                    nextLeader = player->getId();
+                                    leader = getId(nextLeader);
+                                }
+                                else
+                                {
+                                    if(menu->getSelection() == 0)
+                                    {
+                                        menu->setActive();
+                                    }
+                                    else if(menu->getSelection() == 3)
+                                    {
+                                        // restart in town
+                                    }
+                                    else if(menu->getSelection() == 4)
+                                    {
+                                        clearChars();
+                                        d_inGame = false;
+                                        menu->setSelection(0);
+                                        menu->setLocation(0);
+                                    }
+                                    else if(menu->getSelection() == 5)
+                                    {
+                                        d_running = false;
+                                    }
+                                }
                             }
                             else if(titlescreen->getActive())
                             {
@@ -350,6 +383,7 @@ namespace rpg
                                     {
                                         menu->setActive();
                                         d_inGame = true;
+                                        initChars();
                                     }
                                     else if(menu->getSelection() == 2)
                                     {
@@ -404,8 +438,17 @@ namespace rpg
                         case SDLK_ESCAPE:
                             if(d_inGame)
                             {
-                                d_inGame = false;
-                                menu->setActive();
+                                //d_inGame = false;
+                                if(menu->getActive())
+                                {
+                                    menu->setActive();
+                                }
+                                else
+                                {
+                                    menu->setActive();
+                                    menu->setLocation(2);
+                                    menu->setSelection(0);
+                                }
                             }
                             else if(titlescreen->getActive())
                             {

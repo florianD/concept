@@ -2,21 +2,25 @@
 
 namespace rpg
 {
-    const int Menu::OPTIONS[3] = {3, 3};
+    const int Menu::OPTIONS[3] = {3, 3, 6};
     int Menu::d_pos[3] = {(int)250*((float)config::WINDOW_H/600), (int)300*((float)config::WINDOW_H/600), (int)350*((float)config::WINDOW_H/600)};
     int Menu::d_posSP[3] = {(int)310*((float)config::WINDOW_H/600), (int)340*((float)config::WINDOW_H/600), (int)370*((float)config::WINDOW_H/600)};
+    int Menu::d_posIG[6] = {(int)200*((float)config::WINDOW_H/600), (int)250*((float)config::WINDOW_H/600), (int)300*((float)config::WINDOW_H/600),
+                            (int)350*((float)config::WINDOW_H/600), (int)400*((float)config::WINDOW_H/600), (int)450*((float)config::WINDOW_H/600)};
     Image Menu::d_image;
     Image Menu::d_textureText[3];
     Image Menu::d_textureSP;
     Image Menu::d_textureTextSP[3];
+    Image Menu::d_textureTextIG[6];
 
     Menu::Menu(SDL_Renderer *renderer):d_isActive(false),d_x(100), d_y(d_pos[0]),i(0),location(0)
     {
         Menu::loadImage(renderer);
         TTF_Font *font = TTF_OpenFont("DIABLO_H.ttf", 30);
         TTF_Font *font2 = TTF_OpenFont("DIABLO_H.ttf", 22);
-        SDL_Color color = {137, 128, 95, 255};
-        SDL_Color color2 = {147, 149, 147, 255};
+        SDL_Color color = {137, 128, 95, 255}; // brown
+        SDL_Color color2 = {147, 149, 147, 255}; // grey
+        SDL_Color color3 = {200, 128, 0}; // orange
         if(font == NULL)
         {
             printf("Failed to load DIABLO_H font SDL_ttf Error: %s\n", TTF_GetError());
@@ -66,6 +70,43 @@ namespace rpg
             printf("Unable to render Sorcerer text texture (menu)\n");
         }
 
+        text.str("");
+        text << "Resume Game";
+        if(!d_textureTextIG[0].loadText(text.str().c_str(), color3, renderer, font))
+        {
+            printf("Unable to render Resume Game text texture (IG menu)\n");
+        }
+        text.str("");
+        text << "Sound Options";
+        if(!d_textureTextIG[1].loadText(text.str().c_str(), color3, renderer, font))
+        {
+            printf("Unable to render Sound Options text texture (IG menu)\n");
+        }
+        text.str("");
+        text << "Video Options";
+        if(!d_textureTextIG[2].loadText(text.str().c_str(), color3, renderer, font))
+        {
+            printf("Unable to render Video Options text texture (IG menu)\n");
+        }
+        text.str("");
+        text << "Restart In Town";
+        if(!d_textureTextIG[3].loadText(text.str().c_str(), color3, renderer, font))
+        {
+            printf("Unable to render Restart In Town text texture (IG menu)\n");
+        }
+        text.str("");
+        text << "New Game";
+        if(!d_textureTextIG[4].loadText(text.str().c_str(), color3, renderer, font))
+        {
+            printf("Unable to render New Game text texture (IG menu)\n");
+        }
+        text.str("");
+        text << "Exit Diablo";
+        if(!d_textureTextIG[5].loadText(text.str().c_str(), color3, renderer, font))
+        {
+            printf("Unable to render Exit Diablo text texture (IG menu)\n");
+        }
+
         TTF_CloseFont(font);
         TTF_CloseFont(font2);
         font = NULL;
@@ -89,27 +130,40 @@ namespace rpg
 
     void Menu::render(SDL_Renderer *renderer, Logo *logo, Pentagram *pentagram)
     {
-        d_image.render(renderer, (config::WINDOW_W - d_image.getWidth()) / 2, (config::WINDOW_H - d_image.getHeight()) / 2);
-        logo->animate();
-        logo->render(renderer, (config::WINDOW_W - logo->getWidth()) / 2, 0);
         pentagram->animate();
         if(getLocation() == 0)
         {
+            d_image.render(renderer, (config::WINDOW_W - d_image.getWidth()) / 2, (config::WINDOW_H - d_image.getHeight()) / 2);
             pentagram->render(renderer, d_x, d_pos[i]);
             pentagram->render(renderer, config::WINDOW_W - 150, d_pos[i]);
-            d_textureText[0].render(renderer, (config::WINDOW_W - d_textureText[0].getWidth()) / 2, d_pos[0]);
-            d_textureText[1].render(renderer, (config::WINDOW_W - d_textureText[1].getWidth()) / 2, d_pos[1]);
-            d_textureText[2].render(renderer, (config::WINDOW_W - d_textureText[2].getWidth()) / 2, d_pos[2]);
+            for(int i = 0; i < 3; ++i)
+            {
+                d_textureText[i].render(renderer, (config::WINDOW_W - d_textureText[i].getWidth()) / 2, d_pos[i]);
+            }
         }
         else if(getLocation() == 1)
         {
             d_textureSP.render(renderer, (config::WINDOW_W - d_textureSP.getWidth()) / 2, logo->getHeight()/15 + 15);
-            pentagram->render(renderer, (config::WINDOW_W - d_textureTextSP[i].getWidth()) / 2 - pentagram->getWidth() - 10, d_posSP[i]);
-            pentagram->render(renderer, (config::WINDOW_W - d_textureTextSP[i].getWidth()) / 2 + d_textureTextSP[i].getWidth() + 10, d_posSP[i]);
-            d_textureTextSP[0].render(renderer, (config::WINDOW_W - d_textureTextSP[0].getWidth()) / 2, d_posSP[0]);
-            d_textureTextSP[1].render(renderer, (config::WINDOW_W - d_textureTextSP[1].getWidth()) / 2, d_posSP[1]);
-            d_textureTextSP[2].render(renderer, (config::WINDOW_W - d_textureTextSP[2].getWidth()) / 2, d_posSP[2]);
+            //pentagram->render(renderer, (config::WINDOW_W - d_textureTextSP[i].getWidth()) / 2 - pentagram->getWidth() - 10, d_posSP[i]);
+            //pentagram->render(renderer, (config::WINDOW_W - d_textureTextSP[i].getWidth()) / 2 + d_textureTextSP[i].getWidth() + 10, d_posSP[i]);
+            pentagram->render(renderer, d_x + 80, d_posSP[i]);
+            pentagram->render(renderer, config::WINDOW_W - 230, d_posSP[i]);
+            for(int i = 0; i < 3; ++i)
+            {
+                d_textureTextSP[i].render(renderer, (config::WINDOW_W - d_textureTextSP[i].getWidth()) / 2, d_posSP[i]);
+            }
         }
+        else if(getLocation() == 2) // IG
+        {
+            pentagram->render(renderer, (config::WINDOW_W - d_textureTextIG[i].getWidth()) / 2 - pentagram->getWidth() - 10, d_posIG[i]);
+            pentagram->render(renderer, (config::WINDOW_W - d_textureTextIG[i].getWidth()) / 2 + d_textureTextIG[i].getWidth() + 10, d_posIG[i]);
+            for(int i = 0; i < 6; ++i)
+            {
+                d_textureTextIG[i].render(renderer, (config::WINDOW_W - d_textureTextIG[i].getWidth()) / 2, d_posIG[i]);
+            }
+        }
+        logo->animate();
+        logo->render(renderer, (config::WINDOW_W - logo->getWidth()) / 2, 0);
     }
 
     int Menu::getLocation() const

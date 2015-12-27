@@ -47,6 +47,7 @@
 		</Linker>
 		<Unit filename="include/Building.h" />
 		<Unit filename="include/Character.h" />
+		<Unit filename="include/Font.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/Image.h" />
 		<Unit filename="include/Logo.h" />
@@ -65,6 +66,7 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Building.cpp" />
 		<Unit filename="src/Character.cpp" />
+		<Unit filename="src/Font.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/Image.cpp" />
 		<Unit filename="src/Logo.cpp" />

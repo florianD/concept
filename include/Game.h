@@ -44,6 +44,7 @@ namespace rpg
             bool loadBackgroundImage();
             static const int SCREEN_WIDTH = config::WINDOW_W;
             static const int SCREEN_HEIGHT = config::WINDOW_H;
+            float gamma;
             Image d_background;
             SDL_Window *d_window;
             SDL_Renderer *d_renderer;

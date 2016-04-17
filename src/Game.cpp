@@ -13,7 +13,7 @@ namespace rpg
         return c1->getY() < c2->getY() || (!(c2->getY() < c1->getY()) && c1->getX() < c2->getX());
     }
 
-    Game::Game():d_running(true), d_fullscreen(false), d_inGame(false), m(NULL)
+    Game::Game():d_running(true), d_fullscreen(false), d_inGame(false), m(NULL), gamma(1.0)
     {
         bool success = true;
         if(SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -69,6 +69,7 @@ namespace rpg
         {
             //loadBackgroundImage();
             SDL_SetWindowFullscreen(d_window, d_fullscreen ? SDL_WINDOW_FULLSCREEN : 0);
+            gamma = SDL_GetWindowBrightness(d_window);
 
             d_font = TTF_OpenFont("Tahoma.ttf", 12);
             if(d_font == NULL)
@@ -87,9 +88,6 @@ namespace rpg
 
             pentagram = new Pentagram;
             menu = new Menu(d_renderer);
-
-            //std::cout << SDL_GetWindowBrightness(d_window) << " ";
-            SDL_SetWindowBrightness(d_window, 1);
         }
     }
 
@@ -273,7 +271,6 @@ namespace rpg
                 {
                     actions();
                     renderAll();
-                    //Font::render(d_renderer, "Single Player", 50, 50);
                 }
                 else
                 {
@@ -355,15 +352,19 @@ namespace rpg
                                 {
                                     if(menu->getSelection() == 0)
                                     {
+                                        SDL_SetWindowBrightness(d_window, gamma);
                                         menu->setActive();
                                     }
                                     else if(menu->getSelection() == 3)
                                     {
                                         // restart in town
+                                        SDL_SetWindowBrightness(d_window, gamma);
                                         player->moveTo(0, 0);
+                                        menu->setActive();
                                     }
                                     else if(menu->getSelection() == 4)
                                     {
+                                        SDL_SetWindowBrightness(d_window, gamma);
                                         clearChars();
                                         delete m;
                                         m = NULL;
@@ -373,6 +374,7 @@ namespace rpg
                                     }
                                     else if(menu->getSelection() == 5)
                                     {
+                                        SDL_SetWindowBrightness(d_window, gamma);
                                         d_running = false;
                                     }
                                 }
@@ -476,13 +478,15 @@ namespace rpg
                         case SDLK_ESCAPE:
                             if(d_inGame)
                             {
-                                //d_inGame = false;
                                 if(menu->getActive())
                                 {
+                                    SDL_SetWindowBrightness(d_window, gamma);
                                     menu->setActive();
                                 }
                                 else
                                 {
+                                    Pentagram::loadSpriteSheet(d_renderer, "img/menu/pentagram.png");
+                                    SDL_SetWindowBrightness(d_window, gamma - 0.2);
                                     menu->setActive();
                                     menu->setLocation(2);
                                     menu->setSelection(0);
